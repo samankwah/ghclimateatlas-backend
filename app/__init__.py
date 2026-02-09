@@ -1,0 +1,1 @@
+# Ghana Climate Atlas Backend
