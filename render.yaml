@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ghana-climate-atlas-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.6"
+      - key: CORS_ORIGINS
+        sync: false
