@@ -3,6 +3,55 @@ Mock climate data for Ghana districts
 Based on realistic projections from CORDEX-Africa models
 """
 
+from __future__ import annotations
+
+import math
+
+MONTHS = [
+    ("jan", "January"),
+    ("feb", "February"),
+    ("mar", "March"),
+    ("apr", "April"),
+    ("may", "May"),
+    ("jun", "June"),
+    ("jul", "July"),
+    ("aug", "August"),
+    ("sep", "September"),
+    ("oct", "October"),
+    ("nov", "November"),
+    ("dec", "December"),
+]
+
+MONTHLY_TEMP_BASE_OFFSETS = {
+    "jan": 0.6,
+    "feb": 1.0,
+    "mar": 1.2,
+    "apr": 0.9,
+    "may": 0.4,
+    "jun": 0.0,
+    "jul": -0.3,
+    "aug": -0.2,
+    "sep": 0.2,
+    "oct": 0.5,
+    "nov": 0.4,
+    "dec": 0.1,
+}
+
+MONTHLY_PRECIP_WEIGHTS = {
+    "jan": 0.02,
+    "feb": 0.03,
+    "mar": 0.05,
+    "apr": 0.10,
+    "may": 0.13,
+    "jun": 0.14,
+    "jul": 0.12,
+    "aug": 0.10,
+    "sep": 0.10,
+    "oct": 0.10,
+    "nov": 0.07,
+    "dec": 0.04,
+}
+
 # Ghana's 16 Regions with sample districts
 REGIONS = {
     "Greater Accra": ["Accra Metropolitan", "Tema Metropolitan", "Ga West", "Ga East", "Ga South", "Ga Central", "Ledzokuku", "La Dade-Kotopon", "La Nkwantanang-Madina", "Adentan", "Kpone Katamanso", "Ada East", "Ada West", "Ningo Prampram", "Shai Osudoku", "Krowor"],
@@ -29,7 +78,7 @@ CLIMATE_VARIABLES = [
         "id": "annual_mean_temp",
         "name": "Annual Mean Temperature",
         "description": "Average of daily mean temperatures over the year",
-        "unit": "°C",
+        "unit": "Â°C",
         "category": "temperature",
         "color_scale": "temperature",
     },
@@ -37,17 +86,185 @@ CLIMATE_VARIABLES = [
         "id": "annual_max_temp",
         "name": "Annual Maximum Temperature",
         "description": "Average of daily maximum temperatures over the year",
-        "unit": "°C",
+        "unit": "Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "annual_min_temp",
+        "name": "Annual Minimum Temperature",
+        "description": "Average of daily minimum temperatures over the year",
+        "unit": "Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "mean_temp_major_south",
+        "name": "Major South Mean Temperature",
+        "description": "Average daily mean temperature during the major south rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "mean_temp_major_north",
+        "name": "Major North Mean Temperature",
+        "description": "Average daily mean temperature during the major north rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "mean_temp_minor_south",
+        "name": "Minor South Mean Temperature",
+        "description": "Average daily mean temperature during the minor south rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "mean_temp_dry_season",
+        "name": "Dry Season Mean Temperature",
+        "description": "Average daily mean temperature during the dry season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "max_temp_major_south",
+        "name": "Major South Maximum Temperature",
+        "description": "Average daily maximum temperature during the major south rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "max_temp_major_north",
+        "name": "Major North Maximum Temperature",
+        "description": "Average daily maximum temperature during the major north rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "max_temp_minor_south",
+        "name": "Minor South Maximum Temperature",
+        "description": "Average daily maximum temperature during the minor south rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "max_temp_dry_season",
+        "name": "Dry Season Maximum Temperature",
+        "description": "Average daily maximum temperature during the dry season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "min_temp_major_south",
+        "name": "Major South Minimum Temperature",
+        "description": "Average daily minimum temperature during the major south rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "min_temp_major_north",
+        "name": "Major North Minimum Temperature",
+        "description": "Average daily minimum temperature during the major north rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "min_temp_minor_south",
+        "name": "Minor South Minimum Temperature",
+        "description": "Average daily minimum temperature during the minor south rainy season",
+        "unit": "Ã‚Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
+    },
+    {
+        "id": "min_temp_dry_season",
+        "name": "Dry Season Minimum Temperature",
+        "description": "Average daily minimum temperature during the dry season",
+        "unit": "Ã‚Â°C",
         "category": "temperature",
         "color_scale": "temperature",
     },
     {
         "id": "very_hot_days",
         "name": "Very Hot Days",
-        "description": "Number of days per year with maximum temperature above 35°C",
+        "description": "Number of days per year with maximum temperature above 35Â°C",
         "unit": "days",
         "category": "temperature",
         "color_scale": "hot_days",
+    },
+    {
+        "id": "warmest_max_temp",
+        "name": "Warmest Maximum Temperature",
+        "description": "Highest daily maximum temperature recorded during the year",
+        "unit": "Â°C",
+        "category": "temperature",
+        "color_scale": "hot_days",
+    },
+    {
+        "id": "heat_wave_count",
+        "name": "Number of Heat Waves",
+        "description": "Count of heat-wave events per year using a 3-day run of Tmax >= 32Â°C",
+        "unit": "events",
+        "category": "temperature",
+        "color_scale": "hot_days",
+    },
+    {
+        "id": "heat_wave_avg_length",
+        "name": "Average Length of Heat Waves",
+        "description": "Average duration of heat-wave events in days",
+        "unit": "days",
+        "category": "temperature",
+        "color_scale": "hot_days",
+    },
+    {
+        "id": "longest_hot_spell",
+        "name": "Longest Spell of +30Â°C Days",
+        "description": "Longest run of consecutive days with Tmax >= 30Â°C",
+        "unit": "days",
+        "category": "temperature",
+        "color_scale": "hot_days",
+    },
+    {
+        "id": "hot_season",
+        "name": "Hot (+30Â°C) Season",
+        "description": "Duration between the first and last day with Tmax >= 30Â°C",
+        "unit": "days",
+        "category": "temperature",
+        "color_scale": "hot_days",
+    },
+    {
+        "id": "extreme_hot_32",
+        "name": "Extremely Hot Days (+32Â°C)",
+        "description": "Number of days per year with Tmax >= 32Â°C",
+        "unit": "days",
+        "category": "temperature",
+        "color_scale": "hot_days",
+    },
+    {
+        "id": "extreme_hot_34",
+        "name": "Extremely Hot Days (+34Â°C)",
+        "description": "Number of days per year with Tmax >= 34Â°C",
+        "unit": "days",
+        "category": "temperature",
+        "color_scale": "hot_days",
+    },
+    {
+        "id": "coldest_min_temp",
+        "name": "Coldest Minimum Temperature",
+        "description": "Lowest daily minimum temperature recorded during the year",
+        "unit": "Â°C",
+        "category": "temperature",
+        "color_scale": "temperature",
     },
     {
         "id": "annual_precipitation",
@@ -74,54 +291,162 @@ CLIMATE_VARIABLES = [
         "color_scale": "dry_days",
     },
     {
-        "id": "annual_min_temp",
-        "name": "Annual Minimum Temperature",
-        "description": "Average of daily minimum temperatures over the year",
-        "unit": "°C",
-        "category": "temperature",
-        "color_scale": "temperature",
+        "id": "precipitation_major_south",
+        "name": "Major South Precipitation",
+        "description": "Total precipitation during the major south rainy season",
+        "unit": "mm",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "precipitation_major_north",
+        "name": "Major North Precipitation",
+        "description": "Total precipitation during the major north rainy season",
+        "unit": "mm",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "precipitation_minor_south",
+        "name": "Minor South Precipitation",
+        "description": "Total precipitation during the minor south rainy season",
+        "unit": "mm",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "precipitation_dry_season",
+        "name": "Dry Season Precipitation",
+        "description": "Total precipitation during the dry season",
+        "unit": "mm",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "precipitation_growing_season",
+        "name": "Growing Season Precipitation",
+        "description": "Total precipitation during the main growing season",
+        "unit": "mm",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "heavy_precip_10mm",
+        "name": "Heavy Precipitation Days (10 mm)",
+        "description": "Number of days per year with precipitation at or above 10 mm",
+        "unit": "days",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "heavy_precip_20mm",
+        "name": "Heavy Precipitation Days (20 mm)",
+        "description": "Number of days per year with precipitation at or above 20 mm",
+        "unit": "days",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "max_1day_precip",
+        "name": "Max 1-Day Precipitation",
+        "description": "Maximum daily precipitation total during the year",
+        "unit": "mm",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "max_3day_precip",
+        "name": "Max 3-Day Precipitation",
+        "description": "Maximum rolling 3-day precipitation total during the year",
+        "unit": "mm",
+        "category": "precipitation",
+        "color_scale": "precipitation",
+    },
+    {
+        "id": "max_5day_precip",
+        "name": "Max 5-Day Precipitation",
+        "description": "Maximum rolling 5-day precipitation total during the year",
+        "unit": "mm",
+        "category": "precipitation",
+        "color_scale": "precipitation",
     },
     {
         "id": "gdd_base_4",
-        "name": "Growing Degree Days (Base 4 °C)",
-        "description": "Accumulated thermal units above 4°C base temperature",
-        "unit": "°C·days",
+        "name": "Growing Degree Days (Base 4 Â°C)",
+        "description": "Accumulated thermal units above 4Â°C base temperature",
+        "unit": "Â°CÂ·days",
         "category": "agriculture",
         "color_scale": "temperature",
     },
     {
         "id": "gdd_base_5",
-        "name": "Growing Degree Days (Base 5 °C)",
-        "description": "Accumulated thermal units above 5°C base temperature",
-        "unit": "°C·days",
+        "name": "Growing Degree Days (Base 5 Â°C)",
+        "description": "Accumulated thermal units above 5Â°C base temperature",
+        "unit": "Â°CÂ·days",
         "category": "agriculture",
         "color_scale": "temperature",
     },
     {
         "id": "gdd_base_10",
-        "name": "Growing Degree Days (Base 10 °C)",
-        "description": "Accumulated thermal units above 10°C base temperature",
-        "unit": "°C·days",
+        "name": "Growing Degree Days (Base 10 Â°C)",
+        "description": "Accumulated thermal units above 10Â°C base temperature",
+        "unit": "Â°CÂ·days",
         "category": "agriculture",
         "color_scale": "temperature",
     },
     {
         "id": "gdd_base_15",
-        "name": "Growing Degree Days (Base 15 °C)",
-        "description": "Accumulated thermal units above 15°C base temperature",
-        "unit": "°C·days",
+        "name": "Growing Degree Days (Base 15 Â°C)",
+        "description": "Accumulated thermal units above 15Â°C base temperature",
+        "unit": "Â°CÂ·days",
         "category": "agriculture",
         "color_scale": "temperature",
     },
     {
         "id": "maize_heat_units",
         "name": "Maize Heat Units",
-        "description": "Growing degree days with base 10°C for maize cultivation",
-        "unit": "°C·days",
+        "description": "Growing degree days with base 10Â°C for maize cultivation",
+        "unit": "Â°CÂ·days",
         "category": "agriculture",
         "color_scale": "temperature",
     },
 ]
+
+for month_id, month_name in MONTHS:
+    CLIMATE_VARIABLES.extend([
+        {
+            "id": f"mean_temp_{month_id}",
+            "name": f"{month_name} Mean Temperature",
+            "description": f"Average daily mean temperature during {month_name}",
+            "unit": "Ã‚Â°C",
+            "category": "temperature",
+            "color_scale": "temperature",
+        },
+        {
+            "id": f"max_temp_{month_id}",
+            "name": f"{month_name} Maximum Temperature",
+            "description": f"Average daily maximum temperature during {month_name}",
+            "unit": "Ã‚Â°C",
+            "category": "temperature",
+            "color_scale": "temperature",
+        },
+        {
+            "id": f"min_temp_{month_id}",
+            "name": f"{month_name} Minimum Temperature",
+            "description": f"Average daily minimum temperature during {month_name}",
+            "unit": "Ã‚Â°C",
+            "category": "temperature",
+            "color_scale": "temperature",
+        },
+        {
+            "id": f"precipitation_{month_id}",
+            "name": f"{month_name} Precipitation",
+            "description": f"Total precipitation during {month_name}",
+            "unit": "mm",
+            "category": "precipitation",
+            "color_scale": "precipitation",
+        },
+    ])
 
 # GDD variable IDs and their base temperatures
 GDD_VARIABLES = {
@@ -129,18 +454,63 @@ GDD_VARIABLES = {
     "gdd_base_5": 5,
     "gdd_base_10": 10,
     "gdd_base_15": 15,
-    "maize_heat_units": 10,  # base_temp used only as fallback; MHU uses its own formula
+    "maize_heat_units": 10,
+}
+
+DERIVED_VARIABLES = {
+    "mean_temp_major_south",
+    "mean_temp_major_north",
+    "mean_temp_minor_south",
+    "mean_temp_dry_season",
+    "max_temp_major_south",
+    "max_temp_major_north",
+    "max_temp_minor_south",
+    "max_temp_dry_season",
+    "min_temp_major_south",
+    "min_temp_major_north",
+    "min_temp_minor_south",
+    "min_temp_dry_season",
+    "precipitation_major_south",
+    "precipitation_major_north",
+    "precipitation_minor_south",
+    "precipitation_dry_season",
+    "precipitation_growing_season",
+    "warmest_max_temp",
+    "heat_wave_count",
+    "heat_wave_avg_length",
+    "longest_hot_spell",
+    "hot_season",
+    "extreme_hot_32",
+    "extreme_hot_34",
+    "coldest_min_temp",
+    "heavy_precip_10mm",
+    "heavy_precip_20mm",
+    "max_1day_precip",
+    "max_3day_precip",
+    "max_5day_precip",
+    *{f"mean_temp_{month_id}" for month_id, _ in MONTHS},
+    *{f"max_temp_{month_id}" for month_id, _ in MONTHS},
+    *{f"min_temp_{month_id}" for month_id, _ in MONTHS},
+    *{f"precipitation_{month_id}" for month_id, _ in MONTHS},
+}
+
+SEASONAL_TEMP_OFFSETS = {
+    "mean_temp_major_south": 0.2,
+    "mean_temp_major_north": -0.1,
+    "mean_temp_minor_south": 0.5,
+    "mean_temp_dry_season": 1.2,
+    "max_temp_major_south": 0.3,
+    "max_temp_major_north": -0.2,
+    "max_temp_minor_south": 0.8,
+    "max_temp_dry_season": 1.9,
+    "min_temp_major_south": 0.2,
+    "min_temp_major_north": 0.3,
+    "min_temp_minor_south": 0.4,
+    "min_temp_dry_season": -0.8,
 }
 
 
 def compute_maize_heat_units(tmax: float, tmin: float) -> float:
-    """
-    Compute annual Maize Heat Units using the Ontario MHU formula.
-    Ymax = 3.33(Tmax-10) - 0.084(Tmax-10)^2  (capped at 0)
-    Ymin = 1.8(Tmin-4.4)                       (capped at 0)
-    Daily MHU = (Ymax + Ymin) / 2
-    Annual MHU = Daily MHU * 365
-    """
     ymax = max(0, 3.33 * (tmax - 10) - 0.084 * (tmax - 10) ** 2)
     ymin = max(0, 1.8 * (tmin - 4.4))
     daily_mhu = (ymax + ymin) / 2
@@ -148,46 +518,23 @@ def compute_maize_heat_units(tmax: float, tmin: float) -> float:
 
 
 def compute_gdd_ghana(tmax: float, tmin: float, base_temp: float) -> float:
-    """
-    Compute annual Growing Degree Days with Ghana-appropriate seasonal modelling.
-
-    Ghana has distinct seasonal temperature patterns:
-    - Coastal/Forest zones: relatively stable year-round (±1.5°C)
-    - Savanna/Northern zones: hot dry season (Feb-Apr) and cooler rainy season
-
-    Uses monthly temperature simulation with a sinusoidal model and applies
-    the standard GDD formula with upper cap: GDD = max(0, min(Tmax, cap) + Tmin) / 2 - base)
-    The upper cap prevents unrealistically high GDD contributions on extreme days.
-    """
-    import math
-
-    # Seasonal amplitude: northern Ghana has ~3°C swing, south ~1.5°C
     amplitude = 1.5 if tmax < 33 else 3.0
-
-    # Upper temperature cap (above this, no additional GDD benefit)
-    cap = base_temp + 30  # standard cap rule
-
+    cap = base_temp + 30
     annual_gdd = 0.0
     days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
     for month in range(12):
-        # Sinusoidal seasonal cycle: peak in March (month=2), coolest in August (month=7)
         seasonal_offset = amplitude * math.cos(2 * math.pi * (month - 2) / 12)
-
         month_tmax = tmax + seasonal_offset
-        month_tmin = tmin + seasonal_offset * 0.6  # Min temp varies less
-
-        # Apply upper cap to Tmax
+        month_tmin = tmin + seasonal_offset * 0.6
         capped_tmax = min(month_tmax, cap)
-
-        # Daily GDD = max(0, (capped_Tmax + Tmin) / 2 - base)
         daily_gdd = max(0, (capped_tmax + month_tmin) / 2 - base_temp)
         annual_gdd += daily_gdd * days_per_month[month]
 
     return annual_gdd
 
-# Baseline climate values by region (realistic for Ghana)
-# Northern regions are hotter and drier, southern coastal regions cooler and wetter
+
+# Baseline climate values by region
 REGIONAL_BASELINES = {
     "Greater Accra": {"annual_mean_temp": 27.5, "annual_max_temp": 32.0, "annual_min_temp": 23.0, "very_hot_days": 20, "annual_precipitation": 810, "wet_season_precipitation": 720, "dry_days": 180},
     "Ashanti": {"annual_mean_temp": 26.0, "annual_max_temp": 31.0, "annual_min_temp": 21.0, "very_hot_days": 15, "annual_precipitation": 1400, "wet_season_precipitation": 1200, "dry_days": 140},
@@ -207,8 +554,6 @@ REGIONAL_BASELINES = {
     "Savannah": {"annual_mean_temp": 28.2, "annual_max_temp": 34.5, "annual_min_temp": 21.9, "very_hot_days": 70, "annual_precipitation": 1080, "wet_season_precipitation": 1000, "dry_days": 195},
 }
 
-# Climate change factors by scenario and period
-# These represent multipliers/additions based on CORDEX-Africa projections
 CLIMATE_CHANGE_FACTORS = {
     "rcp45": {
         "2030": {"temp_add": 0.8, "precip_mult": 0.98, "hot_days_mult": 1.4, "dry_days_add": 5},
@@ -224,14 +569,130 @@ CLIMATE_CHANGE_FACTORS = {
 
 
 def generate_district_id(region: str, district: str) -> str:
-    """Generate a unique district ID"""
     region_code = region.upper().replace(" ", "_")[:3]
     district_code = district.upper().replace(" ", "_").replace("-", "_")[:5]
     return f"GH-{region_code}-{district_code}"
 
 
+def clamp(value: float, min_value: float, max_value: float) -> float:
+    return max(min_value, min(max_value, value))
+
+
+def derive_indicator_values(
+    annual_mean_temp: float,
+    annual_max_temp: float,
+    annual_min_temp: float,
+    very_hot_days: float,
+    annual_precipitation: float,
+    wet_season_precipitation: float,
+    dry_days: float,
+) -> dict[str, float]:
+    wet_days = max(1.0, 365.0 - dry_days)
+    wet_intensity = annual_precipitation / wet_days
+    wet_season_ratio = clamp(wet_season_precipitation / max(annual_precipitation, 1.0), 0.45, 0.95)
+    heat_pressure = clamp((annual_max_temp - 30.0) / 6.5, 0.0, 1.4)
+    dry_season_precipitation = max(annual_precipitation - wet_season_precipitation, annual_precipitation * 0.05)
+
+    heavy_precip_10mm = clamp(wet_days * (0.16 + 0.018 * wet_intensity), 2.0, wet_days * 0.55)
+    heavy_precip_20mm = clamp(heavy_precip_10mm * (0.22 + 0.012 * wet_intensity), 1.0, heavy_precip_10mm * 0.7)
+    max_1day_precip = clamp(wet_intensity * (4.2 + 1.5 * wet_season_ratio), 18.0, annual_precipitation * 0.22)
+    max_3day_precip = clamp(max_1day_precip * (1.85 + 0.18 * wet_season_ratio), max_1day_precip * 1.5, annual_precipitation * 0.42)
+    max_5day_precip = clamp(max_1day_precip * (2.55 + 0.25 * wet_season_ratio), max_3day_precip * 1.15, annual_precipitation * 0.6)
+
+    extreme_hot_34 = clamp(very_hot_days * 0.58, 0.0, 365.0)
+    extreme_hot_32 = clamp(very_hot_days * 1.35 + heat_pressure * 14.0, extreme_hot_34, 365.0)
+    warmest_max_temp = annual_max_temp + 5.5 + heat_pressure * 2.4
+    heat_wave_count = clamp(very_hot_days / (7.5 - heat_pressure * 1.5), 0.0, 40.0)
+    heat_wave_avg_length = clamp(3.2 + heat_pressure * 2.8 + very_hot_days / 90.0, 3.0, 14.0)
+    longest_hot_spell = clamp(10.0 + very_hot_days * 0.62 + heat_pressure * 12.0, heat_wave_avg_length, 180.0)
+    hot_season = clamp(80.0 + extreme_hot_32 * 1.2 + very_hot_days * 0.7, longest_hot_spell, 320.0)
+    coldest_min_temp = annual_min_temp - (4.8 - min(heat_pressure, 1.0) * 0.9)
+    monthly_values: dict[str, float] = {}
+
+    for month_id, _month_name in MONTHS:
+        temp_offset = MONTHLY_TEMP_BASE_OFFSETS[month_id]
+        monthly_values[f"mean_temp_{month_id}"] = round(annual_mean_temp + temp_offset, 1)
+        monthly_values[f"max_temp_{month_id}"] = round(annual_max_temp + temp_offset * 1.2, 1)
+        monthly_values[f"min_temp_{month_id}"] = round(annual_min_temp + temp_offset * 0.8, 1)
+        monthly_values[f"precipitation_{month_id}"] = round(annual_precipitation * MONTHLY_PRECIP_WEIGHTS[month_id], 1)
+
+    return {
+        "mean_temp_major_south": round(annual_mean_temp + SEASONAL_TEMP_OFFSETS["mean_temp_major_south"], 1),
+        "mean_temp_major_north": round(annual_mean_temp + SEASONAL_TEMP_OFFSETS["mean_temp_major_north"], 1),
+        "mean_temp_minor_south": round(annual_mean_temp + SEASONAL_TEMP_OFFSETS["mean_temp_minor_south"], 1),
+        "mean_temp_dry_season": round(annual_mean_temp + SEASONAL_TEMP_OFFSETS["mean_temp_dry_season"], 1),
+        "max_temp_major_south": round(annual_max_temp + SEASONAL_TEMP_OFFSETS["max_temp_major_south"], 1),
+        "max_temp_major_north": round(annual_max_temp + SEASONAL_TEMP_OFFSETS["max_temp_major_north"], 1),
+        "max_temp_minor_south": round(annual_max_temp + SEASONAL_TEMP_OFFSETS["max_temp_minor_south"], 1),
+        "max_temp_dry_season": round(annual_max_temp + SEASONAL_TEMP_OFFSETS["max_temp_dry_season"], 1),
+        "min_temp_major_south": round(annual_min_temp + SEASONAL_TEMP_OFFSETS["min_temp_major_south"], 1),
+        "min_temp_major_north": round(annual_min_temp + SEASONAL_TEMP_OFFSETS["min_temp_major_north"], 1),
+        "min_temp_minor_south": round(annual_min_temp + SEASONAL_TEMP_OFFSETS["min_temp_minor_south"], 1),
+        "min_temp_dry_season": round(annual_min_temp + SEASONAL_TEMP_OFFSETS["min_temp_dry_season"], 1),
+        "precipitation_major_south": round(wet_season_precipitation * 0.42, 1),
+        "precipitation_major_north": round(wet_season_precipitation * 0.33, 1),
+        "precipitation_minor_south": round(wet_season_precipitation * 0.25, 1),
+        "precipitation_dry_season": round(dry_season_precipitation, 1),
+        "precipitation_growing_season": round(wet_season_precipitation * 0.88, 1),
+        "warmest_max_temp": round(warmest_max_temp, 1),
+        "heat_wave_count": round(heat_wave_count, 1),
+        "heat_wave_avg_length": round(heat_wave_avg_length, 1),
+        "longest_hot_spell": round(longest_hot_spell, 1),
+        "hot_season": round(hot_season, 1),
+        "extreme_hot_32": round(extreme_hot_32, 1),
+        "extreme_hot_34": round(extreme_hot_34, 1),
+        "coldest_min_temp": round(coldest_min_temp, 1),
+        "heavy_precip_10mm": round(heavy_precip_10mm, 1),
+        "heavy_precip_20mm": round(heavy_precip_20mm, 1),
+        "max_1day_precip": round(max_1day_precip, 1),
+        "max_3day_precip": round(max_3day_precip, 1),
+        "max_5day_precip": round(max_5day_precip, 1),
+        **monthly_values,
+    }
+
+
+def get_core_climate_values(baseline_values: dict[str, float], scenario: str, period: str) -> dict[str, float]:
+    values: dict[str, float] = {}
+    for variable in [
+        "annual_mean_temp",
+        "annual_max_temp",
+        "annual_min_temp",
+        "very_hot_days",
+        "annual_precipitation",
+        "wet_season_precipitation",
+        "dry_days",
+    ]:
+        baseline_value = baseline_values.get(variable, 0.0)
+        values[variable] = get_climate_value(baseline_value, variable, scenario, period)
+    return values
+
+
+def get_mock_variable_value(baseline_values: dict[str, float], variable: str, scenario: str, period: str) -> float:
+    if variable in GDD_VARIABLES:
+        base_temp = GDD_VARIABLES[variable]
+        core = get_core_climate_values(baseline_values, scenario, period)
+        if variable == "maize_heat_units":
+            return compute_maize_heat_units(core["annual_max_temp"], core["annual_min_temp"])
+        return compute_gdd_ghana(core["annual_max_temp"], core["annual_min_temp"], base_temp)
+
+    if variable not in DERIVED_VARIABLES:
+        baseline_value = baseline_values.get(variable, 0.0)
+        return get_climate_value(baseline_value, variable, scenario, period)
+
+    core = get_core_climate_values(baseline_values, scenario, period)
+    derived = derive_indicator_values(
+        annual_mean_temp=core["annual_mean_temp"],
+        annual_max_temp=core["annual_max_temp"],
+        annual_min_temp=core["annual_min_temp"],
+        very_hot_days=core["very_hot_days"],
+        annual_precipitation=core["annual_precipitation"],
+        wet_season_precipitation=core["wet_season_precipitation"],
+        dry_days=core["dry_days"],
+    )
+    return derived[variable]
+
+
 def get_climate_value(baseline: float, variable: str, scenario: str, period: str) -> float:
-    """Calculate projected climate value based on baseline and change factors"""
     if period == "baseline":
         return baseline
 
@@ -239,18 +700,17 @@ def get_climate_value(baseline: float, variable: str, scenario: str, period: str
 
     if variable in ["annual_mean_temp", "annual_max_temp", "annual_min_temp"]:
         return round(baseline + factors.get("temp_add", 0), 1)
-    elif variable in ["annual_precipitation", "wet_season_precipitation"]:
-        return round(baseline * factors.get("precip_mult", 1), 0)
-    elif variable == "very_hot_days":
-        return round(baseline * factors.get("hot_days_mult", 1), 0)
-    elif variable == "dry_days":
-        return round(baseline + factors.get("dry_days_add", 0), 0)
+    if variable in ["annual_precipitation", "wet_season_precipitation"]:
+        return round(baseline * factors.get("precip_mult", 1), 1)
+    if variable == "very_hot_days":
+        return round(baseline * factors.get("hot_days_mult", 1), 1)
+    if variable == "dry_days":
+        return round(baseline + factors.get("dry_days_add", 0), 1)
 
     return baseline
 
 
 def generate_all_districts():
-    """Generate list of all districts with IDs"""
     districts = []
     for region, district_list in REGIONS.items():
         for district in district_list:
@@ -263,22 +723,18 @@ def generate_all_districts():
 
 
 def get_district_climate_data(district_id: str, region: str):
-    """Get full climate data for a district"""
     baseline = REGIONAL_BASELINES.get(region, REGIONAL_BASELINES["Greater Accra"])
-
     climate_data = {}
+
     for var in CLIMATE_VARIABLES:
         var_id = var["id"]
-        # Skip GDD variables — they are computed on the fly from projected temps
-        if var_id in GDD_VARIABLES:
-            continue
         var_data = {
-            "baseline": get_climate_value(baseline[var_id], var_id, "baseline", "baseline"),
+            "baseline": round(get_mock_variable_value(baseline, var_id, "historical", "baseline"), 1),
         }
         for scenario in ["rcp45", "rcp85"]:
             for period in ["2030", "2050", "2080"]:
                 key = f"{period}_{scenario}"
-                var_data[key] = get_climate_value(baseline[var_id], var_id, scenario, period)
+                var_data[key] = round(get_mock_variable_value(baseline, var_id, scenario, period), 1)
         climate_data[var_id] = var_data
 
     return climate_data
