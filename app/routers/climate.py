@@ -18,7 +18,7 @@ from app.data.mock_data import (
     REGIONS,
     REGIONAL_BASELINES,
     generate_district_id,
-    get_climate_value,
+    get_mock_variable_value,
     compute_maize_heat_units,
     compute_gdd_ghana,
 )
@@ -91,9 +91,6 @@ async def get_climate_data(
     if period == "baseline":
         scenario = "historical"
 
-    # Check if this is a GDD variable (computed from projected temps)
-    is_gdd = variable in GDD_VARIABLES
-
     # Generate climate values for all districts
     data = []
     for region_name, district_list in REGIONS.items():
@@ -107,34 +104,8 @@ async def get_climate_data(
             hash_val = int(hashlib.md5(district_id.encode()).hexdigest()[:8], 16)
             variation = ((hash_val % 100) - 50) / 1000  # -5% to +5%
 
-            if is_gdd:
-                # Compute GDD from projected max/min temps
-                base_temp = GDD_VARIABLES[variable]
-                max_baseline = baseline_values.get("annual_max_temp", 32)
-                min_baseline = baseline_values.get("annual_min_temp", 22)
-
-                if period == "baseline" or scenario == "historical":
-                    max_temp = max_baseline
-                    min_temp = min_baseline
-                else:
-                    max_temp = get_climate_value(max_baseline, "annual_max_temp", scenario, period)
-                    min_temp = get_climate_value(min_baseline, "annual_min_temp", scenario, period)
-
-                if variable == "maize_heat_units":
-                    value = compute_maize_heat_units(max_temp, min_temp)
-                else:
-                    value = compute_gdd_ghana(max_temp, min_temp, base_temp)
-                value = round(value * (1 + variation), 1)
-            else:
-                baseline_value = baseline_values.get(variable, 0)
-
-                # Calculate projected value
-                if period == "baseline" or scenario == "historical":
-                    value = baseline_value
-                else:
-                    value = get_climate_value(baseline_value, variable, scenario, period)
-
-                value = round(value * (1 + variation), 1)
+            value = get_mock_variable_value(baseline_values, variable, scenario, period)
+            value = round(value * (1 + variation), 1)
 
             data.append(ClimateValue(
                 district_id=district_id,
@@ -191,9 +162,6 @@ async def compare_climate_data(
             detail=f"Invalid scenario '{scenario}'. Valid scenarios: rcp45, rcp85"
         )
 
-    # Check if this is a GDD variable
-    is_gdd = variable in GDD_VARIABLES
-
     # Generate comparison data
     data = []
     for region_name, district_list in REGIONS.items():
@@ -207,27 +175,8 @@ async def compare_climate_data(
             hash_val = int(hashlib.md5(district_id.encode()).hexdigest()[:8], 16)
             variation = ((hash_val % 100) - 50) / 1000
 
-            if is_gdd:
-                base_temp = GDD_VARIABLES[variable]
-                max_baseline = baseline_values.get("annual_max_temp", 32)
-                min_baseline = baseline_values.get("annual_min_temp", 22)
-
-                max_future = get_climate_value(max_baseline, "annual_max_temp", scenario, period)
-                min_future = get_climate_value(min_baseline, "annual_min_temp", scenario, period)
-
-                if variable == "maize_heat_units":
-                    baseline_gdd = compute_maize_heat_units(max_baseline, min_baseline)
-                    future_gdd = compute_maize_heat_units(max_future, min_future)
-                else:
-                    baseline_gdd = compute_gdd_ghana(max_baseline, min_baseline, base_temp)
-                    future_gdd = compute_gdd_ghana(max_future, min_future, base_temp)
-
-                baseline = round(baseline_gdd * (1 + variation), 1)
-                future = round(future_gdd * (1 + variation), 1)
-            else:
-                baseline_value = baseline_values.get(variable, 0)
-                baseline = round(baseline_value * (1 + variation), 1)
-                future = round(get_climate_value(baseline_value, variable, scenario, period) * (1 + variation), 1)
+            baseline = round(get_mock_variable_value(baseline_values, variable, "historical", "baseline") * (1 + variation), 1)
+            future = round(get_mock_variable_value(baseline_values, variable, scenario, period) * (1 + variation), 1)
 
             change = round(future - baseline, 1)
             change_percent = round((change / baseline) * 100, 1) if baseline != 0 else 0
