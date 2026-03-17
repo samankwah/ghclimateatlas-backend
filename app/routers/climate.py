@@ -26,7 +26,7 @@ from app.data.mock_data import (
 router = APIRouter()
 
 VALID_PERIODS = ["baseline", "2030", "2050", "2080"]
-VALID_SCENARIOS = ["historical", "rcp45", "rcp85"]
+VALID_SCENARIOS = ["historical", "rcp45", "rcp60", "rcp85"]
 
 
 @router.get("/variables", response_model=List[ClimateVariable])
@@ -52,14 +52,14 @@ async def get_climate_variable(variable_id: str):
 async def get_climate_data(
     variable: str,
     period: str = Query("baseline", description="Time period: baseline, 2030, 2050, or 2080"),
-    scenario: str = Query("rcp45", description="Emission scenario: historical, rcp45, or rcp85"),
+    scenario: str = Query("rcp45", description="Emission scenario: historical, rcp45, rcp60, or rcp85"),
 ):
     """
     Get climate values for all districts for a specific variable, period, and scenario.
 
     - **variable**: Climate variable ID (e.g., annual_max_temp, annual_precipitation)
     - **period**: Time period (baseline, 2030, 2050, 2080)
-    - **scenario**: Emission scenario (historical, rcp45, rcp85)
+    - **scenario**: Emission scenario (historical, rcp45, rcp60, rcp85)
     """
     # Validate variable
     var_info = None
@@ -104,7 +104,7 @@ async def get_climate_data(
             hash_val = int(hashlib.md5(district_id.encode()).hexdigest()[:8], 16)
             variation = ((hash_val % 100) - 50) / 1000  # -5% to +5%
 
-            value = get_mock_variable_value(baseline_values, variable, scenario, period)
+            value = get_mock_variable_value(baseline_values, variable, scenario, period, region_name, district_name)
             value = round(value * (1 + variation), 1)
 
             data.append(ClimateValue(
@@ -127,7 +127,7 @@ async def get_climate_data(
 async def compare_climate_data(
     variable: str,
     period: str = Query("2050", description="Future time period to compare against baseline"),
-    scenario: str = Query("rcp85", description="Emission scenario: rcp45 or rcp85"),
+    scenario: str = Query("rcp60", description="Emission scenario: rcp45, rcp60, or rcp85"),
 ):
     """
     Compare baseline climate values with future projections.
@@ -135,7 +135,7 @@ async def compare_climate_data(
 
     - **variable**: Climate variable ID
     - **period**: Future time period (2030, 2050, 2080)
-    - **scenario**: Emission scenario (rcp45, rcp85)
+    - **scenario**: Emission scenario (rcp45, rcp60, rcp85)
     """
     # Validate variable
     var_info = None
@@ -156,10 +156,10 @@ async def compare_climate_data(
             detail=f"Invalid period '{period}'. Valid periods for comparison: 2030, 2050, 2080"
         )
 
-    if scenario not in ["rcp45", "rcp85"]:
+    if scenario not in ["rcp45", "rcp60", "rcp85"]:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid scenario '{scenario}'. Valid scenarios: rcp45, rcp85"
+            detail=f"Invalid scenario '{scenario}'. Valid scenarios: rcp45, rcp60, rcp85"
         )
 
     # Generate comparison data
@@ -175,8 +175,8 @@ async def compare_climate_data(
             hash_val = int(hashlib.md5(district_id.encode()).hexdigest()[:8], 16)
             variation = ((hash_val % 100) - 50) / 1000
 
-            baseline = round(get_mock_variable_value(baseline_values, variable, "historical", "baseline") * (1 + variation), 1)
-            future = round(get_mock_variable_value(baseline_values, variable, scenario, period) * (1 + variation), 1)
+            baseline = round(get_mock_variable_value(baseline_values, variable, "historical", "baseline", region_name, district_name) * (1 + variation), 1)
+            future = round(get_mock_variable_value(baseline_values, variable, scenario, period, region_name, district_name) * (1 + variation), 1)
 
             change = round(future - baseline, 1)
             change_percent = round((change / baseline) * 100, 1) if baseline != 0 else 0

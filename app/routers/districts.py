@@ -186,7 +186,7 @@ async def get_district_climate(district_id: str):
         for district_name in district_list:
             d_id = generate_district_id(region_name, district_name)
             if d_id == district_id:
-                climate_data = get_district_climate_data(d_id, region_name)
+                climate_data = get_district_climate_data(district_name, region_name)
                 return {
                     "district_id": d_id,
                     "district_name": district_name,
