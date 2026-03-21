@@ -19,6 +19,12 @@ from app.data.mock_data import (
     generate_all_districts,
     get_district_climate_data,
 )
+from app.services.real_climate import (
+    build_real_district_climate,
+    get_real_district,
+    get_real_district_feature_collection,
+    get_real_district_list,
+)
 
 router = APIRouter()
 
@@ -102,6 +108,10 @@ async def get_all_districts(region: Optional[str] = Query(None, description="Fil
     Get all Ghana districts as GeoJSON FeatureCollection.
     Optionally filter by region.
     """
+    real_payload = get_real_district_feature_collection(region)
+    if real_payload is not None:
+        return real_payload
+
     features = []
 
     for region_name, district_list in REGIONS.items():
@@ -133,6 +143,10 @@ async def list_districts(region: Optional[str] = Query(None, description="Filter
     """
     Get list of all districts (without geometry).
     """
+    real_districts = get_real_district_list(region)
+    if real_districts is not None:
+        return real_districts
+
     districts = generate_all_districts()
 
     if region:
@@ -157,6 +171,10 @@ async def get_district(district_id: str):
     """
     Get a single district by ID.
     """
+    real_district = get_real_district(district_id)
+    if real_district is not None:
+        return real_district
+
     for region_name, district_list in REGIONS.items():
         for idx, district_name in enumerate(district_list):
             d_id = generate_district_id(region_name, district_name)
@@ -182,11 +200,25 @@ async def get_district_climate(district_id: str):
     """
     Get full climate data for a specific district.
     """
+    real_district = get_real_district(district_id)
+    real_climate = build_real_district_climate(district_id)
+    if real_district is not None and real_climate is not None:
+        props = real_district.get("properties", {})
+        return {
+            "district_id": district_id,
+            "district_name": props.get("name", district_id),
+            "region": props.get("region", "Ghana"),
+            "climate": real_climate,
+        }
+
     for region_name, district_list in REGIONS.items():
         for district_name in district_list:
             d_id = generate_district_id(region_name, district_name)
             if d_id == district_id:
-                climate_data = get_district_climate_data(d_id, region_name)
+                climate_data = get_district_climate_data(district_name, region_name)
+                if real_climate:
+                    for variable_id, values in real_climate.items():
+                        climate_data.setdefault(variable_id, {}).update(values)
                 return {
                     "district_id": d_id,
                     "district_name": district_name,

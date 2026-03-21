@@ -15,8 +15,19 @@ app = FastAPI(
 )
 
 # CORS middleware for frontend
-# In production, set CORS_ORIGINS env var to your frontend URL(s), comma-separated
-cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000")
+# In production, set CORS_ORIGINS to explicit frontend URL(s), comma-separated.
+# During local development, allow common localhost hosts and Vite ports.
+default_cors_origins = ",".join(
+    [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5174",
+    ]
+)
+cors_origins = os.getenv("CORS_ORIGINS", default_cors_origins)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[origin.strip() for origin in cors_origins.split(",")],
