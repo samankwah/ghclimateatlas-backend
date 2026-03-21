@@ -1,0 +1,19 @@
+{
+  "period_rows": 55944,
+  "yearly_rows": 2119656,
+  "district_count": 259,
+  "variables": [
+    "annual_mean_temp",
+    "annual_precipitation",
+    "mean_temp_apr_may_jun",
+    "mean_temp_dry_season",
+    "precipitation_apr_may_jun",
+    "precipitation_dec_jan_feb"
+  ],
+  "scenarios": [
+    "historical",
+    "rcp26",
+    "rcp45",
+    "rcp85"
+  ]
+}

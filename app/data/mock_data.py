@@ -723,7 +723,7 @@ CLIMATE_CHANGE_FACTORS = {
         "2050": {"temp_add": 1.4, "precip_mult": 0.95, "hot_days_mult": 1.9, "dry_days_add": 12},
         "2080": {"temp_add": 1.8, "precip_mult": 0.92, "hot_days_mult": 2.3, "dry_days_add": 18},
     },
-    "rcp60": {
+    "rcp26": {
         "2030": {"temp_add": 0.9, "precip_mult": 0.97, "hot_days_mult": 1.5, "dry_days_add": 7},
         "2050": {"temp_add": 1.7, "precip_mult": 0.93, "hot_days_mult": 2.2, "dry_days_add": 16},
         "2080": {"temp_add": 2.5, "precip_mult": 0.87, "hot_days_mult": 3.0, "dry_days_add": 26},
@@ -763,7 +763,7 @@ def get_mock_sea_level_value(variable: str, region: str, district: str, scenario
     scenario_multiplier = {
         "historical": 0.0,
         "rcp45": 1.0,
-        "rcp60": 1.2,
+        "rcp26": 1.2,
         "rcp85": 1.45,
     }.get(scenario, 1.0)
 
@@ -975,7 +975,7 @@ def get_district_climate_data(district_name: str, region: str):
         var_data = {
             "baseline": round(get_mock_variable_value(baseline, var_id, "historical", "baseline", region, district_name), 1),
         }
-        for scenario in ["rcp45", "rcp60", "rcp85"]:
+        for scenario in ["rcp26", "rcp45", "rcp85"]:
             for period in ["2030", "2050", "2080"]:
                 key = f"{period}_{scenario}"
                 var_data[key] = round(get_mock_variable_value(baseline, var_id, scenario, period, region, district_name), 1)

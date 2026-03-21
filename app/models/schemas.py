@@ -51,6 +51,7 @@ class ClimateResponse(BaseModel):
     period: str
     scenario: str
     unit: str
+    percentile: str | None = None
     data: List[ClimateValue]
 
 
@@ -71,6 +72,7 @@ class ClimateComparisonResponse(BaseModel):
     period: str
     scenario: str
     unit: str
+    percentile: str | None = None
     data: List[ClimateComparison]
 
 

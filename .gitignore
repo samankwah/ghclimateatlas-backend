@@ -6,3 +6,4 @@ __pycache__/
 dist/
 build/
 .pytest_cache/
+app/data/processed/climate_yearly_values.csv
