@@ -22,7 +22,7 @@ VALID_PERCENTILES = {"p10", "p50", "p90"}
 def _pd():
     try:
         import pandas as pandas
-    except ModuleNotFoundError:
+    except (ModuleNotFoundError, ImportError, MemoryError):
         return None
 
     return pandas
