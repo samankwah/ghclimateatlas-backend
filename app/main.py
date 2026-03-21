@@ -19,7 +19,7 @@ app = FastAPI(
 # During local development, allow common localhost hosts and Vite ports.
 default_cors_origins = ",".join(
     [
-        "https://ghclimatealtas.netlify.app",
+        "https://ghclimateatlas.netlify.app",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:5173",
