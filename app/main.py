@@ -20,6 +20,7 @@ app = FastAPI(
 default_cors_origins = ",".join(
     [
         "https://ghclimateatlas.netlify.app",
+        "https://ghclimatealtas.netlify.app",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:5173",
@@ -28,10 +29,14 @@ default_cors_origins = ",".join(
         "http://127.0.0.1:5174",
     ]
 )
-cors_origins = os.getenv("CORS_ORIGINS", default_cors_origins)
+cors_origins = [
+    origin.strip()
+    for origin in os.getenv("CORS_ORIGINS", default_cors_origins).split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[origin.strip() for origin in cors_origins.split(",")],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
