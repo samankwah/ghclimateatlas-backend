@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import gzip
 import json
 import os
 from functools import lru_cache
@@ -13,7 +14,7 @@ from app.models.schemas import ClimateComparisonResponse, ClimateResponse
 DEFAULT_PROCESSED_DIR = Path(__file__).resolve().parents[1] / "data" / "processed"
 DEFAULT_DISTRICTS_PATH = DEFAULT_PROCESSED_DIR / "districts.geojson"
 DEFAULT_PERIOD_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_period_values.csv"
-DEFAULT_YEARLY_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_yearly_values.csv"
+DEFAULT_YEARLY_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_yearly_values.csv.gz"
 DEFAULT_SHAPEFILE_PATH = Path(__file__).resolve().parents[3] / "gadm41_GHA_2.shp"
 VALID_PERCENTILES = {"p10", "p50", "p90"}
 
@@ -28,15 +29,22 @@ def _pd():
 
 
 def _read_csv_records(path: Path, required_columns: set[str]) -> list[dict[str, Any]]:
+    is_gzipped = path.suffix == ".gz"
+
     pandas = _pd()
     if pandas is not None:
-        frame = pandas.read_csv(path)
+        frame = pandas.read_csv(path, compression="gzip" if is_gzipped else "infer")
         if not required_columns.issubset(frame.columns):
             missing = sorted(required_columns - set(frame.columns))
             raise ValueError(f"Processed climate data is missing required columns: {missing}")
         return frame.to_dict("records")
 
-    with path.open("r", encoding="utf-8", newline="") as handle:
+    if is_gzipped:
+        handle = gzip.open(path, "rt", encoding="utf-8", newline="")
+    else:
+        handle = path.open("r", encoding="utf-8", newline="")
+
+    with handle:
         reader = csv.DictReader(handle)
         fieldnames = set(reader.fieldnames or [])
         if not required_columns.issubset(fieldnames):
