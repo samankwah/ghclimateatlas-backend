@@ -3,15 +3,29 @@ Ghana Climate Atlas - FastAPI Backend
 Serves climate projection data for Ghana districts
 """
 import os
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.gzip import GZipMiddleware
 
 from app.routers import climate, districts
+from app.services.real_climate import load_districts_geojson, load_period_values
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Preload data at startup so first requests are fast
+    load_period_values()
+    load_districts_geojson()
+    yield
+
 
 app = FastAPI(
     title="Ghana Climate Atlas API",
     description="API for Ghana climate projections based on KAPy/CORDEX-Africa data",
     version="1.0.0",
+    lifespan=lifespan,
 )
 
 # CORS middleware for frontend
@@ -41,6 +55,8 @@ def _parse_cors_origins() -> list[str]:
     ]
     return parsed_origins or default_cors_origins
 
+
+app.add_middleware(GZipMiddleware, minimum_size=500)
 
 cors_origins = _parse_cors_origins()
 app.add_middleware(

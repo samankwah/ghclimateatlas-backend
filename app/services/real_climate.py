@@ -19,26 +19,10 @@ DEFAULT_SHAPEFILE_PATH = Path(__file__).resolve().parents[3] / "gadm41_GHA_2.shp
 VALID_PERCENTILES = {"p10", "p50", "p90"}
 
 
-def _pd():
-    try:
-        import pandas as pandas
-    except (ModuleNotFoundError, ImportError, MemoryError):
-        return None
-
-    return pandas
-
-
 def _read_csv_records(path: Path, required_columns: set[str]) -> list[dict[str, Any]]:
     is_gzipped = path.suffix == ".gz"
 
-    pandas = _pd()
-    if pandas is not None:
-        frame = pandas.read_csv(path, compression="gzip" if is_gzipped else "infer")
-        if not required_columns.issubset(frame.columns):
-            missing = sorted(required_columns - set(frame.columns))
-            raise ValueError(f"Processed climate data is missing required columns: {missing}")
-        return frame.to_dict("records")
-
+    # Use stdlib csv instead of pandas to reduce memory footprint (~80MB savings)
     if is_gzipped:
         handle = gzip.open(path, "rt", encoding="utf-8", newline="")
     else:

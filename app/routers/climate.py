@@ -4,7 +4,7 @@ Serves climate projection data for Ghana districts
 """
 from typing import List
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Response
 
 from app.models.schemas import (
     ClimateVariable,
@@ -54,6 +54,7 @@ async def get_climate_variable(variable_id: str):
 @router.get("/{variable}", response_model=ClimateResponse)
 async def get_climate_data(
     variable: str,
+    response: Response,
     period: str = Query("baseline", description="Time period: baseline, 2030, 2050, or 2080"),
     scenario: str = Query("rcp45", description="Emission scenario: historical, rcp26, rcp45, or rcp85"),
     percentile: str = Query("p50", description="Ensemble percentile: p10, p50, or p90"),
@@ -92,6 +93,7 @@ async def get_climate_data(
         )
 
     normalized_percentile = normalize_percentile(percentile)
+    response.headers["Cache-Control"] = "public, max-age=3600"
 
     # Handle baseline period
     if period == "baseline":
@@ -157,6 +159,7 @@ async def get_climate_data(
 @router.get("/{variable}/compare", response_model=ClimateComparisonResponse)
 async def compare_climate_data(
     variable: str,
+    response: Response,
     period: str = Query("2050", description="Future time period to compare against baseline"),
     scenario: str = Query("rcp45", description="Emission scenario: rcp26, rcp45, or rcp85"),
     percentile: str = Query("p50", description="Ensemble percentile: p10, p50, or p90"),
@@ -195,6 +198,7 @@ async def compare_climate_data(
         )
 
     normalized_percentile = normalize_percentile(percentile)
+    response.headers["Cache-Control"] = "public, max-age=3600"
 
     real_response = build_real_climate_comparison(variable, period, scenario, normalized_percentile)
     if real_response is not None:
@@ -275,6 +279,7 @@ async def compare_climate_data(
 @router.get("/{variable}/range")
 async def get_variable_range(
     variable: str,
+    response: Response,
     period: str = Query("baseline", description="Time period"),
     scenario: str = Query("rcp45", description="Emission scenario"),
     percentile: str = Query("p50", description="Ensemble percentile"),
@@ -283,16 +288,17 @@ async def get_variable_range(
     Get min/max range for a variable across all districts.
     Useful for setting up color scale legends.
     """
+    response.headers["Cache-Control"] = "public, max-age=3600"
     # Get the full climate data
-    response = await get_climate_data(variable, period, scenario, percentile)
+    climate_response = await get_climate_data(variable, response, period, scenario, percentile)
 
-    values = [d.value for d in response.data]
+    values = [d.value for d in climate_response.data]
 
     return {
         "variable": variable,
         "period": period,
         "scenario": scenario,
-        "percentile": response.percentile,
+        "percentile": climate_response.percentile,
         "min": min(values),
         "max": max(values),
         "mean": round(sum(values) / len(values), 1),
