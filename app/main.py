@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Ghana Climate Atlas API",
-    description="API for Ghana climate projections based on KAPy/CORDEX-Africa data",
+    description="API for Ghana climate projections based on GhKAPy data",
     version="1.0.0",
     lifespan=lifespan,
 )

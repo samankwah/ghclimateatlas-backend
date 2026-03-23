@@ -82,3 +82,5 @@ class DistrictClimate(BaseModel):
     district_name: str
     region: str
     climate: Dict[str, Dict[str, float]]
+    grid_point_count: Optional[int] = None
+    grid_resolution_km: Optional[float] = None

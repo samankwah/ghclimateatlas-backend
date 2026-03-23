@@ -52,7 +52,7 @@ Once running, visit:
 
 | Parameter | Values | Default |
 |-----------|--------|---------|
-| period | baseline, 2030, 2050, 2080 | baseline |
+| period | baseline, 2030 (2021-2040), 2050 (2041-2060), 2080 (2081-2100) | baseline |
 | scenario | historical, rcp45, rcp85 | rcp45 |
 
 ## Example Queries
@@ -70,5 +70,5 @@ curl "http://localhost:8000/api/climate/annual_max_temp/compare?period=2050&scen
 
 ## Data Source
 
-Currently using mock data based on CORDEX-Africa projections.
-Replace with real KAPy/GMet Climate Atlas data when available.
+Currently using mock data derived from GhKAPy-style climate projections.
+Replace with the full real GhKAPy/GMet Climate Atlas data pipeline when available.

@@ -21,9 +21,12 @@ from app.data.mock_data import (
 )
 from app.services.real_climate import (
     build_real_district_climate,
+    get_real_grid_point_count,
     get_real_district,
     get_real_district_feature_collection,
     get_real_district_list,
+    GRID_RESOLUTION_KM,
+    has_real_climate_data,
 )
 
 router = APIRouter()
@@ -200,12 +203,23 @@ async def get_district(district_id: str):
 
 
 @router.get("/{district_id}/climate", response_model=DistrictClimate)
-async def get_district_climate(district_id: str):
+async def get_district_climate(
+    district_id: str,
+    variable: Optional[str] = Query(None, description="Climate variable ID for resolving real grid counts"),
+    period: str = Query("baseline", description="Time period for grid-count lookup"),
+    scenario: str = Query("historical", description="Scenario for grid-count lookup"),
+    percentile: str = Query("p50", description="Ensemble percentile for grid-count lookup"),
+):
     """
     Get full climate data for a specific district.
     """
     real_district = get_real_district(district_id)
     real_climate = build_real_district_climate(district_id)
+    grid_point_count = (
+        get_real_grid_point_count(district_id, variable, period, scenario, percentile)
+        if variable
+        else None
+    )
     if real_district is not None and real_climate is not None:
         props = real_district.get("properties", {})
         return {
@@ -213,7 +227,12 @@ async def get_district_climate(district_id: str):
             "district_name": props.get("name", district_id),
             "region": props.get("region", "Ghana"),
             "climate": real_climate,
+            "grid_point_count": grid_point_count,
+            "grid_resolution_km": GRID_RESOLUTION_KM if grid_point_count is not None else None,
         }
+
+    if has_real_climate_data():
+        raise HTTPException(status_code=404, detail=f"Real climate data for district {district_id} not found")
 
     for region_name, district_list in REGIONS.items():
         for district_name in district_list:
@@ -228,6 +247,8 @@ async def get_district_climate(district_id: str):
                     "district_name": district_name,
                     "region": region_name,
                     "climate": climate_data,
+                    "grid_point_count": grid_point_count,
+                    "grid_resolution_km": GRID_RESOLUTION_KM if grid_point_count is not None else None,
                 }
 
     raise HTTPException(status_code=404, detail=f"District {district_id} not found")

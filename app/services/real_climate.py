@@ -17,6 +17,7 @@ DEFAULT_PERIOD_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_period_values.csv"
 DEFAULT_YEARLY_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_yearly_values.csv.gz"
 DEFAULT_SHAPEFILE_PATH = Path(__file__).resolve().parents[3] / "gadm41_GHA_2.shp"
 VALID_PERCENTILES = {"p10", "p50", "p90"}
+GRID_RESOLUTION_KM = 4.0
 
 
 def _read_csv_records(path: Path, required_columns: set[str]) -> list[dict[str, Any]]:
@@ -37,6 +38,18 @@ def _read_csv_records(path: Path, required_columns: set[str]) -> list[dict[str, 
         return list(reader)
 
 
+def _read_csv_records_allowing_missing(
+    path: Path,
+    required_columns: set[str],
+    optional_columns: set[str],
+) -> list[dict[str, Any]]:
+    records = _read_csv_records(path, required_columns)
+    for row in records:
+        for column in optional_columns:
+            row.setdefault(column, None)
+    return records
+
+
 def _normalize_period_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     normalized: list[dict[str, Any]] = []
     for row in records:
@@ -50,6 +63,7 @@ def _normalize_period_records(records: list[dict[str, Any]]) -> list[dict[str, A
                 "scenario": str(row["scenario"]).lower(),
                 "percentile": str(row["percentile"]).lower(),
                 "value": float(row["value"]),
+                "grid_point_count": int(row["grid_point_count"]) if row.get("grid_point_count") not in (None, "") else None,
                 "unit": str(row["unit"]),
             }
         )
@@ -69,6 +83,7 @@ def _normalize_yearly_records(records: list[dict[str, Any]]) -> list[dict[str, A
                 "scenario": str(row["scenario"]).lower(),
                 "percentile": str(row["percentile"]).lower(),
                 "value": float(row["value"]),
+                "grid_point_count": int(row["grid_point_count"]) if row.get("grid_point_count") not in (None, "") else None,
                 "unit": str(row["unit"]),
             }
         )
@@ -157,7 +172,10 @@ def load_period_values():
         "value",
         "unit",
     }
-    return _normalize_period_records(_read_csv_records(path, required_columns))
+    optional_columns = {"grid_point_count"}
+    return _normalize_period_records(
+        _read_csv_records_allowing_missing(path, required_columns, optional_columns)
+    )
 
 
 @lru_cache(maxsize=1)
@@ -177,7 +195,10 @@ def load_yearly_values():
         "value",
         "unit",
     }
-    return _normalize_yearly_records(_read_csv_records(path, required_columns))
+    optional_columns = {"grid_point_count"}
+    return _normalize_yearly_records(
+        _read_csv_records_allowing_missing(path, required_columns, optional_columns)
+    )
 
 
 @lru_cache(maxsize=1)
@@ -443,3 +464,38 @@ def build_real_district_climate(district_id: str) -> dict[str, dict[str, float]]
         key = "baseline" if period == "baseline" else f"{period}_{scenario}"
         payload[variable][key] = value
     return payload
+
+
+def get_real_grid_point_count(
+    district_id: str,
+    variable: str,
+    period: str,
+    scenario: str,
+    percentile: str | None = None,
+) -> int | None:
+    rows = load_period_values()
+    if rows is None:
+        return None
+
+    normalized_percentile = normalize_percentile(percentile)
+    period_key = period.lower()
+    scenario_key = ("historical" if period_key == "baseline" else scenario).lower()
+
+    subset = [
+        row for row in rows
+        if row["district_id"] == district_id
+        and row["variable"] == variable
+        and row["period"] == period_key
+        and row["scenario"] == scenario_key
+        and row["percentile"] == normalized_percentile
+        and row.get("grid_point_count") is not None
+    ]
+    subset = _dedupe_rows(
+        subset,
+        ("district_id", "variable", "period", "scenario", "percentile"),
+        sort_keys=("district_id", "variable", "period", "scenario", "percentile"),
+    )
+    if not subset:
+        return None
+
+    return int(round(float(subset[0]["grid_point_count"])))

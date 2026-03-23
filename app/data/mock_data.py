@@ -1,6 +1,6 @@
 """
 Mock climate data for Ghana districts
-Based on realistic projections from CORDEX-Africa models
+Based on realistic projections aligned with GhKAPy-style regional climate models
 """
 
 from __future__ import annotations

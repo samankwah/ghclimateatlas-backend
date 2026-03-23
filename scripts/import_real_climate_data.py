@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import re
 from dataclasses import dataclass
@@ -33,6 +34,7 @@ VARIABLE_MAPPING = {
 }
 PERCENTILE_MAPPING = {10: "p10", 50: "p50", 90: "p90"}
 ATLAS_PERIOD_ORDER = ("baseline", "2030", "2050", "2080")
+GRID_RESOLUTION_KM = 4.0
 SEASON_LENGTH_DAYS = {
     "annual": 365,
     "amj": 91,
@@ -305,6 +307,9 @@ def aggregate_values_for_districts(
         if cell_indices is not None and len(cell_indices) > 0:
             values = converted[cell_indices[:, 0], cell_indices[:, 1]]
             valid = values[~np.isnan(values)]
+            grid_point_count = int(len(valid))
+        else:
+            grid_point_count = 0
 
         if not len(valid):
             nearest_cell = nearest_cell_lookup.get(district["district_id"])
@@ -322,6 +327,7 @@ def aggregate_values_for_districts(
             if fallback_value is None:
                 continue
             valid = np.array([fallback_value], dtype=float)
+            grid_point_count = 1
 
         results.append(
             {
@@ -329,6 +335,7 @@ def aggregate_values_for_districts(
                 "district_name": district["district_name"],
                 "region": district["region"],
                 "value": float(valid.mean()),
+                "grid_point_count": grid_point_count,
                 "unit": unit,
             }
         )
@@ -449,13 +456,17 @@ def main() -> None:
     )
 
     period_frame.to_csv(output_dir / "climate_period_values.csv", index=False)
-    yearly_frame.to_csv(output_dir / "climate_yearly_values.csv", index=False)
+    yearly_csv_path = output_dir / "climate_yearly_values.csv"
+    yearly_frame.to_csv(yearly_csv_path, index=False)
+    with yearly_csv_path.open("rb") as src, gzip.open(output_dir / "climate_yearly_values.csv.gz", "wb") as dst:
+        dst.writelines(src)
     export_district_geojson(districts, output_dir / "districts.geojson")
 
     summary = {
         "period_rows": len(period_frame),
         "yearly_rows": len(yearly_frame),
         "district_count": int(districts["district_id"].nunique()),
+        "grid_resolution_km": GRID_RESOLUTION_KM,
         "variables": sorted(period_frame["variable"].unique().tolist()),
         "scenarios": sorted(period_frame["scenario"].unique().tolist()),
     }

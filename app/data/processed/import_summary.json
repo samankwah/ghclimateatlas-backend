@@ -2,6 +2,7 @@
   "period_rows": 55944,
   "yearly_rows": 2119656,
   "district_count": 259,
+  "grid_resolution_km": 4.0,
   "variables": [
     "annual_mean_temp",
     "annual_precipitation",

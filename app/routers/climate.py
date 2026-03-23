@@ -23,6 +23,8 @@ from app.data.mock_data import (
 from app.services.real_climate import (
     build_real_climate_comparison,
     build_real_climate_response,
+    get_supported_variables,
+    has_real_climate_data,
     normalize_percentile,
 )
 
@@ -32,12 +34,24 @@ VALID_PERIODS = ["baseline", "2030", "2050", "2080"]
 VALID_SCENARIOS = ["historical", "rcp26", "rcp45", "rcp85"]
 
 
+def _get_available_variables() -> list[dict]:
+    if not has_real_climate_data():
+        return CLIMATE_VARIABLES
+
+    supported = get_supported_variables()
+    return [var for var in CLIMATE_VARIABLES if var["id"] in supported]
+
+
+def _resolve_variable(variable_id: str) -> dict | None:
+    return next((var for var in _get_available_variables() if var["id"] == variable_id), None)
+
+
 @router.get("/variables", response_model=List[ClimateVariable])
 async def get_climate_variables():
     """
     Get list of all available climate variables with metadata.
     """
-    return CLIMATE_VARIABLES
+    return _get_available_variables()
 
 
 @router.get("/variables/{variable_id}", response_model=ClimateVariable)
@@ -45,9 +59,9 @@ async def get_climate_variable(variable_id: str):
     """
     Get metadata for a specific climate variable.
     """
-    for var in CLIMATE_VARIABLES:
-        if var["id"] == variable_id:
-            return var
+    var = _resolve_variable(variable_id)
+    if var:
+        return var
     raise HTTPException(status_code=404, detail=f"Variable {variable_id} not found")
 
 
@@ -55,7 +69,10 @@ async def get_climate_variable(variable_id: str):
 async def get_climate_data(
     variable: str,
     response: Response,
-    period: str = Query("baseline", description="Time period: baseline, 2030, 2050, or 2080"),
+    period: str = Query(
+        "baseline",
+        description="Time period: baseline, 2030 (2021-2040), 2050 (2041-2060), or 2080 (2081-2100)",
+    ),
     scenario: str = Query("rcp45", description="Emission scenario: historical, rcp26, rcp45, or rcp85"),
     percentile: str = Query("p50", description="Ensemble percentile: p10, p50, or p90"),
 ):
@@ -63,19 +80,15 @@ async def get_climate_data(
     Get climate values for all districts for a specific variable, period, and scenario.
 
     - **variable**: Climate variable ID (e.g., annual_max_temp, annual_precipitation)
-    - **period**: Time period (baseline, 2030, 2050, 2080)
+    - **period**: Time period (baseline, 2030/2021-2040, 2050/2041-2060, 2080/2081-2100)
     - **scenario**: Emission scenario (historical, rcp26, rcp45, rcp85)
     """
     # Validate variable
-    var_info = None
-    for v in CLIMATE_VARIABLES:
-        if v["id"] == variable:
-            var_info = v
-            break
+    var_info = _resolve_variable(variable)
     if not var_info:
         raise HTTPException(
             status_code=404,
-            detail=f"Variable '{variable}' not found. Available: {[v['id'] for v in CLIMATE_VARIABLES]}"
+            detail=f"Variable '{variable}' not found. Available: {[v['id'] for v in _get_available_variables()]}"
         )
 
     # Validate period
@@ -102,6 +115,15 @@ async def get_climate_data(
     real_response = build_real_climate_response(variable, period, scenario, normalized_percentile)
     if real_response is not None:
         return real_response
+
+    if has_real_climate_data():
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                f"Real climate data is unavailable for variable='{variable}', "
+                f"period='{period}', scenario='{scenario}', percentile='{normalized_percentile}'."
+            ),
+        )
 
     # Generate climate values for all districts
     data = []
@@ -169,15 +191,11 @@ async def compare_climate_data(
     Returns change amounts and percentages for each district.
 
     - **variable**: Climate variable ID
-    - **period**: Future time period (2030, 2050, 2080)
+    - **period**: Future time period (2030/2021-2040, 2050/2041-2060, 2080/2081-2100)
     - **scenario**: Emission scenario (rcp26, rcp45, rcp85)
     """
     # Validate variable
-    var_info = None
-    for v in CLIMATE_VARIABLES:
-        if v["id"] == variable:
-            var_info = v
-            break
+    var_info = _resolve_variable(variable)
     if not var_info:
         raise HTTPException(
             status_code=404,
@@ -188,7 +206,10 @@ async def compare_climate_data(
     if period not in ["2030", "2050", "2080"]:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid period '{period}'. Valid periods for comparison: 2030, 2050, 2080"
+            detail=(
+                f"Invalid period '{period}'. Valid periods for comparison: "
+                "2030 (2021-2040), 2050 (2041-2060), 2080 (2081-2100)"
+            )
         )
 
     if scenario not in ["rcp26", "rcp45", "rcp85"]:
@@ -203,6 +224,15 @@ async def compare_climate_data(
     real_response = build_real_climate_comparison(variable, period, scenario, normalized_percentile)
     if real_response is not None:
         return real_response
+
+    if has_real_climate_data():
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                f"Real climate comparison data is unavailable for variable='{variable}', "
+                f"period='{period}', scenario='{scenario}', percentile='{normalized_percentile}'."
+            ),
+        )
 
     # Generate comparison data
     data = []
