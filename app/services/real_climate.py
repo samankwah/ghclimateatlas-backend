@@ -4,6 +4,7 @@ import csv
 import gzip
 import json
 import os
+from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -184,6 +185,19 @@ def load_period_values():
     return _normalize_period_records(
         _read_csv_records_allowing_missing(path, required_columns, optional_columns)
     )
+
+
+@lru_cache(maxsize=1)
+def _period_values_index() -> dict[tuple[str, str, str, str], list[dict[str, Any]]] | None:
+    """Build a dict index over period values for O(1) lookup by (variable, period, scenario, percentile)."""
+    rows = load_period_values()
+    if rows is None:
+        return None
+    index: dict[tuple[str, str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        key = (row["variable"], row["period"], row["scenario"], row["percentile"])
+        index[key].append(row)
+    return dict(index)
 
 
 @lru_cache(maxsize=1)
@@ -379,22 +393,16 @@ def build_real_climate_response(
     scenario: str,
     percentile: str | None = None,
 ) -> ClimateResponse | None:
-    rows = load_period_values()
+    index = _period_values_index()
     meta = get_variable_meta(variable)
-    if rows is None or meta is None:
+    if index is None or meta is None:
         return None
 
     normalized_percentile = normalize_percentile(percentile)
     period_key = period.lower()
     scenario_key = ("historical" if period_key == "baseline" else scenario).lower()
 
-    subset = [
-        row for row in rows
-        if row["variable"] == variable
-        and row["period"] == period_key
-        and row["scenario"] == scenario_key
-        and row["percentile"] == normalized_percentile
-    ]
+    subset = list(index.get((variable, period_key, scenario_key, normalized_percentile), []))
     subset = _dedupe_rows(
         subset,
         ("district_id", "variable", "period", "scenario", "percentile"),

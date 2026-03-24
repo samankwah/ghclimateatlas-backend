@@ -10,13 +10,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 
 from app.routers import climate, districts
-from app.services.real_climate import load_districts_geojson, load_period_values
+from app.services.real_climate import (
+    load_districts_geojson,
+    load_period_values,
+    _period_values_index,
+)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Preload data at startup so first requests are fast
     load_period_values()
+    _period_values_index()  # pre-build the lookup index
     load_districts_geojson()
     yield
 
