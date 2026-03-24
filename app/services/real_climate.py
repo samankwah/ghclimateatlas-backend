@@ -405,11 +405,15 @@ def build_real_climate_response(
         return None
 
     unit = str(subset[0]["unit"])
+    # Sea level rise is stored in cm in CSV; convert to meters for display
+    is_slr = variable == "sea_level_rise"
+    if is_slr:
+        unit = "m"
     data = [
         {
             "district_id": row["district_id"],
             "district_name": row["district_name"],
-            "value": round(float(row["value"]), 2),
+            "value": round(float(row["value"]) / 100, 3) if is_slr else round(float(row["value"]), 2),
         }
         for row in subset
     ]

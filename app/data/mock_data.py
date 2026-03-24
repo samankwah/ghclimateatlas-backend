@@ -361,7 +361,7 @@ CLIMATE_VARIABLES = [
         "id": "sea_level_rise",
         "name": "Sea Level Rise",
         "description": "Projected relative sea-level rise signal with reduced inland contextual values",
-        "unit": "cm",
+        "unit": "m",
         "category": "sea_level",
         "color_scale": "sea_level",
     },
@@ -762,15 +762,16 @@ def get_mock_sea_level_value(variable: str, region: str, district: str, scenario
     }.get(period, 0.0)
     scenario_multiplier = {
         "historical": 0.0,
-        "rcp45": 1.0,
-        "rcp26": 1.2,
-        "rcp85": 1.45,
+        "rcp26": 0.8, "ssp126": 0.8,
+        "rcp45": 1.0, "ssp245": 1.0,
+        "rcp85": 1.4, "ssp585": 1.4,
     }.get(scenario, 1.0)
 
     if variable == "sea_level_rise":
         baseline = 4.5 + exposure * 5.5 if is_coastal else 0.8 + exposure * 5.0
         future_add = (4.0 + exposure * 4.0) * future_multiplier * max(scenario_multiplier, 1.0)
-        return round(clamp(baseline + future_add, 0.5, 45.0), 1)
+        value_cm = clamp(baseline + future_add, 0.5, 90.0)
+        return round(value_cm / 100, 3)  # Convert cm to meters
 
     coastal_base = {
         "storm_surge_flood_risk": 6.2,
