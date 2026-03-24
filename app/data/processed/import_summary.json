@@ -1,6 +1,6 @@
 {
-  "period_rows": 55944,
-  "yearly_rows": 2119656,
+  "period_rows": 94110,
+  "yearly_rows": 3177930,
   "district_count": 259,
   "grid_resolution_km": 4.0,
   "variables": [
@@ -8,13 +8,21 @@
     "annual_precipitation",
     "mean_temp_apr_may_jun",
     "mean_temp_dry_season",
+    "mean_temp_jul_aug_sep",
+    "mean_temp_sep_oct_nov",
     "precipitation_apr_may_jun",
-    "precipitation_dec_jan_feb"
+    "precipitation_dec_jan_feb",
+    "precipitation_jul_aug_sep",
+    "precipitation_sep_oct_nov",
+    "sea_level_rise"
   ],
   "scenarios": [
     "historical",
     "rcp26",
     "rcp45",
-    "rcp85"
+    "rcp85",
+    "ssp126",
+    "ssp245",
+    "ssp585"
   ]
 }

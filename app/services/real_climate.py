@@ -13,6 +13,7 @@ from app.models.schemas import ClimateComparisonResponse, ClimateResponse
 
 DEFAULT_PROCESSED_DIR = Path(__file__).resolve().parents[1] / "data" / "processed"
 DEFAULT_DISTRICTS_PATH = DEFAULT_PROCESSED_DIR / "districts.geojson"
+DEFAULT_MAP_DISTRICTS_PATH = DEFAULT_PROCESSED_DIR / "districts_map.geojson"
 DEFAULT_PERIOD_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_period_values.csv"
 DEFAULT_YEARLY_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_yearly_values.csv.gz"
 DEFAULT_SHAPEFILE_PATH = Path(__file__).resolve().parents[3] / "gadm41_GHA_2.shp"
@@ -63,7 +64,7 @@ def _normalize_period_records(records: list[dict[str, Any]]) -> list[dict[str, A
                 "scenario": str(row["scenario"]).lower(),
                 "percentile": str(row["percentile"]).lower(),
                 "value": float(row["value"]),
-                "grid_point_count": int(row["grid_point_count"]) if row.get("grid_point_count") not in (None, "") else None,
+                "grid_point_count": int(float(row["grid_point_count"])) if row.get("grid_point_count") not in (None, "") else None,
                 "unit": str(row["unit"]),
             }
         )
@@ -83,7 +84,7 @@ def _normalize_yearly_records(records: list[dict[str, Any]]) -> list[dict[str, A
                 "scenario": str(row["scenario"]).lower(),
                 "percentile": str(row["percentile"]).lower(),
                 "value": float(row["value"]),
-                "grid_point_count": int(row["grid_point_count"]) if row.get("grid_point_count") not in (None, "") else None,
+                "grid_point_count": int(float(row["grid_point_count"])) if row.get("grid_point_count") not in (None, "") else None,
                 "unit": str(row["unit"]),
             }
         )
@@ -125,6 +126,13 @@ def get_districts_path() -> Path:
     if configured:
         return Path(configured)
     return get_processed_dir() / DEFAULT_DISTRICTS_PATH.name
+
+
+def get_map_districts_path() -> Path:
+    configured = os.getenv("CLIMATE_MAP_DISTRICTS_PATH")
+    if configured:
+        return Path(configured)
+    return get_processed_dir() / DEFAULT_MAP_DISTRICTS_PATH.name
 
 
 def get_fallback_shapefile_path() -> Path:
@@ -212,6 +220,16 @@ def load_districts_geojson() -> dict[str, Any] | None:
 
 
 @lru_cache(maxsize=1)
+def load_map_districts_geojson() -> dict[str, Any] | None:
+    path = get_map_districts_path()
+    if not path.exists():
+        return load_districts_geojson()
+
+    with path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+@lru_cache(maxsize=1)
 def load_districts_from_shapefile() -> dict[str, Any] | None:
     path = get_fallback_shapefile_path()
     if not path.exists():
@@ -292,6 +310,22 @@ def get_supported_variables() -> set[str]:
 
 def get_real_district_feature_collection(region: str | None = None) -> dict[str, Any] | None:
     payload = load_districts_geojson()
+    if payload is None:
+        return None
+
+    if not region:
+        return payload
+
+    filtered = [
+        feature
+        for feature in payload.get("features", [])
+        if feature.get("properties", {}).get("region", "").lower() == region.lower()
+    ]
+    return {"type": "FeatureCollection", "features": filtered}
+
+
+def get_real_map_district_feature_collection(region: str | None = None) -> dict[str, Any] | None:
+    payload = load_map_districts_geojson()
     if payload is None:
         return None
 

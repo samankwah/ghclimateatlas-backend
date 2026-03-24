@@ -1,20 +1,18 @@
 """
-Simplify districts.geojson to reduce file size from ~27MB to ~2-3MB.
-
-Uses Douglas-Peucker algorithm to reduce polygon vertices and truncates
-coordinate precision to 5 decimal places (~1m accuracy, sufficient for
-choropleth maps).
+Create a simplified district GeoJSON for map rendering without mutating the
+existing full-detail runtime artifact.
 
 Usage:
-    pip install shapely
     python backend/scripts/simplify_geojson.py
 
-This overwrites backend/app/data/processed/districts.geojson with the
-simplified version. A backup is saved as districts.geojson.bak.
+Input:
+    backend/app/data/processed/districts.geojson
+
+Output:
+    backend/app/data/processed/districts_map.geojson
 """
 
 import json
-import shutil
 from pathlib import Path
 
 try:
@@ -29,7 +27,7 @@ PRECISION = 5      # 5 decimal places ≈ 1.1m accuracy
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "app" / "data" / "processed"
 GEOJSON_PATH = DATA_DIR / "districts.geojson"
-BACKUP_PATH = DATA_DIR / "districts.geojson.bak"
+SIMPLIFIED_PATH = DATA_DIR / "districts_map.geojson"
 
 
 def truncate_coords(coords, precision: int):
@@ -71,10 +69,6 @@ def main():
     original_size = GEOJSON_PATH.stat().st_size
     print(f"Original: {original_size / 1_000_000:.1f} MB")
 
-    # Create backup
-    shutil.copy2(GEOJSON_PATH, BACKUP_PATH)
-    print(f"Backup saved to {BACKUP_PATH}")
-
     # Load and simplify
     with open(GEOJSON_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -91,14 +85,15 @@ def main():
     data["features"] = simplified_features
 
     # Write simplified GeoJSON (compact, no extra whitespace)
-    with open(GEOJSON_PATH, "w", encoding="utf-8") as f:
+    with open(SIMPLIFIED_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, separators=(",", ":"))
 
-    new_size = GEOJSON_PATH.stat().st_size
+    new_size = SIMPLIFIED_PATH.stat().st_size
     reduction = (1 - new_size / original_size) * 100
     print(f"\nSimplified: {new_size / 1_000_000:.1f} MB")
     print(f"Reduction: {reduction:.0f}%")
     print(f"Features: {len(data['features'])} (should be {original_count})")
+    print(f"Wrote {SIMPLIFIED_PATH}")
 
 
 if __name__ == "__main__":

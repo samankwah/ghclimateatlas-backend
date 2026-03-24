@@ -18,6 +18,7 @@ FILE_PATTERN = re.compile(
     r"(?P<indicator_id>10[12]|20[12])-qdm_CORDEX_Ghana0p0375_(?P<scenario>rcp26|rcp45|rcp85)_ensstats\.nc$",
     re.IGNORECASE,
 )
+SEA_LEVEL_PERIOD_FILE = "SLRprojectionsPeriods.nc"
 VARIABLE_MAPPING = {
     ("101", "annual"): {"variable": "annual_mean_temp", "kind": "periods"},
     ("102", "annual"): {"variable": "annual_mean_temp", "kind": "years"},
@@ -27,17 +28,67 @@ VARIABLE_MAPPING = {
     ("102", "amj"): {"variable": "mean_temp_apr_may_jun", "kind": "years"},
     ("201", "amj"): {"variable": "precipitation_apr_may_jun", "kind": "periods"},
     ("202", "amj"): {"variable": "precipitation_apr_may_jun", "kind": "years"},
+    ("101", "jas"): {"variable": "mean_temp_jul_aug_sep", "kind": "periods"},
+    ("102", "jas"): {"variable": "mean_temp_jul_aug_sep", "kind": "years"},
+    ("201", "jas"): {"variable": "precipitation_jul_aug_sep", "kind": "periods"},
+    ("202", "jas"): {"variable": "precipitation_jul_aug_sep", "kind": "years"},
+    ("101", "son"): {"variable": "mean_temp_sep_oct_nov", "kind": "periods"},
+    ("102", "son"): {"variable": "mean_temp_sep_oct_nov", "kind": "years"},
+    ("201", "son"): {"variable": "precipitation_sep_oct_nov", "kind": "periods"},
+    ("202", "son"): {"variable": "precipitation_sep_oct_nov", "kind": "years"},
     ("101", "djf"): {"variable": "mean_temp_dry_season", "kind": "periods"},
     ("102", "djf"): {"variable": "mean_temp_dry_season", "kind": "years"},
     ("201", "djf"): {"variable": "precipitation_dec_jan_feb", "kind": "periods"},
     ("202", "djf"): {"variable": "precipitation_dec_jan_feb", "kind": "years"},
 }
 PERCENTILE_MAPPING = {10: "p10", 50: "p50", 90: "p90"}
+SEA_LEVEL_PERCENTILE_MAPPING = {0.1: "p10", 0.5: "p50", 0.9: "p90"}
+SEA_LEVEL_SCENARIOS = {"SSP126": "ssp126", "SSP245": "ssp245", "SSP585": "ssp585"}
+SEA_LEVEL_PERIOD_MAPPING = {"2021-2040": "2030", "2041-2060": "2050", "2081-2100": "2080"}
+COASTAL_DISTRICT_NAMES = {
+    "accra metropolitan",
+    "accra",
+    "tema metropolitan",
+    "tema",
+    "kpone katamanso",
+    "ada east",
+    "ada west",
+    "ningo prampram",
+    "shai osudoku",
+    "krowor",
+    "ledzokuku",
+    "la dade kotopon",
+    "ga south",
+    "sekondi takoradi metropolitan",
+    "sekondi takoradi",
+    "effia kwesimintsim",
+    "shama",
+    "ahanta west",
+    "ellembelle",
+    "jomoro",
+    "nzema east",
+    "cape coast metropolitan",
+    "cape coast",
+    "komenda edina eguafo abrem",
+    "mfantseman",
+    "ekumfi",
+    "gomoa west",
+    "gomoa east",
+    "effutu",
+    "awutu senya east",
+    "awutu senya west",
+    "keta",
+    "keta municipal",
+    "ketu south",
+    "south tongu",
+}
 ATLAS_PERIOD_ORDER = ("baseline", "2030", "2050", "2080")
 GRID_RESOLUTION_KM = 4.0
 SEASON_LENGTH_DAYS = {
     "annual": 365,
     "amj": 91,
+    "jas": 92,
+    "son": 91,
     "djf": 90,
 }
 
@@ -63,6 +114,13 @@ def parse_args() -> argparse.Namespace:
         default=[],
         help="Additional directory containing annual or seasonal NetCDF files.",
     )
+    parser.add_argument(
+        "--sea-level-dir",
+        action="append",
+        type=Path,
+        default=[],
+        help="Directory containing extracted sea-level NetCDF files.",
+    )
     parser.add_argument("--districts", required=True, type=Path, help="District GeoJSON or vector file")
     parser.add_argument("--periods-file", required=True, type=Path, help="Path to config/periods.tsv")
     parser.add_argument("--output-dir", required=True, type=Path)
@@ -79,9 +137,20 @@ def collect_source_directories(args: argparse.Namespace) -> list[Path]:
             continue
         seen.add(resolved)
         unique_directories.append(directory)
-    if not unique_directories:
-        raise SystemExit("Provide at least one --temperature-dir, --rainfall-dir, or --source-dir.")
     return unique_directories
+
+
+def collect_sea_level_files(args: argparse.Namespace) -> list[Path]:
+    files: list[Path] = []
+    seen: set[Path] = set()
+    for directory in args.sea_level_dir:
+        for path in sorted(directory.glob(SEA_LEVEL_PERIOD_FILE)):
+            resolved = path.resolve()
+            if resolved in seen:
+                continue
+            seen.add(resolved)
+            files.append(path)
+    return files
 
 
 def resolve_variable_mapping(path: Path, indicator_id: str) -> dict[str, str] | None:
@@ -127,6 +196,10 @@ def find_source_files(*directories: Path) -> list[SourceFile]:
 
 def normalize_name(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
+def is_direct_coastal_district(district_name: str) -> bool:
+    return normalize_name(district_name) in COASTAL_DISTRICT_NAMES
 
 
 def load_districts(path: Path) -> gpd.GeoDataFrame:
@@ -277,9 +350,21 @@ def parse_period_definitions(path: Path) -> dict[str, str]:
 
 
 def convert_units(variable: str, values: np.ndarray, units: str, season: str) -> tuple[np.ndarray, str]:
-    if variable in {"annual_mean_temp", "mean_temp_apr_may_jun", "mean_temp_dry_season"} and units == "K":
+    if variable in {
+        "annual_mean_temp",
+        "mean_temp_apr_may_jun",
+        "mean_temp_jul_aug_sep",
+        "mean_temp_sep_oct_nov",
+        "mean_temp_dry_season",
+    } and units == "K":
         return values - 273.15, "°C"
-    if units == "mm/s" and variable in {"annual_precipitation", "precipitation_apr_may_jun", "precipitation_dec_jan_feb"}:
+    if units == "mm/s" and variable in {
+        "annual_precipitation",
+        "precipitation_apr_may_jun",
+        "precipitation_jul_aug_sep",
+        "precipitation_sep_oct_nov",
+        "precipitation_dec_jan_feb",
+    }:
         season_days = SEASON_LENGTH_DAYS.get(season, 365)
         converted = values * 60 * 60 * 24 * season_days
         unit = "mm/year" if season == "annual" else "mm"
@@ -418,23 +503,116 @@ def process_yearly_file(
     return rows
 
 
+def _normalize_sea_level_units(values: np.ndarray) -> tuple[np.ndarray, str]:
+    # The sea-level NetCDF stores values in millimetres across all period slices.
+    # Always convert once to centimetres before district aggregation.
+    return values / 10.0, "cm"
+
+
+def process_sea_level_file(
+    path: Path,
+    districts: gpd.GeoDataFrame,
+) -> list[dict[str, object]]:
+    dataset = xr.open_dataset(path)
+    rows: list[dict[str, object]] = []
+    data_array = dataset["sea_level_change"]
+    latitudes = dataset["lat"].values
+    longitudes = dataset["lon"].values
+    grid_lookup = build_grid_lookup(latitudes, longitudes, districts)
+    nearest_cell_lookup = build_nearest_cell_lookup(latitudes, longitudes, districts)
+
+    coastal_districts = [
+        district
+        for district in districts.to_dict("records")
+        if is_direct_coastal_district(str(district["district_name"]))
+    ]
+
+    for percentile_name in SEA_LEVEL_PERCENTILE_MAPPING.values():
+        for district in coastal_districts:
+            rows.append(
+                {
+                    "district_id": district["district_id"],
+                    "district_name": district["district_name"],
+                    "region": district["region"],
+                    "value": 0.0,
+                    "grid_point_count": None,
+                    "unit": "cm",
+                    "variable": "sea_level_rise",
+                    "period": "baseline",
+                    "scenario": "historical",
+                    "percentile": percentile_name,
+                }
+                )
+
+    for scenario_name, scenario_key in SEA_LEVEL_SCENARIOS.items():
+        if scenario_name not in dataset["scenarios"].values:
+            continue
+        for quantile_value, percentile_name in SEA_LEVEL_PERCENTILE_MAPPING.items():
+            if quantile_value not in dataset["quantiles"].values:
+                continue
+            for year_label, atlas_period in SEA_LEVEL_PERIOD_MAPPING.items():
+                if year_label not in dataset["years"].values:
+                    continue
+
+                selection = (
+                    data_array
+                    .sel(scenarios=scenario_name, quantiles=quantile_value, years=year_label)
+                    .transpose("lat", "lon")
+                )
+                converted, unit = _normalize_sea_level_units(selection.to_numpy())
+                normalized_selection = xr.DataArray(
+                    converted,
+                    coords={"lat": selection["lat"].values, "lon": selection["lon"].values},
+                    dims=("lat", "lon"),
+                    attrs={"units": unit},
+                )
+
+                for row in aggregate_values_for_districts(
+                    normalized_selection,
+                    districts,
+                    grid_lookup,
+                    nearest_cell_lookup,
+                    "sea_level_rise",
+                    "annual",
+                ):
+                    if not is_direct_coastal_district(str(row["district_name"])):
+                        continue
+                    rows.append(
+                        {
+                            **row,
+                            "variable": "sea_level_rise",
+                            "period": atlas_period,
+                            "scenario": scenario_key,
+                            "percentile": percentile_name,
+                        }
+                    )
+
+    dataset.close()
+    return rows
+
+
 def main() -> None:
     args = parse_args()
-    files = find_source_files(*collect_source_directories(args))
-    if not files:
+    source_directories = collect_source_directories(args)
+    files = find_source_files(*source_directories)
+    sea_level_files = collect_sea_level_files(args)
+    if not files and not sea_level_files:
         raise SystemExit("No matching NetCDF files found.")
 
     districts = load_districts(args.districts)
     period_mapping = parse_period_definitions(args.periods_file)
 
-    sample_dataset = xr.open_dataset(files[0].path)
-    grid_lookup = build_grid_lookup(sample_dataset["lat"].values, sample_dataset["lon"].values, districts)
-    nearest_cell_lookup = build_nearest_cell_lookup(
-        sample_dataset["lat"].values,
-        sample_dataset["lon"].values,
-        districts,
-    )
-    sample_dataset.close()
+    grid_lookup: dict[str, np.ndarray] = {}
+    nearest_cell_lookup: dict[str, tuple[int, int]] = {}
+    if files:
+        sample_dataset = xr.open_dataset(files[0].path)
+        grid_lookup = build_grid_lookup(sample_dataset["lat"].values, sample_dataset["lon"].values, districts)
+        nearest_cell_lookup = build_nearest_cell_lookup(
+            sample_dataset["lat"].values,
+            sample_dataset["lon"].values,
+            districts,
+        )
+        sample_dataset.close()
 
     period_rows: list[dict[str, object]] = []
     yearly_rows: list[dict[str, object]] = []
@@ -444,16 +622,23 @@ def main() -> None:
             period_rows.extend(process_period_file(source, districts, grid_lookup, nearest_cell_lookup, period_mapping))
         else:
             yearly_rows.extend(process_yearly_file(source, districts, grid_lookup, nearest_cell_lookup))
+    for sea_level_file in sea_level_files:
+        period_rows.extend(process_sea_level_file(sea_level_file, districts))
 
     output_dir = args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    period_frame = pd.DataFrame(period_rows).sort_values(
-        ["variable", "scenario", "period", "percentile", "region", "district_name"]
-    )
-    yearly_frame = pd.DataFrame(yearly_rows).sort_values(
-        ["variable", "scenario", "year", "percentile", "region", "district_name"]
-    )
+    period_frame = pd.DataFrame(period_rows)
+    if not period_frame.empty:
+        period_frame = period_frame.sort_values(
+            ["variable", "scenario", "period", "percentile", "region", "district_name"]
+        )
+
+    yearly_frame = pd.DataFrame(yearly_rows)
+    if not yearly_frame.empty:
+        yearly_frame = yearly_frame.sort_values(
+            ["variable", "scenario", "year", "percentile", "region", "district_name"]
+        )
 
     period_frame.to_csv(output_dir / "climate_period_values.csv", index=False)
     yearly_csv_path = output_dir / "climate_yearly_values.csv"

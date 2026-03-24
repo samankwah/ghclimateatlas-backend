@@ -24,6 +24,7 @@ from app.services.real_climate import (
     get_real_grid_point_count,
     get_real_district,
     get_real_district_feature_collection,
+    get_real_map_district_feature_collection,
     get_real_district_list,
     GRID_RESOLUTION_KM,
     has_real_climate_data,
@@ -143,6 +144,23 @@ async def get_all_districts(
             features.append(feature)
 
     return {"type": "FeatureCollection", "features": features}
+
+
+@router.get("/map", response_model=DistrictFeatureCollection)
+async def get_map_districts(
+    response: Response,
+    region: Optional[str] = Query(None, description="Filter by region name"),
+):
+    """
+    Get Ghana districts as GeoJSON optimized for map rendering.
+    Falls back to the full district payload when the simplified artifact is unavailable.
+    """
+    response.headers["Cache-Control"] = "public, max-age=3600"
+    real_payload = get_real_map_district_feature_collection(region)
+    if real_payload is not None:
+        return real_payload
+
+    return await get_all_districts(response, region)
 
 
 @router.get("/list", response_model=List[District])

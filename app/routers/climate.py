@@ -31,7 +31,16 @@ from app.services.real_climate import (
 router = APIRouter()
 
 VALID_PERIODS = ["baseline", "2030", "2050", "2080"]
-VALID_SCENARIOS = ["historical", "rcp26", "rcp45", "rcp85"]
+RCP_SCENARIOS = ["historical", "rcp26", "rcp45", "rcp85"]
+SEA_LEVEL_SCENARIOS = ["historical", "ssp126", "ssp245", "ssp585"]
+
+
+def _is_sea_level_variable(variable_id: str) -> bool:
+    return variable_id == "sea_level_rise"
+
+
+def _get_valid_scenarios(variable_id: str) -> list[str]:
+    return SEA_LEVEL_SCENARIOS if _is_sea_level_variable(variable_id) else RCP_SCENARIOS
 
 
 def _get_available_variables() -> list[dict]:
@@ -99,10 +108,11 @@ async def get_climate_data(
         )
 
     # Validate scenario
-    if scenario not in VALID_SCENARIOS:
+    valid_scenarios = _get_valid_scenarios(variable)
+    if scenario not in valid_scenarios:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid scenario '{scenario}'. Valid scenarios: {VALID_SCENARIOS}"
+            detail=f"Invalid scenario '{scenario}'. Valid scenarios: {valid_scenarios}"
         )
 
     normalized_percentile = normalize_percentile(percentile)
@@ -212,10 +222,11 @@ async def compare_climate_data(
             )
         )
 
-    if scenario not in ["rcp26", "rcp45", "rcp85"]:
+    valid_comparison_scenarios = [item for item in _get_valid_scenarios(variable) if item != "historical"]
+    if scenario not in valid_comparison_scenarios:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid scenario '{scenario}'. Valid scenarios: rcp26, rcp45, rcp85"
+            detail=f"Invalid scenario '{scenario}'. Valid scenarios: {valid_comparison_scenarios}"
         )
 
     normalized_percentile = normalize_percentile(percentile)
