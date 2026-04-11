@@ -1,6 +1,7 @@
 from app.services.real_climate import (
     build_real_climate_comparison,
     build_real_climate_response,
+    build_real_climate_timeseries,
     build_real_district_climate,
     get_real_district,
     get_real_district_feature_collection,
@@ -14,6 +15,7 @@ from app.services.real_climate import (
 __all__ = [
     "build_real_climate_comparison",
     "build_real_climate_response",
+    "build_real_climate_timeseries",
     "build_real_district_climate",
     "get_real_district",
     "get_real_district_feature_collection",

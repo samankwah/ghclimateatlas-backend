@@ -72,3 +72,14 @@ curl "http://localhost:8000/api/climate/annual_max_temp/compare?period=2050&scen
 
 Currently using mock data derived from GhKAPy-style climate projections.
 Replace with the full real GhKAPy/GMet Climate Atlas data pipeline when available.
+
+## Linux Deployment
+
+For a same-origin production deployment such as `https://atlas.meteo.gov.gh`:
+
+- run the backend behind Nginx on an internal port such as `127.0.0.1:8000`
+- proxy `/api/` from Nginx to the FastAPI app
+- keep the processed climate files under `app/data/processed`
+- set `CORS_ORIGINS` only if the frontend is hosted on a different origin
+
+Deployment templates are provided under `../deploy/`.

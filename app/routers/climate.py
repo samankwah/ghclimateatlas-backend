@@ -12,6 +12,7 @@ from app.models.schemas import (
     ClimateValue,
     ClimateComparisonResponse,
     ClimateComparison,
+    ClimateTimeSeriesResponse,
 )
 from app.data.mock_data import (
     CLIMATE_VARIABLES,
@@ -23,6 +24,7 @@ from app.data.mock_data import (
 from app.services.real_climate import (
     build_real_climate_comparison,
     build_real_climate_response,
+    build_real_climate_timeseries,
     get_supported_variables,
     has_real_climate_data,
     normalize_percentile,
@@ -314,6 +316,40 @@ async def compare_climate_data(
         unit=var_info["unit"],
         percentile=normalized_percentile,
         data=data,
+    )
+
+
+@router.get("/{variable}/timeseries", response_model=ClimateTimeSeriesResponse)
+async def get_climate_timeseries(
+    variable: str,
+    response: Response,
+    district_id: str = Query(..., description="District ID"),
+    scenario: str = Query("rcp45", description="Scenario for future years"),
+):
+    """Get yearly district climate time series with p10/p50/p90 values."""
+    var_info = _resolve_variable(variable)
+    if not var_info:
+        raise HTTPException(status_code=404, detail=f"Variable '{variable}' not found")
+
+    valid_scenarios = [item for item in _get_valid_scenarios(variable) if item != "historical"]
+    if scenario not in valid_scenarios:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid scenario '{scenario}'. Valid scenarios: {valid_scenarios}"
+        )
+
+    response.headers["Cache-Control"] = "public, max-age=3600"
+
+    real_response = build_real_climate_timeseries(variable, district_id, scenario)
+    if real_response is not None:
+        return real_response
+
+    raise HTTPException(
+        status_code=404,
+        detail=(
+            f"Yearly climate time series is unavailable for variable='{variable}', "
+            f"district_id='{district_id}', scenario='{scenario}'."
+        ),
     )
 
 

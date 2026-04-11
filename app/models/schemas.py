@@ -76,6 +76,33 @@ class ClimateComparisonResponse(BaseModel):
     data: List[ClimateComparison]
 
 
+class ClimateTimeSeriesPoint(BaseModel):
+    """Yearly percentile values for a district time series"""
+    year: int
+    p10: float
+    p50: float
+    p90: float
+
+
+class ClimateTimeSeriesReferencePeriod(BaseModel):
+    """Reference period used for the legend mean"""
+    start: int
+    end: int
+
+
+class ClimateTimeSeriesResponse(BaseModel):
+    """Response for district yearly climate time series"""
+    variable: str
+    variable_name: str
+    scenario: str
+    unit: str
+    district_id: str
+    district_name: str
+    reference_period: ClimateTimeSeriesReferencePeriod
+    reference_mean: float
+    data: List[ClimateTimeSeriesPoint]
+
+
 class DistrictClimate(BaseModel):
     """Full climate data for a single district"""
     district_id: str
