@@ -17,6 +17,7 @@ DEFAULT_DISTRICTS_PATH = DEFAULT_PROCESSED_DIR / "districts.geojson"
 DEFAULT_MAP_DISTRICTS_PATH = DEFAULT_PROCESSED_DIR / "districts_map.geojson"
 DEFAULT_PERIOD_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_period_values.csv"
 DEFAULT_YEARLY_VALUES_PATH = DEFAULT_PROCESSED_DIR / "climate_yearly_values.csv.gz"
+DEFAULT_DISTRICT_TIMESERIES_DIR = DEFAULT_PROCESSED_DIR / "district_timeseries"
 DEFAULT_SHAPEFILE_PATH = Path(__file__).resolve().parents[3] / "gadm41_GHA_2.shp"
 VALID_PERCENTILES = {"p10", "p50", "p90"}
 GRID_RESOLUTION_KM = 4.0
@@ -514,47 +515,55 @@ def _normalize_timeseries_unit_and_value(variable: str, unit: str, value: float)
     return unit, round(value, 4)
 
 
+@lru_cache(maxsize=64)
+def _load_district_timeseries_file(district_id: str) -> dict[str, Any] | None:
+    """Load a single district's precomputed timeseries JSON (gzipped)."""
+    path = DEFAULT_DISTRICT_TIMESERIES_DIR / f"{district_id}.json.gz"
+    if not path.exists():
+        return None
+    with gzip.open(path, "rt", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
 def build_real_climate_timeseries(
     variable: str,
     district_id: str,
     scenario: str,
 ) -> ClimateTimeSeriesResponse | None:
-    index = _yearly_values_index()
     meta = get_variable_meta(variable)
-    if index is None or meta is None:
+    if meta is None:
         return None
 
-    historical_p10 = index.get((variable, district_id, "historical", "p10"), [])
-    historical_p50 = index.get((variable, district_id, "historical", "p50"), [])
-    historical_p90 = index.get((variable, district_id, "historical", "p90"), [])
-    scenario_p10 = index.get((variable, district_id, scenario.lower(), "p10"), [])
-    scenario_p50 = index.get((variable, district_id, scenario.lower(), "p50"), [])
-    scenario_p90 = index.get((variable, district_id, scenario.lower(), "p90"), [])
+    payload = _load_district_timeseries_file(district_id)
+    if payload is None:
+        return None
 
-    if not historical_p50:
+    variables_block = payload.get("variables", {})
+    variable_block = variables_block.get(variable)
+    if not variable_block:
+        return None
+
+    historical_points = variable_block.get("historical", [])
+    scenario_points = variable_block.get(scenario.lower(), [])
+
+    if not historical_points:
         return None
 
     rows_by_year: dict[int, dict[str, Any]] = {}
 
-    def merge_rows(rows: list[dict[str, Any]], percentile: str) -> None:
-        for row in rows:
-            year = int(row["year"])
-            current = rows_by_year.setdefault(
-                year,
-                {
-                    "year": year,
-                    "district_name": row["district_name"],
-                    "unit": str(row["unit"]),
-                },
-            )
-            current[percentile] = float(row["value"])
+    def merge_points(points: list[dict[str, Any]]) -> None:
+        for point in points:
+            year = int(point["year"])
+            rows_by_year[year] = {
+                "year": year,
+                "unit": str(point.get("unit", "")),
+                "p10": float(point["p10"]),
+                "p50": float(point["p50"]),
+                "p90": float(point["p90"]),
+            }
 
-    merge_rows(historical_p10, "p10")
-    merge_rows(historical_p50, "p50")
-    merge_rows(historical_p90, "p90")
-    merge_rows(scenario_p10, "p10")
-    merge_rows(scenario_p50, "p50")
-    merge_rows(scenario_p90, "p90")
+    merge_points(historical_points)
+    merge_points(scenario_points)
 
     if not rows_by_year:
         return None
@@ -563,9 +572,6 @@ def build_real_climate_timeseries(
     display_unit = None
     for year in sorted(rows_by_year):
         row = rows_by_year[year]
-        if not {"p10", "p50", "p90"}.issubset(row):
-            continue
-
         normalized_unit, p10 = _normalize_timeseries_unit_and_value(variable, row["unit"], row["p10"])
         _, p50 = _normalize_timeseries_unit_and_value(variable, row["unit"], row["p50"])
         _, p90 = _normalize_timeseries_unit_and_value(variable, row["unit"], row["p90"])
@@ -592,12 +598,13 @@ def build_real_climate_timeseries(
     if not reference_values:
         return None
 
-    district_name = rows_by_year[merged_points[0]["year"]]["district_name"]
+    district_name = payload.get("district_name", district_id)
+    fallback_unit = str(historical_points[0].get("unit", "")) if historical_points else ""
     return ClimateTimeSeriesResponse(
         variable=variable,
         variable_name=meta["name"],
         scenario=scenario.lower(),
-        unit=display_unit or str(historical_p50[0]["unit"]),
+        unit=display_unit or fallback_unit,
         district_id=district_id,
         district_name=str(district_name),
         reference_period={"start": reference_start, "end": reference_end},
