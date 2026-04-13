@@ -19,6 +19,10 @@ FILE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 SEA_LEVEL_PERIOD_FILE = "SLRprojectionsPeriods.nc"
+SEA_LEVEL_YEARLY_FILE = "SLRprojectionsYearly.nc"
+SEA_LEVEL_YEARLY_BASELINE_START = 1991
+SEA_LEVEL_YEARLY_BASELINE_END = 2020
+SEA_LEVEL_YEARLY_END = 2100
 VARIABLE_MAPPING = {
     ("101", "annual"): {"variable": "annual_mean_temp", "kind": "periods"},
     ("102", "annual"): {"variable": "annual_mean_temp", "kind": "years"},
@@ -145,6 +149,19 @@ def collect_sea_level_files(args: argparse.Namespace) -> list[Path]:
     seen: set[Path] = set()
     for directory in args.sea_level_dir:
         for path in sorted(directory.glob(SEA_LEVEL_PERIOD_FILE)):
+            resolved = path.resolve()
+            if resolved in seen:
+                continue
+            seen.add(resolved)
+            files.append(path)
+    return files
+
+
+def collect_sea_level_yearly_files(args: argparse.Namespace) -> list[Path]:
+    files: list[Path] = []
+    seen: set[Path] = set()
+    for directory in args.sea_level_dir:
+        for path in sorted(directory.glob(SEA_LEVEL_YEARLY_FILE)):
             resolved = path.resolve()
             if resolved in seen:
                 continue
@@ -591,12 +608,105 @@ def process_sea_level_file(
     return rows
 
 
+def process_sea_level_yearly_file(
+    path: Path,
+    districts: gpd.GeoDataFrame,
+) -> list[dict[str, object]]:
+    """Aggregate yearly SLR projections per coastal district.
+
+    Emits two kinds of rows:
+      1. A flat zero-anomaly historical baseline for years 1991-2020 so the chart's
+         reference window has data (SLR is an anomaly relative to that baseline).
+      2. One row per (year, scenario, percentile, district) for the SSP scenarios,
+         capped at SEA_LEVEL_YEARLY_END to match the chart x-axis.
+    """
+    dataset = xr.open_dataset(path)
+    rows: list[dict[str, object]] = []
+    data_array = dataset["sea_level_change"]
+    latitudes = dataset["lat"].values
+    longitudes = dataset["lon"].values
+    grid_lookup = build_grid_lookup(latitudes, longitudes, districts)
+    nearest_cell_lookup = build_nearest_cell_lookup(latitudes, longitudes, districts)
+
+    coastal_districts = [
+        district
+        for district in districts.to_dict("records")
+        if is_direct_coastal_district(str(district["district_name"]))
+    ]
+
+    for percentile_name in SEA_LEVEL_PERCENTILE_MAPPING.values():
+        for year in range(SEA_LEVEL_YEARLY_BASELINE_START, SEA_LEVEL_YEARLY_BASELINE_END + 1):
+            for district in coastal_districts:
+                rows.append(
+                    {
+                        "district_id": district["district_id"],
+                        "district_name": district["district_name"],
+                        "region": district["region"],
+                        "value": 0.0,
+                        "grid_point_count": None,
+                        "unit": "cm",
+                        "variable": "sea_level_rise",
+                        "year": year,
+                        "scenario": "historical",
+                        "percentile": percentile_name,
+                    }
+                )
+
+    available_years = [int(y) for y in dataset["years"].values.tolist()]
+    for scenario_name, scenario_key in SEA_LEVEL_SCENARIOS.items():
+        if scenario_name not in dataset["scenarios"].values:
+            continue
+        for quantile_value, percentile_name in SEA_LEVEL_PERCENTILE_MAPPING.items():
+            if quantile_value not in dataset["quantiles"].values:
+                continue
+            for year_value in available_years:
+                if year_value <= SEA_LEVEL_YEARLY_BASELINE_END or year_value > SEA_LEVEL_YEARLY_END:
+                    continue
+
+                selection = (
+                    data_array
+                    .sel(scenarios=scenario_name, quantiles=quantile_value, years=year_value)
+                    .transpose("lat", "lon")
+                )
+                converted, unit = _normalize_sea_level_units(selection.to_numpy())
+                normalized_selection = xr.DataArray(
+                    converted,
+                    coords={"lat": selection["lat"].values, "lon": selection["lon"].values},
+                    dims=("lat", "lon"),
+                    attrs={"units": unit},
+                )
+
+                for row in aggregate_values_for_districts(
+                    normalized_selection,
+                    districts,
+                    grid_lookup,
+                    nearest_cell_lookup,
+                    "sea_level_rise",
+                    "annual",
+                ):
+                    if not is_direct_coastal_district(str(row["district_name"])):
+                        continue
+                    rows.append(
+                        {
+                            **row,
+                            "variable": "sea_level_rise",
+                            "year": year_value,
+                            "scenario": scenario_key,
+                            "percentile": percentile_name,
+                        }
+                    )
+
+    dataset.close()
+    return rows
+
+
 def main() -> None:
     args = parse_args()
     source_directories = collect_source_directories(args)
     files = find_source_files(*source_directories)
     sea_level_files = collect_sea_level_files(args)
-    if not files and not sea_level_files:
+    sea_level_yearly_files = collect_sea_level_yearly_files(args)
+    if not files and not sea_level_files and not sea_level_yearly_files:
         raise SystemExit("No matching NetCDF files found.")
 
     districts = load_districts(args.districts)
@@ -624,6 +734,8 @@ def main() -> None:
             yearly_rows.extend(process_yearly_file(source, districts, grid_lookup, nearest_cell_lookup))
     for sea_level_file in sea_level_files:
         period_rows.extend(process_sea_level_file(sea_level_file, districts))
+    for sea_level_yearly_file in sea_level_yearly_files:
+        yearly_rows.extend(process_sea_level_yearly_file(sea_level_yearly_file, districts))
 
     output_dir = args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
