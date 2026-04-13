@@ -8,4 +8,6 @@ build/
 .pytest_cache/
 app/data/processed/climate_yearly_values.csv
 !app/data/processed/climate_yearly_values.csv.gz
+app/data/processed/district_timeseries/*.json
+app/data/processed/district_timeseries/*.json.gz
 app/data/raw/
