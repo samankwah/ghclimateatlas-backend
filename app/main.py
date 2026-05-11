@@ -4,17 +4,22 @@ Serves climate projection data for Ghana districts
 """
 import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 
-from app.routers import climate, districts
+from app.routers import climate, districts, requests
 from app.services.real_climate import (
     load_districts_geojson,
     load_period_values,
     _period_values_index,
 )
+
+
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 
 @asynccontextmanager
@@ -75,6 +80,7 @@ app.add_middleware(
 # Include routers
 app.include_router(districts.router, prefix="/api/districts", tags=["districts"])
 app.include_router(climate.router, prefix="/api/climate", tags=["climate"])
+app.include_router(requests.router, prefix="/api/requests", tags=["requests"])
 
 
 @app.get("/")

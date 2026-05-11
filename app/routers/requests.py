@@ -1,0 +1,84 @@
+"""Climate data request endpoints."""
+
+from __future__ import annotations
+
+import json
+import os
+import secrets
+from datetime import datetime, timezone
+from pathlib import Path
+
+from fastapi import APIRouter, HTTPException
+
+from app.models.schemas import ClimateDataRequest, ClimateDataRequestResponse
+from app.services.email import SMTPConfigurationError, send_data_request_confirmation
+
+router = APIRouter()
+
+DEFAULT_REQUESTS_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "data"
+    / "requests"
+    / "climate_data_requests.jsonl"
+)
+
+
+def _requests_path() -> Path:
+    return Path(os.getenv("CLIMATE_REQUESTS_PATH", str(DEFAULT_REQUESTS_PATH)))
+
+
+def _generate_request_id(submitted_at: datetime) -> str:
+    date_part = submitted_at.strftime("%Y%m%d")
+    random_part = secrets.token_hex(3).upper()
+    return f"CDR-{date_part}-{random_part}"
+
+
+def _append_request(record: dict) -> None:
+    path = _requests_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(record, ensure_ascii=True) + "\n")
+
+
+@router.post("", response_model=ClimateDataRequestResponse)
+async def create_climate_data_request(payload: ClimateDataRequest):
+    submitted_at = datetime.now(timezone.utc)
+    request_id = _generate_request_id(submitted_at)
+    record = {
+        "request_id": request_id,
+        "submitted_at": submitted_at.isoformat(),
+        **payload.model_dump(),
+    }
+
+    try:
+        _append_request(record)
+    except OSError as exc:
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to save climate data request",
+        ) from exc
+
+    warning = None
+    email_status = "sent"
+    try:
+        send_data_request_confirmation(record)
+    except SMTPConfigurationError:
+        email_status = "not_configured"
+        warning = (
+            "Request saved. Confirmation email delivery is not configured "
+            "for this server yet."
+        )
+    except Exception:  # noqa: BLE001 - delivery failure is non-fatal here.
+        email_status = "failed"
+        warning = (
+            "Request saved. Confirmation email could not be sent right now. "
+            "Keep your Request ID for follow-up."
+        )
+
+    return ClimateDataRequestResponse(
+        request_id=request_id,
+        submitted_at=record["submitted_at"],
+        status="received",
+        email_status=email_status,
+        warning=warning,
+    )

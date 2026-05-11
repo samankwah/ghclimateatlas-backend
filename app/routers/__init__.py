@@ -1,3 +1,3 @@
-from app.routers import climate, districts
+from app.routers import climate, districts, requests
 
-__all__ = ["climate", "districts"]
+__all__ = ["climate", "districts", "requests"]

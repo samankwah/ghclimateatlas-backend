@@ -1,7 +1,7 @@
 """
 Pydantic schemas for Ghana Climate Atlas API
 """
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 from typing import Optional, List, Dict, Any
 
 
@@ -111,3 +111,59 @@ class DistrictClimate(BaseModel):
     climate: Dict[str, Dict[str, float]]
     grid_point_count: Optional[int] = None
     grid_resolution_km: Optional[float] = None
+
+
+class ClimateDataRequest(BaseModel):
+    """Operational request for a downloadable climate data package"""
+    full_name: str = Field(..., min_length=2, max_length=160)
+    email: str = Field(..., min_length=5, max_length=320)
+    organization: Optional[str] = Field(default=None, max_length=200)
+    purpose: str = Field(..., min_length=3, max_length=1000)
+    geography: str = Field(..., min_length=2, max_length=500)
+    time_period: str = Field(..., min_length=2, max_length=200)
+    climate_variables: List[str] = Field(..., min_length=1, max_length=24)
+    scenarios: List[str] = Field(..., min_length=1, max_length=24)
+    preferred_format: str = Field(..., min_length=2, max_length=80)
+    additional_notes: Optional[str] = Field(default=None, max_length=2000)
+
+    @field_validator("email")
+    @classmethod
+    def validate_email(cls, value: str) -> str:
+        cleaned = value.strip()
+        if "@" not in cleaned or "." not in cleaned.rsplit("@", 1)[-1]:
+            raise ValueError("Enter a valid email address")
+        return cleaned.lower()
+
+    @field_validator(
+        "full_name",
+        "organization",
+        "purpose",
+        "geography",
+        "time_period",
+        "preferred_format",
+        "additional_notes",
+        mode="before",
+    )
+    @classmethod
+    def strip_optional_text(cls, value):
+        if isinstance(value, str):
+            cleaned = value.strip()
+            return cleaned or None
+        return value
+
+    @field_validator("climate_variables", "scenarios")
+    @classmethod
+    def validate_non_empty_list_items(cls, value: List[str]) -> List[str]:
+        cleaned = [item.strip() for item in value if item and item.strip()]
+        if not cleaned:
+            raise ValueError("Select at least one option")
+        return cleaned
+
+
+class ClimateDataRequestResponse(BaseModel):
+    """Response after receiving a climate data request"""
+    request_id: str
+    submitted_at: str
+    status: str
+    email_status: str
+    warning: Optional[str] = None

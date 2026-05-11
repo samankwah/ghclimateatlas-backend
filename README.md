@@ -20,18 +20,18 @@ pip install -r requirements.txt
 
 
 ```bash
-# Development
-uvicorn app.main:app --reload --port 8000
+# Development with the local frontend
+uvicorn app.main:app --reload --port 8001
 
-# Production
+# Production or reverse-proxy deployment
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
 ## API Documentation
 
 Once running, visit:
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
+- Swagger UI: http://localhost:8001/docs
+- ReDoc: http://localhost:8001/redoc
 
 ## Endpoints
 
@@ -48,6 +48,21 @@ Once running, visit:
 - `GET /api/climate/{variable}/compare` - Baseline vs future comparison
 - `GET /api/climate/{variable}/range` - Min/max for color scale
 
+### Climate Data Requests
+- `POST /api/requests` - Save a climate data package request and send a confirmation email when SMTP is configured
+
+Confirmation emails require these environment variables:
+
+```bash
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USERNAME=sender@example.com
+SMTP_PASSWORD=your-smtp-password
+SMTP_FROM_EMAIL=sender@example.com
+SMTP_FROM_NAME=Ghana Climate Atlas
+SMTP_USE_TLS=true
+```
+
 ## Query Parameters
 
 | Parameter | Values | Default |
@@ -59,13 +74,13 @@ Once running, visit:
 
 ```bash
 # Get all districts
-curl http://localhost:8000/api/districts
+curl http://localhost:8001/api/districts
 
 # Get annual max temperature for 2050 under RCP8.5
-curl "http://localhost:8000/api/climate/annual_max_temp?period=2050&scenario=rcp85"
+curl "http://localhost:8001/api/climate/annual_max_temp?period=2050&scenario=rcp85"
 
 # Compare baseline to 2050
-curl "http://localhost:8000/api/climate/annual_max_temp/compare?period=2050&scenario=rcp85"
+curl "http://localhost:8001/api/climate/annual_max_temp/compare?period=2050&scenario=rcp85"
 ```
 
 ## Data Source
