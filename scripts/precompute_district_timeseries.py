@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import csv
 import gzip
+import io
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -27,11 +28,20 @@ YEARLY_CSV = BACKEND_ROOT / "app" / "data" / "processed" / "climate_yearly_value
 OUTPUT_DIR = BACKEND_ROOT / "app" / "data" / "processed" / "district_timeseries"
 
 
-def main() -> None:
-    if not YEARLY_CSV.exists():
-        raise SystemExit(f"Missing input: {YEARLY_CSV}")
+def _write_json_gzip(path: Path, payload: dict) -> None:
+    """Write reproducible gzip output so identical data has identical bytes."""
+    with path.open("wb") as raw_handle:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=raw_handle, mtime=0) as gzip_handle:
+            with io.TextIOWrapper(gzip_handle, encoding="utf-8") as text_handle:
+                json.dump(payload, text_handle, separators=(",", ":"))
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+def build_district_timeseries(yearly_csv: Path, output_dir: Path) -> set[str]:
+    """Build all per-district API payloads and return the generated district IDs."""
+    if not yearly_csv.exists():
+        raise FileNotFoundError(f"Missing input: {yearly_csv}")
+
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     # district_id -> variable -> scenario -> year -> {p10, p50, p90, district_name, unit}
     per_district: dict[str, dict[str, dict[str, dict[int, dict]]]] = defaultdict(
@@ -39,8 +49,8 @@ def main() -> None:
     )
     district_names: dict[str, str] = {}
 
-    print(f"Reading {YEARLY_CSV}...")
-    with gzip.open(YEARLY_CSV, "rt", encoding="utf-8", newline="") as handle:
+    print(f"Reading {yearly_csv}...")
+    with gzip.open(yearly_csv, "rt", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
         for i, row in enumerate(reader):
             if i % 500_000 == 0:
@@ -90,15 +100,22 @@ def main() -> None:
                 if points:
                     payload["variables"][variable][scenario] = points
 
-        out_path = OUTPUT_DIR / f"{district_id}.json.gz"
-        with gzip.open(out_path, "wt", encoding="utf-8") as out:
-            json.dump(payload, out, separators=(",", ":"))
+        out_path = output_dir / f"{district_id}.json.gz"
+        _write_json_gzip(out_path, payload)
 
-    total_bytes = sum(p.stat().st_size for p in OUTPUT_DIR.glob("*.json.gz"))
+    total_bytes = sum(p.stat().st_size for p in output_dir.glob("*.json.gz"))
     print(
-        f"Wrote {len(per_district)} files to {OUTPUT_DIR} "
+        f"Wrote {len(per_district)} files to {output_dir} "
         f"({total_bytes / 1024 / 1024:.1f} MB total)"
     )
+    return set(per_district)
+
+
+def main() -> None:
+    try:
+        build_district_timeseries(YEARLY_CSV, OUTPUT_DIR)
+    except FileNotFoundError as exc:
+        raise SystemExit(str(exc)) from exc
 
 
 if __name__ == "__main__":

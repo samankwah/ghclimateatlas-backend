@@ -28,6 +28,14 @@ VARIABLE_MAPPING = {
     ("102", "annual"): {"variable": "annual_mean_temp", "kind": "years"},
     ("201", "annual"): {"variable": "annual_precipitation", "kind": "periods"},
     ("202", "annual"): {"variable": "annual_precipitation", "kind": "years"},
+    ("101", "mam"): {"variable": "mean_temp_mam", "kind": "periods"},
+    ("102", "mam"): {"variable": "mean_temp_mam", "kind": "years"},
+    ("201", "mam"): {"variable": "precipitation_mam", "kind": "periods"},
+    ("202", "mam"): {"variable": "precipitation_mam", "kind": "years"},
+    ("101", "jja"): {"variable": "mean_temp_jja", "kind": "periods"},
+    ("102", "jja"): {"variable": "mean_temp_jja", "kind": "years"},
+    ("201", "jja"): {"variable": "precipitation_jja", "kind": "periods"},
+    ("202", "jja"): {"variable": "precipitation_jja", "kind": "years"},
     ("101", "amj"): {"variable": "mean_temp_apr_may_jun", "kind": "periods"},
     ("102", "amj"): {"variable": "mean_temp_apr_may_jun", "kind": "years"},
     ("201", "amj"): {"variable": "precipitation_apr_may_jun", "kind": "periods"},
@@ -90,6 +98,8 @@ ATLAS_PERIOD_ORDER = ("baseline", "2030", "2050", "2080")
 GRID_RESOLUTION_KM = 4.0
 SEASON_LENGTH_DAYS = {
     "annual": 365,
+    "mam": 92,
+    "jja": 92,
     "amj": 91,
     "jas": 92,
     "son": 91,
@@ -239,10 +249,14 @@ def load_districts(path: Path) -> gpd.GeoDataFrame:
         raise ValueError("District file must contain name and region columns.")
 
     # Merge multipart districts such as Adansi Asokwa before deriving IDs and centroids.
+    district_columns = [region_column, name_column, "geometry"]
+    if id_column is not None:
+        district_columns.append(id_column)
+
     districts = (
-        districts[[region_column, name_column, "geometry"]]
+        districts[district_columns]
         .rename(columns={region_column: "region", name_column: "district_name"})
-        .dissolve(by=["region", "district_name"], as_index=False)
+        .dissolve(by=["region", "district_name"], as_index=False, aggfunc="first")
     )
     region_column = "region"
     name_column = "district_name"
@@ -369,6 +383,8 @@ def parse_period_definitions(path: Path) -> dict[str, str]:
 def convert_units(variable: str, values: np.ndarray, units: str, season: str) -> tuple[np.ndarray, str]:
     if variable in {
         "annual_mean_temp",
+        "mean_temp_mam",
+        "mean_temp_jja",
         "mean_temp_apr_may_jun",
         "mean_temp_jul_aug_sep",
         "mean_temp_sep_oct_nov",
@@ -377,6 +393,8 @@ def convert_units(variable: str, values: np.ndarray, units: str, season: str) ->
         return values - 273.15, "°C"
     if units == "mm/s" and variable in {
         "annual_precipitation",
+        "precipitation_mam",
+        "precipitation_jja",
         "precipitation_apr_may_jun",
         "precipitation_jul_aug_sep",
         "precipitation_sep_oct_nov",

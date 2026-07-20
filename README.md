@@ -88,6 +88,33 @@ curl "http://localhost:8001/api/climate/annual_max_temp/compare?period=2050&scen
 Currently using mock data derived from GhKAPy-style climate projections.
 Replace with the full real GhKAPy/GMet Climate Atlas data pipeline when available.
 
+### Refresh seasonal rainfall chart data
+
+To replace only the MAM, JJA, and SON yearly rainfall series from the nine
+`202` NetCDF inputs in `../chart-source-data/rainfall` and rebuild the
+per-district production timeseries files:
+
+```bash
+python scripts/import_seasonal_rainfall_yearly.py
+```
+
+The command validates every input and stages all generated datasets before it
+replaces the tracked yearly, summary, and district-timeseries artifacts. Period
+and map datasets are checksum-guarded and are not rewritten.
+
+### Refresh seasonal temperature data
+
+To replace only the MAM and JJA period-map and yearly-chart temperature series
+from the twelve `101`/`102` NetCDF inputs in `../chart-source-data/temperature`:
+
+```bash
+python scripts/import_seasonal_temperature.py
+```
+
+The command averages the three matching historical RCP values, retains distinct
+RCP2.6/RCP4.5/RCP8.5 projections, validates the staged datasets, and rebuilds all
+per-district production timeseries files before replacing outputs.
+
 ## Linux Deployment
 
 For a same-origin production deployment such as `https://atlas.meteo.gov.gh`:
