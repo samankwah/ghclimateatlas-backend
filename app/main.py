@@ -39,11 +39,16 @@ app = FastAPI(
 )
 
 # CORS middleware for frontend
-# In production, CORS_ORIGINS can override this allowlist with explicit
-# frontend URL(s), comma-separated. If the env var is blank or only contains
-# invalid values, fall back to the defaults rather than disabling CORS.
-default_cors_origins = [
+# CORS_ORIGINS adds extra frontend URL(s) in production, comma-separated.
+# The first-party deployments below are always allowed on top of whatever it
+# lists: a server whose CORS_ORIGINS predates a frontend host would otherwise
+# drop Access-Control-Allow-Origin and silently break that site.
+first_party_origins = [
+    "https://atlas.meteo.gov.gh",
     "https://ghclimateatlas.netlify.app",
+]
+
+default_cors_origins = first_party_origins + [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
@@ -58,12 +63,20 @@ def _parse_cors_origins() -> list[str]:
     if configured_origins is None:
         return default_cors_origins
 
+    # Browsers send Origin with no trailing slash, so normalise before matching.
     parsed_origins = [
-        origin.strip()
+        origin.strip().rstrip("/")
         for origin in configured_origins.split(",")
         if origin.strip().startswith(("http://", "https://"))
     ]
-    return parsed_origins or default_cors_origins
+    if not parsed_origins:
+        return default_cors_origins
+
+    merged = list(first_party_origins)
+    for origin in parsed_origins:
+        if origin not in merged:
+            merged.append(origin)
+    return merged
 
 
 app.add_middleware(GZipMiddleware, minimum_size=500)

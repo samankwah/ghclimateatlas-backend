@@ -122,6 +122,8 @@ For a same-origin production deployment such as `https://atlas.meteo.gov.gh`:
 - run the backend behind Nginx on an internal port such as `127.0.0.1:8000`
 - proxy `/api/` from Nginx to the FastAPI app
 - keep the processed climate files under `app/data/processed`
-- set `CORS_ORIGINS` only if the frontend is hosted on a different origin
+- set `CORS_ORIGINS` only to allow extra frontends; the first-party origins
+  (`https://atlas.meteo.gov.gh`, `https://ghclimateatlas.netlify.app`) are
+  always allowed and cannot be dropped by a narrow value
 
 Deployment templates are provided under `../deploy/`.
