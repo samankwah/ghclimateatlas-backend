@@ -9,3 +9,4 @@ build/
 app/data/processed/climate_yearly_values.csv
 !app/data/processed/climate_yearly_values.csv.gz
 app/data/raw/
+app/data/cache/

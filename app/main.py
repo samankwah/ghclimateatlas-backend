@@ -12,7 +12,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 
 from app.caching import DataETagMiddleware
-from app.routers import climate, districts, requests
+from app.routers import climate, districts, news, requests
+from app.services.gmet_news import start_refresh_loop, stop_refresh_loop
 from app.services.real_climate import (
     load_districts_geojson,
     load_period_values,
@@ -29,7 +30,13 @@ async def lifespan(app: FastAPI):
     load_period_values()
     _period_values_index()  # pre-build the lookup index
     load_districts_geojson()
-    yield
+    # Keep the GMet update feed warm in the background. Deliberately not awaited:
+    # boot must never block on an external host.
+    start_refresh_loop()
+    try:
+        yield
+    finally:
+        await stop_refresh_loop()
 
 
 app = FastAPI(
@@ -97,6 +104,7 @@ app.add_middleware(
 app.include_router(districts.router, prefix="/api/districts", tags=["districts"])
 app.include_router(climate.router, prefix="/api/climate", tags=["climate"])
 app.include_router(requests.router, prefix="/api/requests", tags=["requests"])
+app.include_router(news.router, prefix="/api/news", tags=["news"])
 
 
 @app.get("/")

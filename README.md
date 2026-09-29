@@ -63,6 +63,29 @@ SMTP_FROM_NAME=Ghana Climate Atlas
 SMTP_USE_TLS=true
 ```
 
+### Latest Updates
+- `GET /api/news/latest` - Climate Atlas news and publications published by GMet on meteo.gov.gh
+
+The GMet site has no API, feed or CORS headers, so the backend scrapes the two
+listing pages filtered to GMet's own "Climate Atlas" service tag, keeps the result
+in a disk-backed cache shared by all workers, and refreshes it in the background.
+Every variable below is optional; these are the built-in defaults:
+
+```bash
+GMET_NEWS_ENABLED=true
+GMET_NEWS_BASE_URL=https://www.meteo.gov.gh
+GMET_NEWS_SERVICE_ID=15
+GMET_NEWS_TTL_SECONDS=1200
+GMET_NEWS_TIMEOUT=12
+GMET_NEWS_CACHE_PATH=app/data/cache/gmet_news.json
+GMET_NEWS_BYPASS_UPSTREAM_CACHE=true
+```
+
+`GMET_NEWS_SERVICE_ID` selects which GMet service tag to follow (`15` is
+"Climate Atlas"). `GMET_NEWS_BYPASS_UPSTREAM_CACHE` appends a cache-busting
+parameter so GMet's four-hour edge cache is not served back to us; turn it off if
+GMet ever asks. Add `?fresh=1` to force a refresh (throttled to once a minute).
+
 ## Query Parameters
 
 | Parameter | Values | Default |

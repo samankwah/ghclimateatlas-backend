@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import secrets
 from datetime import datetime, timezone
@@ -12,6 +13,8 @@ from fastapi import APIRouter, HTTPException
 
 from app.models.schemas import ClimateDataRequest, ClimateDataRequestResponse
 from app.services.email import SMTPConfigurationError, send_data_request_confirmation
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -63,12 +66,17 @@ async def create_climate_data_request(payload: ClimateDataRequest):
     try:
         send_data_request_confirmation(record)
     except SMTPConfigurationError:
+        # A server without SMTP configured is a normal state, not a fault.
+        logger.info("Confirmation email skipped for %s: SMTP is not configured", request_id)
         email_status = "not_configured"
         warning = (
             "Request saved. Confirmation email delivery is not configured "
             "for this server yet."
         )
     except Exception:  # noqa: BLE001 - delivery failure is non-fatal here.
+        # Log the reason: without this a bad SMTP credential fails invisibly,
+        # because the caller still gets a 200 with the request saved.
+        logger.warning("Confirmation email failed for %s", request_id, exc_info=True)
         email_status = "failed"
         warning = (
             "Request saved. Confirmation email could not be sent right now. "

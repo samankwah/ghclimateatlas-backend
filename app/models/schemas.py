@@ -167,3 +167,27 @@ class ClimateDataRequestResponse(BaseModel):
     status: str
     email_status: str
     warning: Optional[str] = None
+
+
+class NewsUpdateItem(BaseModel):
+    """A single Climate Atlas update published by GMet on meteo.gov.gh"""
+    id: str
+    kind: str  # 'news' or 'publication'
+    title: str
+    summary: str = ""
+    category: str = "Update"
+    published_at: Optional[str] = None  # ISO date, None when unparseable
+    published_label: str = ""
+    url: str
+    image_url: Optional[str] = None
+    image_fallback_url: Optional[str] = None
+
+
+class LatestUpdatesResponse(BaseModel):
+    """Response for the Climate Atlas latest-updates feed"""
+    items: List[NewsUpdateItem]
+    fetched_at: str
+    stale: bool = False
+    source_url: str
+    all_news_url: str
+    all_publications_url: str
