@@ -4,7 +4,7 @@ Serves climate projection data for Ghana districts
 """
 from typing import List
 
-from fastapi import APIRouter, HTTPException, Query, Response
+from fastapi import APIRouter, HTTPException, Query
 
 from app.models.schemas import (
     ClimateVariable,
@@ -79,7 +79,6 @@ async def get_climate_variable(variable_id: str):
 @router.get("/{variable}", response_model=ClimateResponse)
 async def get_climate_data(
     variable: str,
-    response: Response,
     period: str = Query(
         "baseline",
         description="Time period: baseline, 2030 (2021-2040), 2050 (2041-2060), or 2080 (2081-2100)",
@@ -118,7 +117,6 @@ async def get_climate_data(
         )
 
     normalized_percentile = normalize_percentile(percentile)
-    response.headers["Cache-Control"] = "public, max-age=3600"
 
     # Handle baseline period
     if period == "baseline":
@@ -193,7 +191,6 @@ async def get_climate_data(
 @router.get("/{variable}/compare", response_model=ClimateComparisonResponse)
 async def compare_climate_data(
     variable: str,
-    response: Response,
     period: str = Query("2050", description="Future time period to compare against baseline"),
     scenario: str = Query("rcp45", description="Emission scenario: rcp26, rcp45, or rcp85"),
     percentile: str = Query("p50", description="Ensemble percentile: p10, p50, or p90"),
@@ -232,7 +229,6 @@ async def compare_climate_data(
         )
 
     normalized_percentile = normalize_percentile(percentile)
-    response.headers["Cache-Control"] = "public, max-age=3600"
 
     real_response = build_real_climate_comparison(variable, period, scenario, normalized_percentile)
     if real_response is not None:
@@ -322,7 +318,6 @@ async def compare_climate_data(
 @router.get("/{variable}/timeseries", response_model=ClimateTimeSeriesResponse)
 async def get_climate_timeseries(
     variable: str,
-    response: Response,
     district_id: str = Query(..., description="District ID"),
     scenario: str = Query("rcp45", description="Scenario for future years"),
 ):
@@ -338,7 +333,6 @@ async def get_climate_timeseries(
             detail=f"Invalid scenario '{scenario}'. Valid scenarios: {valid_scenarios}"
         )
 
-    response.headers["Cache-Control"] = "public, max-age=3600"
 
     real_response = build_real_climate_timeseries(variable, district_id, scenario)
     if real_response is not None:
@@ -356,7 +350,6 @@ async def get_climate_timeseries(
 @router.get("/{variable}/range")
 async def get_variable_range(
     variable: str,
-    response: Response,
     period: str = Query("baseline", description="Time period"),
     scenario: str = Query("rcp45", description="Emission scenario"),
     percentile: str = Query("p50", description="Ensemble percentile"),
@@ -365,7 +358,6 @@ async def get_variable_range(
     Get min/max range for a variable across all districts.
     Useful for setting up color scale legends.
     """
-    response.headers["Cache-Control"] = "public, max-age=3600"
     # Get the full climate data
     climate_response = await get_climate_data(variable, response, period, scenario, percentile)
 

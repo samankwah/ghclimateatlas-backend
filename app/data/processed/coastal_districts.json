@@ -1,0 +1,194 @@
+[
+  {
+    "id": "GH-WES-JOMOR",
+    "name": "Jomoro",
+    "region": "Western",
+    "coast_length_km": 62.55
+  },
+  {
+    "id": "GH-WES-ELLEM",
+    "name": "Ellembelle",
+    "region": "Western",
+    "coast_length_km": 34.06
+  },
+  {
+    "id": "GH-WES-NZEMA",
+    "name": "Nzema East",
+    "region": "Western",
+    "coast_length_km": 16.69
+  },
+  {
+    "id": "GH-WES-AHANT",
+    "name": "Ahanta West",
+    "region": "Western",
+    "coast_length_km": 73.93
+  },
+  {
+    "id": "GH-WES-SEKON",
+    "name": "Sekondi Takoradi",
+    "region": "Western",
+    "coast_length_km": 21.8
+  },
+  {
+    "id": "GH-WES-SHAMA",
+    "name": "Shama",
+    "region": "Western",
+    "coast_length_km": 15.86
+  },
+  {
+    "id": "GH-CEN-KOMEN",
+    "name": "Komenda-Edina-Eguafo-Abirem-",
+    "region": "Central",
+    "coast_length_km": 31.81
+  },
+  {
+    "id": "GH-CEN-CAPE_",
+    "name": "Cape Coast",
+    "region": "Central",
+    "coast_length_km": 12.77
+  },
+  {
+    "id": "GH-CEN-ABURA",
+    "name": "Abura-Asebu-Kwamankese",
+    "region": "Central",
+    "coast_length_km": 2.48
+  },
+  {
+    "id": "GH-CEN-MFANT",
+    "name": "Mfantseman",
+    "region": "Central",
+    "coast_length_km": 23.19
+  },
+  {
+    "id": "GH-CEN-EKUMF",
+    "name": "Ekumfi",
+    "region": "Central",
+    "coast_length_km": 24.81
+  },
+  {
+    "id": "GH-CEN-GOMOA_3",
+    "name": "Gomoa West",
+    "region": "Central",
+    "coast_length_km": 8.86
+  },
+  {
+    "id": "GH-CEN-GOMOA",
+    "name": "Gomoa Central",
+    "region": "Central",
+    "coast_length_km": 15.54
+  },
+  {
+    "id": "GH-CEN-EFFUT",
+    "name": "Effutu",
+    "region": "Central",
+    "coast_length_km": 10.54
+  },
+  {
+    "id": "GH-CEN-AWUTU",
+    "name": "Awutu Senya East",
+    "region": "Central",
+    "coast_length_km": 11.02
+  },
+  {
+    "id": "GH-CEN-GOMOA_2",
+    "name": "Gomoa East",
+    "region": "Central",
+    "coast_length_km": 11.8
+  },
+  {
+    "id": "GH-GRE-WEIJA",
+    "name": "Weija Gbawe",
+    "region": "Greater Accra",
+    "coast_length_km": 15.95
+  },
+  {
+    "id": "GH-GRE-ABLEK_3",
+    "name": "Ablekuma West",
+    "region": "Greater Accra",
+    "coast_length_km": 6.1
+  },
+  {
+    "id": "GH-GRE-ACCRA",
+    "name": "Accra",
+    "region": "Greater Accra",
+    "coast_length_km": 3.79
+  },
+  {
+    "id": "GH-GRE-KORLE",
+    "name": "Korle-Klottey",
+    "region": "Greater Accra",
+    "coast_length_km": 2.56
+  },
+  {
+    "id": "GH-GRE-LA_DA",
+    "name": "La-Dade-Kotopon",
+    "region": "Greater Accra",
+    "coast_length_km": 4.92
+  },
+  {
+    "id": "GH-GRE-LEDZO",
+    "name": "Ledzokuku",
+    "region": "Greater Accra",
+    "coast_length_km": 4.81
+  },
+  {
+    "id": "GH-GRE-KROWO",
+    "name": "Krowor",
+    "region": "Greater Accra",
+    "coast_length_km": 6.16
+  },
+  {
+    "id": "GH-GRE-TEMA_",
+    "name": "Tema West",
+    "region": "Greater Accra",
+    "coast_length_km": 1.19
+  },
+  {
+    "id": "GH-GRE-TEMA",
+    "name": "Tema",
+    "region": "Greater Accra",
+    "coast_length_km": 10.96
+  },
+  {
+    "id": "GH-GRE-KPONE",
+    "name": "Kpone-Katamanso",
+    "region": "Greater Accra",
+    "coast_length_km": 6.21
+  },
+  {
+    "id": "GH-GRE-NINGO",
+    "name": "Ningo-Prampram",
+    "region": "Greater Accra",
+    "coast_length_km": 34.5
+  },
+  {
+    "id": "GH-GRE-ADA_W",
+    "name": "Ada West",
+    "region": "Greater Accra",
+    "coast_length_km": 11.89
+  },
+  {
+    "id": "GH-GRE-ADA_E",
+    "name": "Ada East",
+    "region": "Greater Accra",
+    "coast_length_km": 24.83
+  },
+  {
+    "id": "GH-VOL-ANLOG",
+    "name": "Anloga",
+    "region": "Volta",
+    "coast_length_km": 35.89
+  },
+  {
+    "id": "GH-VOL-KETA_",
+    "name": "Keta Municipal",
+    "region": "Volta",
+    "coast_length_km": 21.16
+  },
+  {
+    "id": "GH-VOL-KETU__2",
+    "name": "Ketu South",
+    "region": "Volta",
+    "coast_length_km": 24.03
+  }
+]

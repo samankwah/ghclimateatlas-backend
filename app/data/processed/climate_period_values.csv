@@ -93239,871 +93239,961 @@ GH-WES-JUABO,Juaboso,Western North,539.3538274702652,79.0,mm,precipitation_sep_o
 GH-WES-SEFWI,Sefwi-Akontombra,Western North,533.834443571046,65.0,mm,precipitation_sep_oct_nov,2080,rcp85,p90
 GH-WES-SEFWI_2,Sefwi-Wiawso,Western North,536.623588784658,62.0,mm,precipitation_sep_oct_nov,2080,rcp85,p90
 GH-WES-SUAMA,Suaman,Western North,544.7172435116954,26.0,mm,precipitation_sep_oct_nov,2080,rcp85,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-CEN-CAPE_,Cape Coast,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-CEN-EFFUT,Effutu,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-CEN-EKUMF,Ekumfi,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
+GH-CEN-GOMOA,Gomoa Central,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-CEN-MFANT,Mfantseman,Central,0.0,,cm,sea_level_rise,baseline,historical,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-ACCRA,Accra,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-KROWO,Krowor,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-GRE-TEMA,Tema,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p10
+GH-VOL-ANLOG,Anloga,Volta,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-VOL-KETA_,Keta Municipal,Volta,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-VOL-KETU__2,Ketu South,Volta,0.0,,cm,sea_level_rise,baseline,historical,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-WES-AHANT,Ahanta West,Western,0.0,,cm,sea_level_rise,baseline,historical,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-WES-ELLEM,Ellembelle,Western,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-WES-JOMOR,Jomoro,Western,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-WES-NZEMA,Nzema East,Western,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,0.0,,cm,sea_level_rise,baseline,historical,p10
 GH-WES-SHAMA,Shama,Western,0.0,,cm,sea_level_rise,baseline,historical,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-CEN-CAPE_,Cape Coast,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-CEN-EFFUT,Effutu,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-CEN-EKUMF,Ekumfi,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
+GH-CEN-GOMOA,Gomoa Central,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-CEN-MFANT,Mfantseman,Central,0.0,,cm,sea_level_rise,baseline,historical,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-ACCRA,Accra,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-KROWO,Krowor,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-GRE-TEMA,Tema,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p50
+GH-VOL-ANLOG,Anloga,Volta,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-VOL-KETA_,Keta Municipal,Volta,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-VOL-KETU__2,Ketu South,Volta,0.0,,cm,sea_level_rise,baseline,historical,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-WES-AHANT,Ahanta West,Western,0.0,,cm,sea_level_rise,baseline,historical,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-WES-ELLEM,Ellembelle,Western,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-WES-JOMOR,Jomoro,Western,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-WES-NZEMA,Nzema East,Western,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,0.0,,cm,sea_level_rise,baseline,historical,p50
 GH-WES-SHAMA,Shama,Western,0.0,,cm,sea_level_rise,baseline,historical,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-CEN-CAPE_,Cape Coast,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-CEN-EFFUT,Effutu,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-CEN-EKUMF,Ekumfi,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
+GH-CEN-GOMOA,Gomoa Central,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-CEN-MFANT,Mfantseman,Central,0.0,,cm,sea_level_rise,baseline,historical,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-ACCRA,Accra,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-KROWO,Krowor,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-GRE-TEMA,Tema,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,0.0,,cm,sea_level_rise,baseline,historical,p90
+GH-VOL-ANLOG,Anloga,Volta,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-VOL-KETA_,Keta Municipal,Volta,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-VOL-KETU__2,Ketu South,Volta,0.0,,cm,sea_level_rise,baseline,historical,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-WES-AHANT,Ahanta West,Western,0.0,,cm,sea_level_rise,baseline,historical,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-WES-ELLEM,Ellembelle,Western,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-WES-JOMOR,Jomoro,Western,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-WES-NZEMA,Nzema East,Western,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,0.0,,cm,sea_level_rise,baseline,historical,p90
 GH-WES-SHAMA,Shama,Western,0.0,,cm,sea_level_rise,baseline,historical,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,5.10125,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-CEN-CAPE_,Cape Coast,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-CEN-EFFUT,Effutu,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-CEN-EKUMF,Ekumfi,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
+GH-CEN-GOMOA,Gomoa Central,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-CEN-MFANT,Mfantseman,Central,5.686249999999999,1.0,cm,sea_level_rise,2030,ssp126,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-ACCRA,Accra,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,5.44375,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-KROWO,Krowor,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-GRE-TEMA,Tema,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,5.4712499999999995,1.0,cm,sea_level_rise,2030,ssp126,p10
+GH-VOL-ANLOG,Anloga,Volta,5.44375,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-VOL-KETA_,Keta Municipal,Volta,5.44375,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-VOL-KETU__2,Ketu South,Volta,5.44375,1.0,cm,sea_level_rise,2030,ssp126,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,5.44375,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-WES-AHANT,Ahanta West,Western,7.03875,1.0,cm,sea_level_rise,2030,ssp126,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,7.03875,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-WES-ELLEM,Ellembelle,Western,7.03875,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-WES-JOMOR,Jomoro,Western,5.39375,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-WES-NZEMA,Nzema East,Western,7.03875,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,7.03875,1.0,cm,sea_level_rise,2030,ssp126,p10
 GH-WES-SHAMA,Shama,Western,7.03875,1.0,cm,sea_level_rise,2030,ssp126,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,10.25125,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-CEN-CAPE_,Cape Coast,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-CEN-EFFUT,Effutu,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-CEN-EKUMF,Ekumfi,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
+GH-CEN-GOMOA,Gomoa Central,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-CEN-MFANT,Mfantseman,Central,10.82,1.0,cm,sea_level_rise,2030,ssp126,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-ACCRA,Accra,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,10.54375,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-KROWO,Krowor,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-GRE-TEMA,Tema,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,10.4225,1.0,cm,sea_level_rise,2030,ssp126,p50
+GH-VOL-ANLOG,Anloga,Volta,10.54375,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-VOL-KETA_,Keta Municipal,Volta,10.54375,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-VOL-KETU__2,Ketu South,Volta,10.54375,1.0,cm,sea_level_rise,2030,ssp126,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,10.54375,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-WES-AHANT,Ahanta West,Western,11.647499999999999,1.0,cm,sea_level_rise,2030,ssp126,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,11.647499999999999,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-WES-ELLEM,Ellembelle,Western,11.647499999999999,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-WES-JOMOR,Jomoro,Western,10.5275,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-WES-NZEMA,Nzema East,Western,11.647499999999999,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,11.647499999999999,1.0,cm,sea_level_rise,2030,ssp126,p50
 GH-WES-SHAMA,Shama,Western,11.647499999999999,1.0,cm,sea_level_rise,2030,ssp126,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-CEN-CAPE_,Cape Coast,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-CEN-EFFUT,Effutu,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-CEN-EKUMF,Ekumfi,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
+GH-CEN-GOMOA,Gomoa Central,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-CEN-MFANT,Mfantseman,Central,16.8975,1.0,cm,sea_level_rise,2030,ssp126,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-ACCRA,Accra,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,16.62125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-KROWO,Krowor,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-GRE-TEMA,Tema,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,16.25125,1.0,cm,sea_level_rise,2030,ssp126,p90
+GH-VOL-ANLOG,Anloga,Volta,16.62125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-VOL-KETA_,Keta Municipal,Volta,16.62125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-VOL-KETU__2,Ketu South,Volta,16.62125,1.0,cm,sea_level_rise,2030,ssp126,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,16.62125,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-WES-AHANT,Ahanta West,Western,17.244999999999997,1.0,cm,sea_level_rise,2030,ssp126,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,17.244999999999997,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-WES-ELLEM,Ellembelle,Western,17.244999999999997,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-WES-JOMOR,Jomoro,Western,16.555,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-WES-NZEMA,Nzema East,Western,17.244999999999997,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,17.244999999999997,1.0,cm,sea_level_rise,2030,ssp126,p90
 GH-WES-SHAMA,Shama,Western,17.244999999999997,1.0,cm,sea_level_rise,2030,ssp126,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,10.471250000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-CEN-CAPE_,Cape Coast,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-CEN-EFFUT,Effutu,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-CEN-EKUMF,Ekumfi,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
+GH-CEN-GOMOA,Gomoa Central,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-CEN-MFANT,Mfantseman,Central,11.533750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-ACCRA,Accra,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,11.01375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-KROWO,Krowor,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-GRE-TEMA,Tema,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,11.06375,1.0,cm,sea_level_rise,2050,ssp126,p10
+GH-VOL-ANLOG,Anloga,Volta,11.01375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-VOL-KETA_,Keta Municipal,Volta,11.01375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-VOL-KETU__2,Ketu South,Volta,11.01375,1.0,cm,sea_level_rise,2050,ssp126,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,11.01375,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-WES-AHANT,Ahanta West,Western,13.986250000000002,1.0,cm,sea_level_rise,2050,ssp126,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,13.986250000000002,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-WES-ELLEM,Ellembelle,Western,13.986250000000002,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-WES-JOMOR,Jomoro,Western,10.963750000000001,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-WES-NZEMA,Nzema East,Western,13.986250000000002,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,13.986250000000002,1.0,cm,sea_level_rise,2050,ssp126,p10
 GH-WES-SHAMA,Shama,Western,13.986250000000002,1.0,cm,sea_level_rise,2050,ssp126,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,20.276249999999997,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-CEN-CAPE_,Cape Coast,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-CEN-EFFUT,Effutu,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-CEN-EKUMF,Ekumfi,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
+GH-CEN-GOMOA,Gomoa Central,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-CEN-MFANT,Mfantseman,Central,21.345,1.0,cm,sea_level_rise,2050,ssp126,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-ACCRA,Accra,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,20.84625,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-KROWO,Krowor,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-GRE-TEMA,Tema,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,20.4975,1.0,cm,sea_level_rise,2050,ssp126,p50
+GH-VOL-ANLOG,Anloga,Volta,20.84625,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-VOL-KETA_,Keta Municipal,Volta,20.84625,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-VOL-KETU__2,Ketu South,Volta,20.84625,1.0,cm,sea_level_rise,2050,ssp126,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,20.84625,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-WES-AHANT,Ahanta West,Western,22.822499999999998,1.0,cm,sea_level_rise,2050,ssp126,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,22.822499999999998,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-WES-ELLEM,Ellembelle,Western,22.822499999999998,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-WES-JOMOR,Jomoro,Western,20.8525,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-WES-NZEMA,Nzema East,Western,22.822499999999998,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,22.822499999999998,1.0,cm,sea_level_rise,2050,ssp126,p50
 GH-WES-SHAMA,Shama,Western,22.822499999999998,1.0,cm,sea_level_rise,2050,ssp126,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,32.27375,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-CEN-CAPE_,Cape Coast,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-CEN-EFFUT,Effutu,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-CEN-EKUMF,Ekumfi,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
+GH-CEN-GOMOA,Gomoa Central,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-CEN-MFANT,Mfantseman,Central,33.47,1.0,cm,sea_level_rise,2050,ssp126,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-ACCRA,Accra,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,32.94375,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-KROWO,Krowor,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-GRE-TEMA,Tema,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,32.35125,1.0,cm,sea_level_rise,2050,ssp126,p90
+GH-VOL-ANLOG,Anloga,Volta,32.94375,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-VOL-KETA_,Keta Municipal,Volta,32.94375,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-VOL-KETU__2,Ketu South,Volta,32.94375,1.0,cm,sea_level_rise,2050,ssp126,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,32.94375,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-WES-AHANT,Ahanta West,Western,34.2175,1.0,cm,sea_level_rise,2050,ssp126,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,34.2175,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-WES-ELLEM,Ellembelle,Western,34.2175,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-WES-JOMOR,Jomoro,Western,32.9775,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-WES-NZEMA,Nzema East,Western,34.2175,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,34.2175,1.0,cm,sea_level_rise,2050,ssp126,p90
 GH-WES-SHAMA,Shama,Western,34.2175,1.0,cm,sea_level_rise,2050,ssp126,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,20.51625,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-CEN-CAPE_,Cape Coast,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-CEN-EFFUT,Effutu,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-CEN-EKUMF,Ekumfi,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
+GH-CEN-GOMOA,Gomoa Central,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-CEN-MFANT,Mfantseman,Central,22.52875,1.0,cm,sea_level_rise,2080,ssp126,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-ACCRA,Accra,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,21.50875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-KROWO,Krowor,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-GRE-TEMA,Tema,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,21.58125,1.0,cm,sea_level_rise,2080,ssp126,p10
+GH-VOL-ANLOG,Anloga,Volta,21.50875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-VOL-KETA_,Keta Municipal,Volta,21.50875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-VOL-KETU__2,Ketu South,Volta,21.50875,1.0,cm,sea_level_rise,2080,ssp126,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,21.50875,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-WES-AHANT,Ahanta West,Western,27.10375,1.0,cm,sea_level_rise,2080,ssp126,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,27.10375,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-WES-ELLEM,Ellembelle,Western,27.10375,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-WES-JOMOR,Jomoro,Western,21.486250000000002,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-WES-NZEMA,Nzema East,Western,27.10375,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,27.10375,1.0,cm,sea_level_rise,2080,ssp126,p10
 GH-WES-SHAMA,Shama,Western,27.10375,1.0,cm,sea_level_rise,2080,ssp126,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,40.90125,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-CEN-CAPE_,Cape Coast,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-CEN-EFFUT,Effutu,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-CEN-EKUMF,Ekumfi,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
+GH-CEN-GOMOA,Gomoa Central,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-CEN-MFANT,Mfantseman,Central,43.0475,1.0,cm,sea_level_rise,2080,ssp126,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-ACCRA,Accra,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,41.916250000000005,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-KROWO,Krowor,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-GRE-TEMA,Tema,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,41.345,1.0,cm,sea_level_rise,2080,ssp126,p50
+GH-VOL-ANLOG,Anloga,Volta,41.916250000000005,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-VOL-KETA_,Keta Municipal,Volta,41.916250000000005,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-VOL-KETU__2,Ketu South,Volta,41.916250000000005,1.0,cm,sea_level_rise,2080,ssp126,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,41.916250000000005,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-WES-AHANT,Ahanta West,Western,45.875,1.0,cm,sea_level_rise,2080,ssp126,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,45.875,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-WES-ELLEM,Ellembelle,Western,45.875,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-WES-JOMOR,Jomoro,Western,42.027499999999996,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-WES-NZEMA,Nzema East,Western,45.875,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,45.875,1.0,cm,sea_level_rise,2080,ssp126,p50
 GH-WES-SHAMA,Shama,Western,45.875,1.0,cm,sea_level_rise,2080,ssp126,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,67.76624999999999,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-CEN-CAPE_,Cape Coast,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-CEN-EFFUT,Effutu,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-CEN-EKUMF,Ekumfi,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
+GH-CEN-GOMOA,Gomoa Central,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-CEN-MFANT,Mfantseman,Central,70.2625,1.0,cm,sea_level_rise,2080,ssp126,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-ACCRA,Accra,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,68.83625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-KROWO,Krowor,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-GRE-TEMA,Tema,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,67.78875,1.0,cm,sea_level_rise,2080,ssp126,p90
+GH-VOL-ANLOG,Anloga,Volta,68.83625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-VOL-KETA_,Keta Municipal,Volta,68.83625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-VOL-KETU__2,Ketu South,Volta,68.83625,1.0,cm,sea_level_rise,2080,ssp126,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,68.83625,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-WES-AHANT,Ahanta West,Western,71.81,1.0,cm,sea_level_rise,2080,ssp126,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,71.81,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-WES-ELLEM,Ellembelle,Western,71.81,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-WES-JOMOR,Jomoro,Western,69.1975,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-WES-NZEMA,Nzema East,Western,71.81,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,71.81,1.0,cm,sea_level_rise,2080,ssp126,p90
 GH-WES-SHAMA,Shama,Western,71.81,1.0,cm,sea_level_rise,2080,ssp126,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,5.2162500000000005,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-CEN-CAPE_,Cape Coast,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-CEN-EFFUT,Effutu,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-CEN-EKUMF,Ekumfi,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
+GH-CEN-GOMOA,Gomoa Central,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-CEN-MFANT,Mfantseman,Central,5.785,1.0,cm,sea_level_rise,2030,ssp245,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-ACCRA,Accra,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-KROWO,Krowor,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-GRE-TEMA,Tema,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
+GH-VOL-ANLOG,Anloga,Volta,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-VOL-KETA_,Keta Municipal,Volta,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-VOL-KETU__2,Ketu South,Volta,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,5.58625,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-WES-AHANT,Ahanta West,Western,7.18125,1.0,cm,sea_level_rise,2030,ssp245,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,7.18125,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-WES-ELLEM,Ellembelle,Western,7.18125,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-WES-JOMOR,Jomoro,Western,5.465,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-WES-NZEMA,Nzema East,Western,7.18125,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,7.18125,1.0,cm,sea_level_rise,2030,ssp245,p10
 GH-WES-SHAMA,Shama,Western,7.18125,1.0,cm,sea_level_rise,2030,ssp245,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,10.4,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-CEN-CAPE_,Cape Coast,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-CEN-EFFUT,Effutu,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-CEN-EKUMF,Ekumfi,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
+GH-CEN-GOMOA,Gomoa Central,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-CEN-MFANT,Mfantseman,Central,11.0125,1.0,cm,sea_level_rise,2030,ssp245,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-ACCRA,Accra,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,10.72,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-KROWO,Krowor,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-GRE-TEMA,Tema,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,10.615,1.0,cm,sea_level_rise,2030,ssp245,p50
+GH-VOL-ANLOG,Anloga,Volta,10.72,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-VOL-KETA_,Keta Municipal,Volta,10.72,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-VOL-KETU__2,Ketu South,Volta,10.72,1.0,cm,sea_level_rise,2030,ssp245,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,10.72,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-WES-AHANT,Ahanta West,Western,11.79625,1.0,cm,sea_level_rise,2030,ssp245,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,11.79625,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-WES-ELLEM,Ellembelle,Western,11.79625,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-WES-JOMOR,Jomoro,Western,10.6425,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-WES-NZEMA,Nzema East,Western,11.79625,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,11.79625,1.0,cm,sea_level_rise,2030,ssp245,p50
 GH-WES-SHAMA,Shama,Western,11.79625,1.0,cm,sea_level_rise,2030,ssp245,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-CEN-CAPE_,Cape Coast,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-CEN-EFFUT,Effutu,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-CEN-EKUMF,Ekumfi,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
+GH-CEN-GOMOA,Gomoa Central,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-CEN-MFANT,Mfantseman,Central,17.07375,1.0,cm,sea_level_rise,2030,ssp245,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-ACCRA,Accra,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,16.7975,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-KROWO,Krowor,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-GRE-TEMA,Tema,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,16.427500000000002,1.0,cm,sea_level_rise,2030,ssp245,p90
+GH-VOL-ANLOG,Anloga,Volta,16.7975,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-VOL-KETA_,Keta Municipal,Volta,16.7975,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-VOL-KETU__2,Ketu South,Volta,16.7975,1.0,cm,sea_level_rise,2030,ssp245,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,16.7975,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-WES-AHANT,Ahanta West,Western,17.39375,1.0,cm,sea_level_rise,2030,ssp245,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,17.39375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-WES-ELLEM,Ellembelle,Western,17.39375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-WES-JOMOR,Jomoro,Western,16.70375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-WES-NZEMA,Nzema East,Western,17.39375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,17.39375,1.0,cm,sea_level_rise,2030,ssp245,p90
 GH-WES-SHAMA,Shama,Western,17.39375,1.0,cm,sea_level_rise,2030,ssp245,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,12.386249999999999,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-CEN-CAPE_,Cape Coast,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-CEN-EFFUT,Effutu,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-CEN-EKUMF,Ekumfi,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
+GH-CEN-GOMOA,Gomoa Central,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-CEN-MFANT,Mfantseman,Central,13.455000000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-ACCRA,Accra,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,13.028749999999999,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-KROWO,Krowor,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-GRE-TEMA,Tema,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,13.05625,1.0,cm,sea_level_rise,2050,ssp245,p10
+GH-VOL-ANLOG,Anloga,Volta,13.028749999999999,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-VOL-KETA_,Keta Municipal,Volta,13.028749999999999,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-VOL-KETU__2,Ketu South,Volta,13.028749999999999,1.0,cm,sea_level_rise,2050,ssp245,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,13.028749999999999,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-WES-AHANT,Ahanta West,Western,15.923750000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,15.923750000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-WES-ELLEM,Ellembelle,Western,15.923750000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-WES-JOMOR,Jomoro,Western,12.8625,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-WES-NZEMA,Nzema East,Western,15.923750000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,15.923750000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
 GH-WES-SHAMA,Shama,Western,15.923750000000002,1.0,cm,sea_level_rise,2050,ssp245,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,22.225,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-CEN-CAPE_,Cape Coast,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-CEN-EFFUT,Effutu,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-CEN-EKUMF,Ekumfi,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
+GH-CEN-GOMOA,Gomoa Central,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-CEN-MFANT,Mfantseman,Central,23.3375,1.0,cm,sea_level_rise,2050,ssp245,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-ACCRA,Accra,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,22.845,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-KROWO,Krowor,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-GRE-TEMA,Tema,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,22.54,1.0,cm,sea_level_rise,2050,ssp245,p50
+GH-VOL-ANLOG,Anloga,Volta,22.845,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-VOL-KETA_,Keta Municipal,Volta,22.845,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-VOL-KETU__2,Ketu South,Volta,22.845,1.0,cm,sea_level_rise,2050,ssp245,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,22.845,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-WES-AHANT,Ahanta West,Western,24.798750000000002,1.0,cm,sea_level_rise,2050,ssp245,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,24.798750000000002,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-WES-ELLEM,Ellembelle,Western,24.798750000000002,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-WES-JOMOR,Jomoro,Western,22.7175,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-WES-NZEMA,Nzema East,Western,24.798750000000002,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,24.798750000000002,1.0,cm,sea_level_rise,2050,ssp245,p50
 GH-WES-SHAMA,Shama,Western,24.798750000000002,1.0,cm,sea_level_rise,2050,ssp245,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,34.46,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-CEN-CAPE_,Cape Coast,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-CEN-EFFUT,Effutu,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-CEN-EKUMF,Ekumfi,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
+GH-CEN-GOMOA,Gomoa Central,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-CEN-MFANT,Mfantseman,Central,35.70625,1.0,cm,sea_level_rise,2050,ssp245,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-ACCRA,Accra,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,35.129999999999995,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-KROWO,Krowor,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-GRE-TEMA,Tema,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,34.510000000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
+GH-VOL-ANLOG,Anloga,Volta,35.129999999999995,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-VOL-KETA_,Keta Municipal,Volta,35.129999999999995,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-VOL-KETU__2,Ketu South,Volta,35.129999999999995,1.0,cm,sea_level_rise,2050,ssp245,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,35.129999999999995,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-WES-AHANT,Ahanta West,Western,36.353750000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,36.353750000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-WES-ELLEM,Ellembelle,Western,36.353750000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-WES-JOMOR,Jomoro,Western,35.113749999999996,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-WES-NZEMA,Nzema East,Western,36.353750000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,36.353750000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
 GH-WES-SHAMA,Shama,Western,36.353750000000005,1.0,cm,sea_level_rise,2050,ssp245,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,29.46875,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-CEN-CAPE_,Cape Coast,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-CEN-EFFUT,Effutu,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-CEN-EKUMF,Ekumfi,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
+GH-CEN-GOMOA,Gomoa Central,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-CEN-MFANT,Mfantseman,Central,31.5375,1.0,cm,sea_level_rise,2080,ssp245,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-ACCRA,Accra,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,30.56125,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-KROWO,Krowor,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-GRE-TEMA,Tema,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,30.60625,1.0,cm,sea_level_rise,2080,ssp245,p10
+GH-VOL-ANLOG,Anloga,Volta,30.56125,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-VOL-KETA_,Keta Municipal,Volta,30.56125,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-VOL-KETU__2,Ketu South,Volta,30.56125,1.0,cm,sea_level_rise,2080,ssp245,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,30.56125,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-WES-AHANT,Ahanta West,Western,36.07875,1.0,cm,sea_level_rise,2080,ssp245,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,36.07875,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-WES-ELLEM,Ellembelle,Western,36.07875,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-WES-JOMOR,Jomoro,Western,30.445,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-WES-NZEMA,Nzema East,Western,36.07875,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,36.07875,1.0,cm,sea_level_rise,2080,ssp245,p10
 GH-WES-SHAMA,Shama,Western,36.07875,1.0,cm,sea_level_rise,2080,ssp245,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,50.7575,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-CEN-CAPE_,Cape Coast,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-CEN-EFFUT,Effutu,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-CEN-EKUMF,Ekumfi,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
+GH-CEN-GOMOA,Gomoa Central,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-CEN-MFANT,Mfantseman,Central,53.0475,1.0,cm,sea_level_rise,2080,ssp245,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-ACCRA,Accra,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,51.95,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-KROWO,Krowor,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-GRE-TEMA,Tema,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,51.3,1.0,cm,sea_level_rise,2080,ssp245,p50
+GH-VOL-ANLOG,Anloga,Volta,51.95,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-VOL-KETA_,Keta Municipal,Volta,51.95,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-VOL-KETU__2,Ketu South,Volta,51.95,1.0,cm,sea_level_rise,2080,ssp245,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,51.95,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-WES-AHANT,Ahanta West,Western,55.78125,1.0,cm,sea_level_rise,2080,ssp245,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,55.78125,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-WES-ELLEM,Ellembelle,Western,55.78125,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-WES-JOMOR,Jomoro,Western,51.955,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-WES-NZEMA,Nzema East,Western,55.78125,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,55.78125,1.0,cm,sea_level_rise,2080,ssp245,p50
 GH-WES-SHAMA,Shama,Western,55.78125,1.0,cm,sea_level_rise,2080,ssp245,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,80.2875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-CEN-CAPE_,Cape Coast,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-CEN-EFFUT,Effutu,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-CEN-EKUMF,Ekumfi,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
+GH-CEN-GOMOA,Gomoa Central,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-CEN-MFANT,Mfantseman,Central,82.98875000000001,1.0,cm,sea_level_rise,2080,ssp245,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-ACCRA,Accra,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,81.53,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-KROWO,Krowor,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-GRE-TEMA,Tema,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,80.4875,1.0,cm,sea_level_rise,2080,ssp245,p90
+GH-VOL-ANLOG,Anloga,Volta,81.53,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-VOL-KETA_,Keta Municipal,Volta,81.53,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-VOL-KETU__2,Ketu South,Volta,81.53,1.0,cm,sea_level_rise,2080,ssp245,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,81.53,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-WES-AHANT,Ahanta West,Western,84.51375,1.0,cm,sea_level_rise,2080,ssp245,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,84.51375,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-WES-ELLEM,Ellembelle,Western,84.51375,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-WES-JOMOR,Jomoro,Western,81.86875,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-WES-NZEMA,Nzema East,Western,84.51375,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,84.51375,1.0,cm,sea_level_rise,2080,ssp245,p90
 GH-WES-SHAMA,Shama,Western,84.51375,1.0,cm,sea_level_rise,2080,ssp245,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,6.154999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-CEN-CAPE_,Cape Coast,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-CEN-EFFUT,Effutu,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-CEN-EKUMF,Ekumfi,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
+GH-CEN-GOMOA,Gomoa Central,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-CEN-MFANT,Mfantseman,Central,6.67375,1.0,cm,sea_level_rise,2030,ssp585,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-ACCRA,Accra,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-KROWO,Krowor,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-GRE-TEMA,Tema,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
+GH-VOL-ANLOG,Anloga,Volta,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-VOL-KETA_,Keta Municipal,Volta,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-VOL-KETU__2,Ketu South,Volta,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,6.524999999999999,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-WES-AHANT,Ahanta West,Western,8.0425,1.0,cm,sea_level_rise,2030,ssp585,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,8.0425,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-WES-ELLEM,Ellembelle,Western,8.0425,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-WES-JOMOR,Jomoro,Western,6.27625,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-WES-NZEMA,Nzema East,Western,8.0425,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,8.0425,1.0,cm,sea_level_rise,2030,ssp585,p10
 GH-WES-SHAMA,Shama,Western,8.0425,1.0,cm,sea_level_rise,2030,ssp585,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,11.227500000000001,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-CEN-CAPE_,Cape Coast,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-CEN-EFFUT,Effutu,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-CEN-EKUMF,Ekumfi,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
+GH-CEN-GOMOA,Gomoa Central,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-CEN-MFANT,Mfantseman,Central,11.79625,1.0,cm,sea_level_rise,2030,ssp585,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-ACCRA,Accra,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,11.625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-KROWO,Krowor,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-GRE-TEMA,Tema,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
+GH-VOL-ANLOG,Anloga,Volta,11.625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-VOL-KETA_,Keta Municipal,Volta,11.625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-VOL-KETU__2,Ketu South,Volta,11.625,1.0,cm,sea_level_rise,2030,ssp585,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,11.625,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-WES-AHANT,Ahanta West,Western,12.552499999999998,1.0,cm,sea_level_rise,2030,ssp585,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,12.552499999999998,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-WES-ELLEM,Ellembelle,Western,12.552499999999998,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-WES-JOMOR,Jomoro,Western,11.39875,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-WES-NZEMA,Nzema East,Western,12.552499999999998,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,12.552499999999998,1.0,cm,sea_level_rise,2030,ssp585,p50
 GH-WES-SHAMA,Shama,Western,12.552499999999998,1.0,cm,sea_level_rise,2030,ssp585,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,17.255000000000003,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-CEN-CAPE_,Cape Coast,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-CEN-EFFUT,Effutu,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-CEN-EKUMF,Ekumfi,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
+GH-CEN-GOMOA,Gomoa Central,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-CEN-MFANT,Mfantseman,Central,17.945,1.0,cm,sea_level_rise,2030,ssp585,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-ACCRA,Accra,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,17.71875,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-KROWO,Krowor,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-GRE-TEMA,Tema,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,17.3325,1.0,cm,sea_level_rise,2030,ssp585,p90
+GH-VOL-ANLOG,Anloga,Volta,17.71875,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-VOL-KETA_,Keta Municipal,Volta,17.71875,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-VOL-KETU__2,Ketu South,Volta,17.71875,1.0,cm,sea_level_rise,2030,ssp585,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,17.71875,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-WES-AHANT,Ahanta West,Western,18.19375,1.0,cm,sea_level_rise,2030,ssp585,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,18.19375,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-WES-ELLEM,Ellembelle,Western,18.19375,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-WES-JOMOR,Jomoro,Western,17.45375,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-WES-NZEMA,Nzema East,Western,18.19375,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,18.19375,1.0,cm,sea_level_rise,2030,ssp585,p90
 GH-WES-SHAMA,Shama,Western,18.19375,1.0,cm,sea_level_rise,2030,ssp585,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,15.4725,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-CEN-CAPE_,Cape Coast,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-CEN-EFFUT,Effutu,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-CEN-EKUMF,Ekumfi,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
+GH-CEN-GOMOA,Gomoa Central,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-CEN-MFANT,Mfantseman,Central,16.541249999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-ACCRA,Accra,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,16.169999999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-KROWO,Krowor,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-GRE-TEMA,Tema,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,16.142500000000002,1.0,cm,sea_level_rise,2050,ssp585,p10
+GH-VOL-ANLOG,Anloga,Volta,16.169999999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-VOL-KETA_,Keta Municipal,Volta,16.169999999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-VOL-KETU__2,Ketu South,Volta,16.169999999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,16.169999999999998,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-WES-AHANT,Ahanta West,Western,18.9375,1.0,cm,sea_level_rise,2050,ssp585,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,18.9375,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-WES-ELLEM,Ellembelle,Western,18.9375,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-WES-JOMOR,Jomoro,Western,15.821250000000001,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-WES-NZEMA,Nzema East,Western,18.9375,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,18.9375,1.0,cm,sea_level_rise,2050,ssp585,p10
 GH-WES-SHAMA,Shama,Western,18.9375,1.0,cm,sea_level_rise,2050,ssp585,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,25.3375,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-CEN-CAPE_,Cape Coast,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-CEN-EFFUT,Effutu,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-CEN-EKUMF,Ekumfi,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
+GH-CEN-GOMOA,Gomoa Central,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-CEN-MFANT,Mfantseman,Central,26.483749999999997,1.0,cm,sea_level_rise,2050,ssp585,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-ACCRA,Accra,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,26.107499999999998,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-KROWO,Krowor,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-GRE-TEMA,Tema,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
+GH-VOL-ANLOG,Anloga,Volta,26.107499999999998,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-VOL-KETA_,Keta Municipal,Volta,26.107499999999998,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-VOL-KETU__2,Ketu South,Volta,26.107499999999998,1.0,cm,sea_level_rise,2050,ssp585,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,26.107499999999998,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-WES-AHANT,Ahanta West,Western,27.845,1.0,cm,sea_level_rise,2050,ssp585,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,27.845,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-WES-ELLEM,Ellembelle,Western,27.845,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-WES-JOMOR,Jomoro,Western,25.68625,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-WES-NZEMA,Nzema East,Western,27.845,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,27.845,1.0,cm,sea_level_rise,2050,ssp585,p50
 GH-WES-SHAMA,Shama,Western,27.845,1.0,cm,sea_level_rise,2050,ssp585,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,38.042500000000004,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-CEN-CAPE_,Cape Coast,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-CEN-EFFUT,Effutu,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-CEN-EKUMF,Ekumfi,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
+GH-CEN-GOMOA,Gomoa Central,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-CEN-MFANT,Mfantseman,Central,39.2825,1.0,cm,sea_level_rise,2050,ssp585,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-ACCRA,Accra,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,38.806250000000006,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-KROWO,Krowor,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-GRE-TEMA,Tema,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,38.1425,1.0,cm,sea_level_rise,2050,ssp585,p90
+GH-VOL-ANLOG,Anloga,Volta,38.806250000000006,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-VOL-KETA_,Keta Municipal,Volta,38.806250000000006,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-VOL-KETU__2,Ketu South,Volta,38.806250000000006,1.0,cm,sea_level_rise,2050,ssp585,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,38.806250000000006,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-WES-AHANT,Ahanta West,Western,39.91375,1.0,cm,sea_level_rise,2050,ssp585,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,39.91375,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-WES-ELLEM,Ellembelle,Western,39.91375,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-WES-JOMOR,Jomoro,Western,38.518750000000004,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-WES-NZEMA,Nzema East,Western,39.91375,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-WES-SEKON,Sekondi Takoradi,Western,39.91375,1.0,cm,sea_level_rise,2050,ssp585,p90
 GH-WES-SHAMA,Shama,Western,39.91375,1.0,cm,sea_level_rise,2050,ssp585,p90
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-CEN-AWUTU,Awutu Senya East,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
-GH-CEN-AWUTU_2,Awutu Senya West,Central,44.7275,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-CEN-CAPE_,Cape Coast,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-CEN-EFFUT,Effutu,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-CEN-EKUMF,Ekumfi,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
+GH-CEN-GOMOA,Gomoa Central,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-CEN-GOMOA_2,Gomoa East,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-CEN-GOMOA_3,Gomoa West,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-CEN-MFANT,Mfantseman,Central,46.97374999999999,1.0,cm,sea_level_rise,2080,ssp585,p10
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-ACCRA,Accra,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-ADA_E,Ada East,Greater Accra,46.097500000000004,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-ADA_W,Ada West,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
-GH-GRE-GA_SO,Ga South,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-KROWO,Krowor,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-GRE-TEMA,Tema,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
+GH-GRE-TEMA_,Tema West,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,45.9925,1.0,cm,sea_level_rise,2080,ssp585,p10
+GH-VOL-ANLOG,Anloga,Volta,46.097500000000004,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-VOL-KETA_,Keta Municipal,Volta,46.097500000000004,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-VOL-KETU__2,Ketu South,Volta,46.097500000000004,1.0,cm,sea_level_rise,2080,ssp585,p10
-GH-VOL-SOUTH_2,South Tongu,Volta,46.097500000000004,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-WES-AHANT,Ahanta West,Western,51.214999999999996,1.0,cm,sea_level_rise,2080,ssp585,p10
-GH-WES-EFFIA,Effia Kwesimintsim,Western,51.214999999999996,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-WES-ELLEM,Ellembelle,Western,51.214999999999996,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-WES-JOMOR,Jomoro,Western,45.62625,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-WES-NZEMA,Nzema East,Western,51.214999999999996,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-WES-SEKON,Sekondi Takoradi,Western,51.214999999999996,1.0,cm,sea_level_rise,2080,ssp585,p10
 GH-WES-SHAMA,Shama,Western,51.214999999999996,1.0,cm,sea_level_rise,2080,ssp585,p10
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-CEN-AWUTU,Awutu Senya East,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
-GH-CEN-AWUTU_2,Awutu Senya West,Central,67.58,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-CEN-CAPE_,Cape Coast,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-CEN-EFFUT,Effutu,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-CEN-EKUMF,Ekumfi,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
+GH-CEN-GOMOA,Gomoa Central,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-CEN-GOMOA_2,Gomoa East,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-CEN-GOMOA_3,Gomoa West,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-CEN-MFANT,Mfantseman,Central,69.98125000000002,1.0,cm,sea_level_rise,2080,ssp585,p50
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-ACCRA,Accra,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-ADA_E,Ada East,Greater Accra,69.05499999999999,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-ADA_W,Ada West,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
-GH-GRE-GA_SO,Ga South,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-KROWO,Krowor,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-GRE-TEMA,Tema,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
+GH-GRE-TEMA_,Tema West,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,68.22875,1.0,cm,sea_level_rise,2080,ssp585,p50
+GH-VOL-ANLOG,Anloga,Volta,69.05499999999999,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-VOL-KETA_,Keta Municipal,Volta,69.05499999999999,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-VOL-KETU__2,Ketu South,Volta,69.05499999999999,1.0,cm,sea_level_rise,2080,ssp585,p50
-GH-VOL-SOUTH_2,South Tongu,Volta,69.05499999999999,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-WES-AHANT,Ahanta West,Western,72.565,1.0,cm,sea_level_rise,2080,ssp585,p50
-GH-WES-EFFIA,Effia Kwesimintsim,Western,72.565,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-WES-ELLEM,Ellembelle,Western,72.565,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-WES-JOMOR,Jomoro,Western,68.53375,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-WES-NZEMA,Nzema East,Western,72.565,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-WES-SEKON,Sekondi Takoradi,Western,72.565,1.0,cm,sea_level_rise,2080,ssp585,p50
 GH-WES-SHAMA,Shama,Western,72.565,1.0,cm,sea_level_rise,2080,ssp585,p50
+GH-CEN-ABURA,Abura-Asebu-Kwamankese,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-CEN-AWUTU,Awutu Senya East,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
-GH-CEN-AWUTU_2,Awutu Senya West,Central,101.60249999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-CEN-CAPE_,Cape Coast,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-CEN-EFFUT,Effutu,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-CEN-EKUMF,Ekumfi,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
+GH-CEN-GOMOA,Gomoa Central,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-CEN-GOMOA_2,Gomoa East,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-CEN-GOMOA_3,Gomoa West,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
+GH-CEN-KOMEN,Komenda-Edina-Eguafo-Abirem-,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-CEN-MFANT,Mfantseman,Central,104.47999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
+GH-GRE-ABLEK_3,Ablekuma West,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-ACCRA,Accra,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-ADA_E,Ada East,Greater Accra,103.17125000000001,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-ADA_W,Ada West,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
-GH-GRE-GA_SO,Ga South,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
+GH-GRE-KORLE,Korle-Klottey,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-KPONE,Kpone-Katamanso,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-KROWO,Krowor,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-LA_DA,La-Dade-Kotopon,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-LEDZO,Ledzokuku,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-NINGO,Ningo-Prampram,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
-GH-GRE-SHAI_,Shai Osudoku,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-GRE-TEMA,Tema,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
+GH-GRE-TEMA_,Tema West,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
+GH-GRE-WEIJA,Weija Gbawe,Greater Accra,101.92999999999999,1.0,cm,sea_level_rise,2080,ssp585,p90
+GH-VOL-ANLOG,Anloga,Volta,103.17125000000001,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-VOL-KETA_,Keta Municipal,Volta,103.17125000000001,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-VOL-KETU__2,Ketu South,Volta,103.17125000000001,1.0,cm,sea_level_rise,2080,ssp585,p90
-GH-VOL-SOUTH_2,South Tongu,Volta,103.17125000000001,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-WES-AHANT,Ahanta West,Western,105.95625,1.0,cm,sea_level_rise,2080,ssp585,p90
-GH-WES-EFFIA,Effia Kwesimintsim,Western,105.95625,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-WES-ELLEM,Ellembelle,Western,105.95625,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-WES-JOMOR,Jomoro,Western,102.91125,1.0,cm,sea_level_rise,2080,ssp585,p90
 GH-WES-NZEMA,Nzema East,Western,105.95625,1.0,cm,sea_level_rise,2080,ssp585,p90

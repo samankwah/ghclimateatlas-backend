@@ -2,7 +2,7 @@
 Districts API endpoints
 Serves Ghana district boundaries and metadata
 """
-from fastapi import APIRouter, HTTPException, Query, Response
+from fastapi import APIRouter, HTTPException, Query
 from typing import Optional, List
 import json
 from pathlib import Path
@@ -108,14 +108,12 @@ def generate_district_geometry(region: str, district_index: int, total_in_region
 
 @router.get("", response_model=DistrictFeatureCollection)
 async def get_all_districts(
-    response: Response,
     region: Optional[str] = Query(None, description="Filter by region name"),
 ):
     """
     Get all Ghana districts as GeoJSON FeatureCollection.
     Optionally filter by region.
     """
-    response.headers["Cache-Control"] = "public, max-age=3600"
     real_payload = get_real_district_feature_collection(region)
     if real_payload is not None:
         return real_payload
@@ -148,14 +146,12 @@ async def get_all_districts(
 
 @router.get("/map", response_model=DistrictFeatureCollection)
 async def get_map_districts(
-    response: Response,
     region: Optional[str] = Query(None, description="Filter by region name"),
 ):
     """
     Get Ghana districts as GeoJSON optimized for map rendering.
     Falls back to the full district payload when the simplified artifact is unavailable.
     """
-    response.headers["Cache-Control"] = "public, max-age=3600"
     real_payload = get_real_map_district_feature_collection(region)
     if real_payload is not None:
         return real_payload

@@ -11,6 +11,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 
+from app.caching import DataETagMiddleware
 from app.routers import climate, districts, requests
 from app.services.real_climate import (
     load_districts_geojson,
@@ -79,6 +80,8 @@ def _parse_cors_origins() -> list[str]:
     return merged
 
 
+# Added before GZip so it sits inside it and hashes the uncompressed body.
+app.add_middleware(DataETagMiddleware)
 app.add_middleware(GZipMiddleware, minimum_size=500)
 
 cors_origins = _parse_cors_origins()
