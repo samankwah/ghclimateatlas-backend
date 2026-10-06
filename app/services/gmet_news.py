@@ -1,9 +1,15 @@
 """Climate Atlas updates published by GMet on meteo.gov.gh.
 
 The GMet site is a Wagtail/ClimWeb install with no JSON API, no feed and no CORS
-headers, so the browser cannot read it directly. This service scrapes the two
-listing pages filtered to GMet's own "Climate Atlas" service tag, normalises the
-cards and keeps the result in a small disk-backed cache shared by every worker.
+headers, so the browser cannot read it directly. This service mirrors the
+"Latest Updates" section GMet curates on its own Climate Atlas page, filling in
+each card's full record from the two listing pages filtered to GMet's "Climate
+Atlas" service tag (the curated cards truncate their snippets), and adds the
+first pages of the unfiltered news listing, where most of the Atlas team's news
+actually lands untagged. Every item must be on topic (see RELEVANT_TOPICS):
+GMet's picks include general agency news. Relevant curated picks lead; the rest
+follow newest first. The result is kept in a small disk-backed cache shared by
+every worker.
 
 Freshness budget:
 
@@ -58,6 +64,40 @@ LISTINGS: tuple[tuple[str, str], ...] = (
     ("publication", "/publications/"),
 )
 
+# GMet's Climate Atlas page and the section on it where editors pick the updates.
+CURATED_PATH = "/climate-atlas/climate-change/"
+CURATED_SECTION_ID = "section-latest-updates"
+
+# Much of the Atlas team's news (DMI and Danish Embassy visits, the Python and
+# climate data trainings) is never tagged "Climate Atlas", so the first pages of
+# the unfiltered news listing are scanned as well and topic-filtered below.
+# Twelve pages (about six months) reach back far enough to fill the carousel,
+# e.g. the Climate Atlas launch article.
+DEFAULT_ALL_NEWS_PAGES = 12
+
+# Only updates on these topics are shown, matched against title and snippet:
+# the Climate Atlas and KAPy, the Danish partnership behind them (DMI, the
+# Danish Embassy), the team's Python and climate data trainings, and climate change.
+RELEVANT_TOPICS = re.compile(
+    r"climate[\s-]*atlas|\b(?:gh)?kapy\b"
+    r"|\bDMI\b|danish|denmark"
+    r"|\bpython\b|climate\s+data|climate\s+projections?"
+    r"|climate[\s-]*change",
+    re.IGNORECASE,
+)
+
+# On-topic articles the Atlas team chose not to show, by URL slug.
+EXCLUDED_SLUGS: frozenset[str] = frozenset(
+    {
+        "gmet-hosts-training-on-climate-data-hydrological-modelling-and-early-warning-systems",
+        "gmet-receives-joint-delegation-from-denmark-and-gss-to-explore-data-collaboration",
+        "gmet-dmi-and-danish-embassy-engage-mocdti-on-digital-transformation-priorities",
+        "dmi-presents-findings-from-socio-economic-impact-assessment-and-it-gap-analysis-to-gmet-board-and-management",
+        "gmet-and-partners-conclude-stakeholder-engagements-for-socio-economic-impact-assessment-of-weather-and-climate-services",
+        "gmet-uk-met-office-and-dmi-commence-stakeholder-engagements-on-socio-economic-impact-assessment",
+    }
+)
+
 
 class NewsUnavailable(RuntimeError):
     """Raised when no updates could be produced and nothing is cached."""
@@ -101,6 +141,13 @@ def timeout_seconds() -> float:
         return DEFAULT_TIMEOUT_SECONDS
 
 
+def all_news_pages() -> int:
+    try:
+        return max(0, int(_env("GMET_NEWS_ALL_PAGES", str(DEFAULT_ALL_NEWS_PAGES))))
+    except ValueError:
+        return DEFAULT_ALL_NEWS_PAGES
+
+
 def cache_path() -> Path:
     return Path(_env("GMET_NEWS_CACHE_PATH", str(DEFAULT_CACHE_PATH)))
 
@@ -122,11 +169,27 @@ def listing_url(path: str, bypass: bool | None = None) -> str:
     return f"{base_url()}{path}?{urlencode(params)}"
 
 
+def all_news_url(page: int, bypass: bool | None = None) -> str:
+    """Build an unfiltered news listing page URL, optionally cache-busted."""
+    params: dict[str, str] = {"page": str(page)}
+    should_bypass = bypass_upstream_cache() if bypass is None else bypass
+    if should_bypass:
+        params["_"] = str(int(time.time()))
+    return f"{base_url()}/news/?{urlencode(params)}"
+
+
+def curated_url(bypass: bool | None = None) -> str:
+    """Build the Climate Atlas page URL, optionally cache-busted."""
+    should_bypass = bypass_upstream_cache() if bypass is None else bypass
+    query = f"?{urlencode({'_': str(int(time.time()))})}" if should_bypass else ""
+    return f"{base_url()}{CURATED_PATH}{query}"
+
+
 def source_links() -> dict[str, str]:
     """Public, human-facing links that accompany the feed."""
     query = urlencode({"service": service_id()})
     return {
-        "source_url": f"{base_url()}/climate-atlas/climate-change/#section-latest-updates",
+        "source_url": f"{base_url()}{CURATED_PATH}#{CURATED_SECTION_ID}",
         "all_news_url": f"{base_url()}/news/?{query}",
         "all_publications_url": f"{base_url()}/publications/?{query}",
     }
@@ -137,6 +200,8 @@ def source_links() -> dict[str, str]:
 # ---------------------------------------------------------------------------
 
 _WHITESPACE = re.compile(r"\s+")
+# Zero-width and direction marks GMet's editor leaves in some titles.
+_INVISIBLE = re.compile("[​-‏⁠﻿]")
 # Snippets are truncated upstream with an ellipsis, sometimes mangled to U+FFFD.
 _TRAILING_TRUNCATION = re.compile("(?:\\s|…|�|\\.{3})+$")
 # Wagtail renditions replace the ".original" marker: foo.original.jpg -> foo.width-800.jpg
@@ -155,7 +220,7 @@ _DATE_FORMATS = (
 def _text(node: Any) -> str:
     if node is None:
         return ""
-    return _WHITESPACE.sub(" ", node.get_text(" ", strip=True)).strip()
+    return _WHITESPACE.sub(" ", _INVISIBLE.sub("", node.get_text(" ", strip=True))).strip()
 
 
 def strip_truncation(value: str) -> str:
@@ -232,6 +297,93 @@ def parse_listing(html: str, kind: str, site_url: str | None = None) -> list[dic
         )
 
     return items
+
+
+def parse_curated(html: str, site_url: str | None = None) -> list[dict[str, Any]]:
+    """Extract the hand-picked cards from the Climate Atlas page's Latest Updates.
+
+    The visible titles and snippets there are cut short, so the full title is
+    taken from the card image's alt text. Order is GMet's own and is kept.
+    """
+    site = (site_url or base_url()).rstrip("/") + "/"
+    soup = BeautifulSoup(html, "html.parser")
+    section = soup.find(id=CURATED_SECTION_ID)
+    if section is None:
+        return []
+
+    items: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for card in section.select(".update-card"):
+        link = card.select_one(".card-content a[href]")
+        if link is None:
+            continue
+        href = (link.get("href") or "").strip()
+        if not href:
+            continue
+        url = urljoin(site, href)
+        if url in seen:
+            continue
+
+        image = card.select_one(".card-image img")
+        alt = _INVISIBLE.sub("", (image.get("alt") or "") if image is not None else "")
+        title = _WHITESPACE.sub(" ", alt).strip()
+        title = title or strip_truncation(_text(link))
+        if not title:
+            continue
+        seen.add(url)
+
+        image_src = ""
+        if image is not None:
+            image_src = (image.get("data-progressive") or image.get("src") or "").strip()
+        published_label = _text(card.select_one(".card-footer > span.card-footer-item"))
+
+        items.append(
+            {
+                "id": slug_from_url(url),
+                "kind": "publication" if "/publications/" in urlparse(url).path else "news",
+                "title": title,
+                "summary": strip_truncation(_text(card.select_one(".card-content .content"))),
+                "category": _text(card.select_one(".card-content .tag")) or "Update",
+                "published_at": parse_published_date(published_label),
+                "published_label": published_label,
+                "url": url,
+                "image_url": urljoin(site, image_src) if image_src else None,
+                "image_fallback_url": None,
+            }
+        )
+
+    return items
+
+
+def select_curated(
+    curated: Sequence[dict[str, Any]],
+    listed: Iterable[dict[str, Any]],
+    max_items: int = MAX_ITEMS,
+) -> list[dict[str, Any]]:
+    """Keep GMet's curated picks and order, preferring each one's full listing record."""
+    by_url = {item["url"]: item for item in listed if item.get("url")}
+    return [by_url.get(item["url"], item) for item in curated][:max_items]
+
+
+def is_relevant(item: dict[str, Any]) -> bool:
+    """True when an update matches ``RELEVANT_TOPICS`` and is not excluded."""
+    if slug_from_url(item.get("url") or "") in EXCLUDED_SLUGS:
+        return False
+    text = f"{item.get('title') or ''} {item.get('summary') or ''}"
+    return RELEVANT_TOPICS.search(text) is not None
+
+
+def select_relevant(
+    curated: Sequence[dict[str, Any]],
+    listed: Iterable[dict[str, Any]],
+    max_items: int = MAX_ITEMS,
+) -> list[dict[str, Any]]:
+    """GMet's relevant curated picks first, then relevant listing items newest first."""
+    listed = list(listed)
+    picks = [item for item in select_curated(curated, listed, max_items=len(curated)) if is_relevant(item)]
+    picked = {item["url"] for item in picks}
+    rest = merge_items([[item for item in listed if is_relevant(item) and item.get("url") not in picked]])
+    return (picks + rest)[:max_items]
 
 
 def merge_items(
@@ -362,8 +514,10 @@ def read_cache() -> dict[str, Any] | None:
             payload = json.load(handle)
     except (OSError, json.JSONDecodeError):
         return None
-    if not isinstance(payload, dict) or not payload.get("items"):
+    if not isinstance(payload, dict) or not isinstance(payload.get("items"), list):
         return None
+    # Feeds cached before the topic filter existed may hold off-topic items.
+    payload["items"] = [item for item in payload["items"] if isinstance(item, dict) and is_relevant(item)]
     return payload
 
 
@@ -383,7 +537,16 @@ def _write_cache(payload: dict[str, Any]) -> None:
             pass
 
 
+def feed_signature() -> str:
+    """Identifies what produced a feed, so a cache from older rules is refetched."""
+    excluded = ",".join(sorted(EXCLUDED_SLUGS))
+    return f"{RELEVANT_TOPICS.pattern}|excluded={excluded}|pages={all_news_pages()}|service={service_id()}"
+
+
 def _is_expired(payload: dict[str, Any]) -> bool:
+    # A topic or source change must show up at once, not after the TTL runs out.
+    if payload.get("signature") != feed_signature():
+        return True
     fetched_at = payload.get("fetched_at")
     if not isinstance(fetched_at, str):
         return True
@@ -402,7 +565,7 @@ def _is_expired(payload: dict[str, Any]) -> bool:
 # ---------------------------------------------------------------------------
 
 def _fetch_listings() -> list[dict[str, Any]]:
-    """Scrape both listings and return the merged, image-resolved items."""
+    """Scrape the curated section and both listings; return image-resolved items."""
     groups: list[list[dict[str, Any]]] = []
     site = base_url()
     with httpx.Client(
@@ -410,20 +573,48 @@ def _fetch_listings() -> list[dict[str, Any]]:
         follow_redirects=True,
         headers={"User-Agent": USER_AGENT, "Accept": "text/html"},
     ) as client:
-        for kind, path in LISTINGS:
-            url = listing_url(path)
+        curated: list[dict[str, Any]] = []
+        try:
+            response = client.get(curated_url())
+            response.raise_for_status()
+            curated = parse_curated(response.text, site)
+        except httpx.HTTPError as exc:
+            logger.warning("Could not read GMet's curated Climate Atlas updates: %s", exc)
+        if not curated:
+            logger.warning("No curated Climate Atlas updates found; using the listings alone")
+
+        # The tagged listings plus the first pages of all news, fetched together.
+        # A page that fails is skipped; the rest still make a feed.
+        pages = [(kind, listing_url(path)) for kind, path in LISTINGS]
+        pages += [("news", all_news_url(page)) for page in range(1, all_news_pages() + 1)]
+
+        def fetch(page: tuple[str, str]) -> list[dict[str, Any]]:
+            kind, url = page
             response = client.get(url)
             response.raise_for_status()
-            groups.append(parse_listing(response.text, kind, site))
+            return parse_listing(response.text, kind, site)
 
-        items = merge_items(groups)
+        errors: list[Exception] = []
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            for (kind, url), future in zip(pages, [pool.submit(fetch, page) for page in pages]):
+                try:
+                    groups.append(future.result())
+                except httpx.HTTPError as exc:
+                    logger.warning("Could not read GMet %s listing %s: %s", kind, url, exc)
+                    errors.append(exc)
+
+        if not curated and errors and len(errors) == len(pages):
+            raise errors[0]
+
         # An empty parse means the upstream template changed, not that GMet has
         # no updates. Treat it as a failure so the previous feed is kept.
-        if not items:
+        if not curated and not any(groups):
             raise NewsUnavailable(
                 "No update cards found on the GMet listings - the upstream markup may have changed"
             )
 
+        # Cards parsed but none on topic is a valid, empty feed.
+        items = select_relevant(curated, chain.from_iterable(groups))
         resolve_images(client, items)
 
     return items
@@ -445,6 +636,7 @@ def refresh() -> dict[str, Any]:
         items = _fetch_listings()
         payload = {
             "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "signature": feed_signature(),
             "items": items,
             **source_links(),
         }
