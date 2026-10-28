@@ -16,8 +16,12 @@ from app.routers import climate, districts, news, requests
 from app.services.gmet_news import start_refresh_loop, stop_refresh_loop
 from app.services.real_climate import (
     load_districts_geojson,
+    load_map_districts_geojson,
     load_period_values,
+    _district_features_by_id,
+    _period_values_by_district,
     _period_values_index,
+    _supported_variables,
 )
 
 
@@ -28,8 +32,12 @@ load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 async def lifespan(app: FastAPI):
     # Preload data at startup so first requests are fast
     load_period_values()
-    _period_values_index()  # pre-build the lookup index
+    _period_values_index()  # pre-build the lookup indexes
+    _period_values_by_district()
+    _supported_variables()
     load_districts_geojson()
+    _district_features_by_id()
+    load_map_districts_geojson()  # served on every map page view
     # Keep the GMet update feed warm in the background. Deliberately not awaited:
     # boot must never block on an external host.
     start_refresh_loop()
@@ -89,7 +97,9 @@ def _parse_cors_origins() -> list[str]:
 
 # Added before GZip so it sits inside it and hashes the uncompressed body.
 app.add_middleware(DataETagMiddleware)
-app.add_middleware(GZipMiddleware, minimum_size=500)
+# Level 5 instead of Starlette's default 9: on the map GeoJSON that is ~39 ms vs ~196 ms
+# of CPU per request for a body only ~1% larger.
+app.add_middleware(GZipMiddleware, minimum_size=500, compresslevel=5)
 
 cors_origins = _parse_cors_origins()
 app.add_middleware(

@@ -201,6 +201,46 @@ def _period_values_index() -> dict[tuple[str, str, str, str], list[dict[str, Any
     return dict(index)
 
 
+@lru_cache(maxsize=None)
+def _deduped_period_subset(
+    variable: str,
+    period: str,
+    scenario: str,
+    percentile: str,
+) -> tuple[dict[str, Any], ...]:
+    """Deduped, map-ordered rows for one (variable, period, scenario, percentile) key."""
+    index = _period_values_index()
+    if index is None:
+        return ()
+    return tuple(
+        _dedupe_rows(
+            list(index.get((variable, period, scenario, percentile), [])),
+            ("district_id", "variable", "period", "scenario", "percentile"),
+            sort_keys=("region", "district_name", "district_id"),
+        )
+    )
+
+
+@lru_cache(maxsize=1)
+def _period_values_by_district() -> dict[str, list[dict[str, Any]]] | None:
+    """Index period values by district_id so per-district lookups skip the full scan."""
+    rows = load_period_values()
+    if rows is None:
+        return None
+    index: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        index[row["district_id"]].append(row)
+    return dict(index)
+
+
+@lru_cache(maxsize=1)
+def _supported_variables() -> frozenset[str]:
+    rows = load_period_values()
+    if rows is None:
+        return frozenset()
+    return frozenset(row["variable"] for row in rows if row.get("variable"))
+
+
 @lru_cache(maxsize=1)
 def load_yearly_values():
     path = get_yearly_values_path()
@@ -335,10 +375,7 @@ def get_variable_meta(variable: str) -> dict[str, Any] | None:
 
 
 def get_supported_variables() -> set[str]:
-    rows = load_period_values()
-    if rows is None:
-        return set()
-    return {row["variable"] for row in rows if row.get("variable")}
+    return set(_supported_variables())
 
 
 def get_supported_yearly_variables() -> set[str]:
@@ -380,19 +417,24 @@ def get_real_map_district_feature_collection(region: str | None = None) -> dict[
     return {"type": "FeatureCollection", "features": filtered}
 
 
-def get_real_district(district_id: str) -> dict[str, Any] | None:
+@lru_cache(maxsize=1)
+def _district_features_by_id() -> dict[str, dict[str, Any]] | None:
     payload = load_districts_geojson()
     if payload is None:
         return None
 
-    return next(
-        (
-            feature
-            for feature in payload.get("features", [])
-            if feature.get("properties", {}).get("id") == district_id
-        ),
-        None,
-    )
+    features: dict[str, dict[str, Any]] = {}
+    for feature in payload.get("features", []):
+        # setdefault keeps the first feature for a repeated id, as the old linear search did.
+        features.setdefault(feature.get("properties", {}).get("id"), feature)
+    return features
+
+
+def get_real_district(district_id: str) -> dict[str, Any] | None:
+    features = _district_features_by_id()
+    if features is None:
+        return None
+    return features.get(district_id)
 
 
 def get_real_district_list(region: str | None = None) -> list[dict[str, Any]] | None:
@@ -428,12 +470,7 @@ def build_real_climate_response(
     period_key = period.lower()
     scenario_key = ("historical" if period_key == "baseline" else scenario).lower()
 
-    subset = list(index.get((variable, period_key, scenario_key, normalized_percentile), []))
-    subset = _dedupe_rows(
-        subset,
-        ("district_id", "variable", "period", "scenario", "percentile"),
-        sort_keys=("region", "district_name", "district_id"),
-    )
+    subset = _deduped_period_subset(variable, period_key, scenario_key, normalized_percentile)
 
     if not subset:
         return None
@@ -614,14 +651,11 @@ def build_real_climate_timeseries(
 
 
 def build_real_district_climate(district_id: str) -> dict[str, dict[str, float]] | None:
-    rows = load_period_values()
-    if rows is None:
+    by_district = _period_values_by_district()
+    if by_district is None:
         return None
 
-    subset = [
-        row for row in rows
-        if row["district_id"] == district_id and row["percentile"] == "p50"
-    ]
+    subset = [row for row in by_district.get(district_id, []) if row["percentile"] == "p50"]
     subset = _dedupe_rows(
         subset,
         ("district_id", "variable", "period", "scenario", "percentile"),
@@ -649,8 +683,8 @@ def get_real_grid_point_count(
     scenario: str,
     percentile: str | None = None,
 ) -> int | None:
-    rows = load_period_values()
-    if rows is None:
+    index = _period_values_index()
+    if index is None:
         return None
 
     normalized_percentile = normalize_percentile(percentile)
@@ -658,12 +692,8 @@ def get_real_grid_point_count(
     scenario_key = ("historical" if period_key == "baseline" else scenario).lower()
 
     subset = [
-        row for row in rows
+        row for row in index.get((variable, period_key, scenario_key, normalized_percentile), [])
         if row["district_id"] == district_id
-        and row["variable"] == variable
-        and row["period"] == period_key
-        and row["scenario"] == scenario_key
-        and row["percentile"] == normalized_percentile
         and row.get("grid_point_count") is not None
     ]
     subset = _dedupe_rows(
