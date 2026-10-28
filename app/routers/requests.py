@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import os
@@ -64,7 +65,8 @@ async def create_climate_data_request(payload: ClimateDataRequest):
     warning = None
     email_status = "sent"
     try:
-        send_data_request_confirmation(record)
+        # smtplib blocks for up to its timeout per step; keep that off the event loop.
+        await asyncio.to_thread(send_data_request_confirmation, record)
     except SMTPConfigurationError:
         # A server without SMTP configured is a normal state, not a fault.
         logger.info("Confirmation email skipped for %s: SMTP is not configured", request_id)

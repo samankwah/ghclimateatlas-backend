@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import hashlib
 import json
 
@@ -38,7 +39,8 @@ async def latest_updates(
     fresh: bool = Query(default=False, description="Bypass the server cache (throttled)"),
 ):
     try:
-        payload, stale = load_latest_updates(fresh=fresh)
+        # A cache miss scrapes GMet over HTTP; keep that off the event loop.
+        payload, stale = await asyncio.to_thread(load_latest_updates, fresh=fresh)
     except NewsUnavailable as exc:
         raise HTTPException(
             status_code=503,
