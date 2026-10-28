@@ -359,7 +359,7 @@ async def get_variable_range(
     Useful for setting up color scale legends.
     """
     # Get the full climate data
-    climate_response = await get_climate_data(variable, response, period, scenario, percentile)
+    climate_response = await get_climate_data(variable, period, scenario, percentile)
 
     values = [d.value for d in climate_response.data]
 

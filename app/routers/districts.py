@@ -156,7 +156,7 @@ async def get_map_districts(
     if real_payload is not None:
         return real_payload
 
-    return await get_all_districts(response, region)
+    return await get_all_districts(region)
 
 
 @router.get("/list", response_model=List[District])
